@@ -109,6 +109,17 @@ header nav a:hover::after {
     width: 100%;
     left: 0;
 }
+/* News Ticker Animation */
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+}
 
 /* -------------------------------------------------------------------------- */
 /* 3. Hero Section */
