@@ -126,27 +126,23 @@
     <!-- Uses local asset from original; inline fallback background    -->
     <!-- ============================================================= -->
     <main id="main-content" class="container mx-auto px-6 py-24 flex-grow">
-        <section id="hero-section" class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16">
-    <!-- Background Image -->
-    <img src="https://wallpapers.com/images/hd/the-walking-dead-game-characters-q02t53z560938y3y.jpg" 
-         class="absolute inset-0 w-[75%] h-auto object-contain mx-auto my-auto" 
-         alt="Hero Image">
+    <section id="hero-section" class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-16">
+    <div class="relative w-[75%] mx-auto h-full">
+        <!-- Background Image -->
+        <img src="https://wallpapers.com/images/hd/the-walking-dead-game-characters-q02t53z560938y3y.jpg" 
+             class="absolute inset-0 w-full h-auto object-contain mx-auto my-auto" 
+             alt="Hero Image">
 
-    <!-- Black Overlay -->
-    <div class="absolute inset-0 bg-black/70"></div>
+        <!-- Black Overlay (Match Image Width) -->
+        <div class="absolute inset-0 bg-black/70"></div>
+    </div>
 
     <!-- Content -->
     <div class="relative z-10 p-6 max-w-4xl mx-auto">
-        <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Curating the Future of Gaming</h2>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8">
-            Welcome to my personal chronicle of the most anticipated titles, categorized by the urgency of their call to adventure. Join me as I explore what's next on the horizon.
-        </p>
-        <a href="#featured-spotlight" 
-           class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg">
-           Explore My List
-        </a>
+        ...
     </div>
 </section>
+
 
 
 
