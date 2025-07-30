@@ -44,8 +44,8 @@
 
      /* Custom styles for premium look and scrollbar hiding */
         body {
-            background-color: #1a202c; /* Dark background for premium feel */
-            font-family: 'Inter', sans-serif; /* A modern, clean font */
+           font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d; /* Slightly darker base background */
         }
 
         .section-fade-in {
@@ -92,6 +92,84 @@
 
         #scrollLeftBtn:focus, #scrollRightBtn:focus {
             transform: scale(1.05);
+        }
+     
+        /* Custom keyframes for a smoother, more subtle pulse effect */
+        @keyframes subtle-pulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: scaleX(0.98);
+            }
+            50% {
+                opacity: 1;
+                transform: scaleX(1.02);
+            }
+        }
+
+        .animate-subtle-pulse {
+            animation: subtle-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+
+        /* Enhanced glassmorphism effect for the wrapper */
+        .glass-effect {
+            background-color: rgba(25, 25, 35, 0.65); /* Slightly less opaque */
+            backdrop-filter: blur(20px) saturate(1.2); /* Stronger blur and saturation */
+            -webkit-backdrop-filter: blur(20px) saturate(1.2); /* Safari compatibility */
+            border: 1px solid rgba(147, 51, 234, 0.3); /* Softer, more transparent border */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), /* Deeper main shadow */
+                        0 0 0 2px rgba(147, 51, 234, 0.1); /* Subtle inner glow */
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition */
+        }
+
+        .glass-effect:hover {
+            transform: translateY(-8px) scale(1.01); /* More pronounced lift on hover */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), /* Even deeper shadow */
+                        0 0 0 3px rgba(147, 51, 234, 0.2); /* Increased glow */
+        }
+
+        /* Refined playlist card styling */
+        .playlist-card {
+            background-color: rgba(35, 35, 45, 0.7); /* Slightly different transparency for differentiation */
+            backdrop-filter: blur(12px); /* Applied directly to these cards */
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.25); /* Softer border */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+            transition: all 0.4s ease-out;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px) scale(1.01); /* Gentle lift on hover */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4); /* Increased shadow */
+            border-color: rgba(139, 92, 246, 0.4); /* Slightly more prominent border on hover */
+        }
+
+        /* Dynamic underline for links */
+        .link-underline {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px; /* Space for the underline */
+        }
+
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-image: linear-gradient(to right, #a78bfa, #ec4899); /* Gradient underline */
+            transition: width 0.3s ease-out;
+        }
+
+        .link-underline:hover::after {
+            width: 100%;
+        }
+
+        /* Pattern dots refinement */
+        .bg-pattern-dots {
+            background-image: url('data:image/svg+xml,%3Csvg width=\'10\' height=\'10\' viewBox=\'0 0 10 10\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'5\' cy=\'5\' r=\'1\' fill=\'%23ffffff\' opacity=\'0.08\'/%3E%3C/svg%3E'); /* Slightly more visible dots */
+            background-size: 25px 25px; /* Slightly larger spacing for dots */
+            opacity: 0.08; /* Slightly more prominent */
         }
   </style>
 </head>
@@ -189,51 +267,51 @@
 <section class="mt-20"> <!-- margin-top -->
 <section class="mt-20"> <!-- margin-top -->
 
-<section id="featured-spotlight" class="mb-20 section-fade-in relative overflow-hidden rounded-2xl shadow-2xl" aria-labelledby="featured-spotlight-heading">
-  <div class="absolute inset-0 bg-gradient-to-br from-gray-950 to-purple-950 opacity-90 z-0"></div>
-  <div class="absolute inset-0 bg-pattern-dots opacity-5 z-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'10\' height=\'10\' viewBox=\'0 0 10 10\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'5\' cy=\'5\' r=\'1\' fill=\'%23ffffff\' opacity=\'0.1\'/%3E%3C/svg%3E'); background-size: 20px 20px;"></div>
+<section id="featured-spotlight" class="w-full max-w-6xl section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out" aria-labelledby="featured-spotlight-heading">
+        <!-- Background Gradients and Patterns -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-pink-950 opacity-95 z-0"></div>
+        <div class="absolute inset-0 bg-pattern-dots z-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'10\' height=\'10\' viewBox=\'0 0 10 10\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'5\' cy=\'5\' r=\'1\' fill=\'%23ffffff\' opacity=\'0.08\'/%3E%3C/svg%3E'); background-size: 25px 25px; opacity: 0.08;"></div>
 
-  <div class="relative z-10 p-6 md:p-10">
-    <h2 id="featured-spotlight-heading" class="text-4xl md:text-6xl font-extrabold text-white mb-12 text-center relative pb-6 tracking-tight">
-      <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Featured Pick of the Month</span>
-      <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse-slow"></span>
-    </h2>
+        <div class="relative z-10 p-8 md:p-12 lg:p-16">
+            <!-- Section Heading -->
+            <h2 id="featured-spotlight-heading" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-16 text-center relative pb-8 tracking-tight leading-tight">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-500">Featured Pick of the Month</span>
+                <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-subtle-pulse"></span>
+            </h2>
 
-    <div id="featured-spotlight-wrapper" class="bg-gray-900/70 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-2xl border border-purple-700/50 hover:border-purple-600/70 transition duration-500 ease-in-out transform hover:scale-[1.005]">
-<div class="lg:w-full w-full space-y-12">
+            <!-- Main Content Wrapper with Glass Effect -->
+            <div id="featured-spotlight-wrapper" class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl">
+                <div class="lg:w-full w-full space-y-16">
 
-  <h4 class="text-3xl font-bold text-white mb-4 border-b-2 border-purple-600 pb-4 text-center">
-    🎥 Curated Playlists
-  </h4>
+                    <!-- Curated Playlists Heading -->
+                    <h4 class="text-3xl sm:text-4xl font-bold text-white mb-6 border-b-2 border-purple-700 pb-6 text-center">
+                        <span class="text-purple-400">🎥</span> Curated Playlists
+                    </h4>
 
-  <!-- Wu Chang Playlist -->
-  <div class="bg-gray-800/60 rounded-xl p-6 shadow-xl flex flex-col items-center space-y-4 border border-purple-600/40 hover:border-purple-500 transition">
-    <h5 class="text-2xl font-extrabold text-white">🌀 Wu Chang Playlist</h5>
-    <div class="relative w-full max-w-2xl aspect-video">
-      <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" title="Wu Chang Playlist" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" target="_blank" class="text-purple-400 hover:text-pink-400 font-medium transition">Open Full Playlist ↗</a>
-  </div>
+                    <!-- Wu Chang Playlist Card -->
+                    <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6">
+                        <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center">🌀 Wu Chang Playlist</h5>
+                        <p class="text-gray-300 text-center max-w-prose">Dive into the mystical and dynamic world of Wu Chang with this hand-picked collection of captivating videos.</p>
+                        <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" title="Wu Chang Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" target="_blank" class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300">Open Full Playlist ↗</a>
+                    </div>
 
-  <!-- The Walking Dead Playlist -->
-  <div class="bg-gray-800/60 rounded-xl p-6 shadow-xl flex flex-col items-center space-y-4 border border-purple-600/40 hover:border-purple-500 transition">
-    <h5 class="text-2xl font-extrabold text-white">🧟 The Walking Dead Playlist</h5>
-    <div class="relative w-full max-w-2xl aspect-video">
-      <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="The Walking Dead Playlist" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank" class="text-purple-400 hover:text-pink-400 font-medium transition">Open Full Playlist ↗</a>
-  </div>
+                    <!-- The Walking Dead Playlist Card -->
+                    <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6">
+                        <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center">🧟 The Walking Dead Playlist</h5>
+                        <p class="text-gray-300 text-center max-w-prose">Experience the gripping survival saga with this curated selection, perfect for fans of the post-apocalyptic world.</p>
+                        <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="The Walking Dead Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank" class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300">Open Full Playlist ↗</a>
+                    </div>
 
-</div>
-</div>
+                </div>
+            </div>
         </div>
-      
-        
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 <style>
   /* Basic custom styles for glow effect and dots pattern if not using a full CSS framework */
   .shadow-purple-glow {
