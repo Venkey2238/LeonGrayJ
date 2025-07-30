@@ -89,7 +89,226 @@
 
         #scrollLeftBtn:focus, #scrollRightBtn:focus {
             transform: scale(1.05);
-        }
+        }/* General Enhancements for Premium Look */
+body {
+  background-color: #0d0a13; /* Even darker background */
+}
+
+/* Featured Section - Container */
+.featured-premium-section {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: section-entrance 1.5s ease-out forwards;
+  overflow: hidden; /* Ensure nothing spills out */
+}
+
+/* Animated Background Gradient */
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-pan 15s ease infinite alternate;
+}
+
+@keyframes gradient-pan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Subtle Light Pulse (can be combined with or replace dots) */
+@keyframes pulse-light {
+  0% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+/* Heading Animations */
+.featured-heading .animate-text-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: text-reveal 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.5s;
+  display: inline-block; /* Essential for transform on inline elements */
+}
+
+@keyframes text-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-bar-pulse 2s infinite alternate;
+}
+
+@keyframes subtle-bar-pulse {
+  0% { transform: scaleX(0.8); opacity: 0.6; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.8); opacity: 0.6; }
+}
+
+/* Glass Effect Enhancement */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05); /* Lighter for more visibility */
+  backdrop-filter: blur(15px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg); /* Initial state for potential 3D */
+}
+
+.featured-premium-section:hover .glass-effect {
+  transform: rotateX(2deg) translateY(-5px); /* Subtle tilt on hover */
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Content Entry Animations */
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fade-in-up 1s ease-out forwards;
+  animation-delay: 1s; /* Stagger with heading */
+}
+
+@keyframes fade-in-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: scale-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scale-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in.delay-150 {
+  animation-delay: 1.2s; /* Stagger for the second card */
+}
+
+.animate-text-pop {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: text-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation-delay: 1.4s;
+}
+
+@keyframes text-pop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+  animation-delay: 1.6s;
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+.animate-video-pulse {
+  animation: video-border-pulse 3s infinite alternate;
+}
+
+@keyframes video-border-pulse {
+  0% { border-color: rgba(168, 85, 247, 0.8); }
+  50% { border-color: rgba(236, 72, 153, 1); }
+  100% { border-color: rgba(168, 85, 247, 0.8); }
+}
+
+.animate-bounce-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: bounce-in 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: 2s;
+}
+
+@keyframes bounce-in {
+  0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+  60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Individual Playlist Card Hover Effect */
+.playlist-card {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(168, 85, 247, 0.3); /* Initial subtle border */
+}
+
+.playlist-card:hover {
+  transform: translateY(-8px) rotateZ(1deg); /* Slight lift and tilt */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.7);
+  border-color: rgba(168, 85, 247, 0.8); /* More pronounced border */
+}
+
+/* Optional: Add a subtle light ray effect on card hover */
+.playlist-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.playlist-card:hover::before {
+  opacity: 1;
+}
+
+/* News Ticker Animation (Existing, but ensure it's smooth) */
+.animate-premium-marquee {
+  animation: premium-marquee 20s linear infinite;
+  white-space: nowrap;
+  padding-left: 100%; /* Start off-screen */
+  display: inline-block; /* Necessary for animation */
+}
+
+@keyframes premium-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Section Entrance Animation (for the entire featured section) */
+@keyframes section-entrance {
+  0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Add a new class for the pattern background (if you want an SVG one) */
+.bg-pattern-dots {
+  /* This is a placeholder. You'd likely use an SVG pattern for better results */
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23ffffff' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+}
+
+.animate-pattern-flow {
+  animation: pattern-flow 60s linear infinite;
+}
+
+@keyframes pattern-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
   </style>
 </meta></head>
 <body class="bg-gray-950 text-gray-100 antialiased leading-relaxed relative">
@@ -164,46 +383,49 @@
 <section class="mt-20"> <!-- margin-top -->
 <section class="mt-20"> <!-- margin-top -->
 
-<section aria-labelledby="featured-spotlight-heading" class="w-full max-w-6xl mx-auto section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out" id="featured-spotlight">
-<!-- Background Gradients and Patterns -->
-<div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-pink-950 opacity-95 z-0"></div>
-<div class="absolute inset-0 bg-pattern-dots z-0"></div>
-<div class="relative z-10 p-8 md:p-12 lg:p-16">
-<!-- Section Heading -->
-<h2 class="text-center relative pb-8 tracking-tight leading-tight" id="featured-spotlight-heading">
-<span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-500">
-                Featured Pick of the Month
-            </span>
-<span class="block mx-auto mt-4 w-40 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-subtle-pulse"></span>
-</h2>
-<!-- Main Content Wrapper with Glass Effect -->
-<div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl" id="featured-spotlight-wrapper">
-<div class="lg:w-full w-full space-y-16">
-<!-- Curated Playlists Heading -->
-<h4 class="text-3xl sm:text-4xl font-bold text-white mb-6 border-b-2 border-purple-700 pb-6 text-center">
-<span class="text-purple-400">🎥</span> Curated Playlists
-                </h4>
-<!-- Wu Chang Playlist Card -->
-<div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6">
-<h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center">🌀 Wu Chang Playlist</h5>
-<p class="text-gray-300 text-center max-w-prose">Dive into the mystical and dynamic world of Wu Chang with this hand-picked collection of captivating videos.</p>
-<div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" title="Wu Chang Playlist"></iframe>
-</div>
-<a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" target="_blank">Open Full Playlist ↗</a>
-</div>
-<!-- The Walking Dead Playlist Card -->
-<div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6">
-<h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center">🧟 The Walking Dead Playlist</h5>
-<p class="text-gray-300 text-center max-w-prose">Experience the gripping survival saga with this curated selection, perfect for fans of the post-apocalyptic world.</p>
-<div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="The Walking Dead Playlist"></iframe>
-</div>
-<a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank">Open Full Playlist ↗</a>
-</div>
-</div>
-</div>
-</div>
+<section
+  aria-labelledby="featured-spotlight-heading"
+  class="w-full max-w-6xl section-fade-in relative overflow-hidden rounded-3xl shadow-3xl transform hover:shadow-4xl transition-all duration-700 ease-in-out featured-premium-section"
+  id="featured-spotlight"
+>
+  <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-purple-950 to-pink-950 opacity-95 z-0 animate-gradient-shift"></div>
+  <div class="absolute inset-0 bg-pattern-dots z-0 animate-pattern-flow"></div>
+  <div class="absolute inset-0 z-0 pointer-events-none" style="background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, transparent 70%); animation: pulse-light 5s infinite alternate;"></div>
+
+  <div class="relative z-10 p-8 md:p-12 lg:p-16">
+    <h2 class="text-center relative pb-8 tracking-tight leading-tight featured-heading" id="featured-spotlight-heading">
+      <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-pink-500 animate-text-reveal">
+        Featured Pick of the Month
+      </span>
+      <span class="block mx-auto mt-4 w-40 h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-subtle-pulse"></span>
+    </h2>
+
+    <div class="glass-effect rounded-2xl p-8 md:p-12 shadow-2xl featured-content-wrapper" id="featured-spotlight-wrapper">
+      <div class="lg:w-full w-full space-y-16">
+        <h4 class="text-3xl sm:text-4xl font-bold text-white mb-6 border-b-2 border-purple-700 pb-6 text-center animate-fade-in-up">
+          <span class="text-purple-400">🎥</span> Curated Playlists
+        </h4>
+
+        <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6 animate-scale-in">
+          <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center animate-text-pop">🌀 Wu Chang Playlist</h5>
+          <p class="text-gray-300 text-center max-w-prose animate-fade-in">Dive into the mystical and dynamic world of Wu Chang with this hand-picked collection of captivating videos.</p>
+          <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800 playlist-video-container animate-video-pulse">
+            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" title="Wu Chang Playlist"></iframe>
+          </div>
+          <a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300 animate-bounce-in" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0vlWrMDCStIrp-3ne7i_XS" target="_blank">Open Full Playlist ↗</a>
+        </div>
+
+        <div class="playlist-card rounded-2xl p-8 shadow-xl flex flex-col items-center space-y-6 animate-scale-in delay-150">
+          <h5 class="text-2xl sm:text-3xl font-extrabold text-white text-center animate-text-pop">🧟 The Walking Dead Playlist</h5>
+          <p class="text-gray-300 text-center max-w-prose animate-fade-in">Experience the gripping survival saga with this curated selection, perfect for fans of the post-apocalyptic world.</p>
+          <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-lg border border-purple-800 playlist-video-container animate-video-pulse">
+            <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" frameborder="0" src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="The Walking Dead Playlist"></iframe>
+          </div>
+          <a class="link-underline text-purple-400 hover:text-pink-400 font-semibold text-lg transition-colors duration-300 animate-bounce-in" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank">Open Full Playlist ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 </section></section></section></section></section></main></div>
 
