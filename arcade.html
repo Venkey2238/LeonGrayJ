@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="ie=edge" http-equiv="x-ua-compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Explore all of LeongrayJ's favorite games and curated YouTube playlists in one place. Your personal gaming arcade." name="description">
+<meta content="Leon's Arcade - LeongrayJ Gaming Blog" property="og:title"/>
+<meta content="A collection of LeongrayJ's most exciting gaming playlists and highlights." property="og:description"/>
+<meta content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<title>Leon's Arcade</title>
+<link href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { darkMode: 'class' };</script>
+<link href="./assets/css/reset.css" rel="stylesheet"/>
+<link href="./assets/css/main.css" rel="stylesheet"/>
+<style>
+    /* Arcade-specific styling */
+    body {
+        background-color: #0d0a13;
+        font-family: 'Inter', sans-serif;
+    }
+
+    main {
+        padding-top: 120px;
+    }
+
+    .hero-arcade {
+        background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .hero-arcade::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+    }
+
+    .game-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .game-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent 50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .game-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(236, 72, 153, 0.7);
+    }
+
+    .game-card:hover::after {
+        opacity: 1;
+    }
+
+    .card-image {
+        height: 200px;
+        object-fit: cover;
+    }
+  </style>
+</meta></head>
+<body class="bg-gray-950 text-gray-100 antialiased leading-relaxed relative">
+<header class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" id="site-header" role="banner">
+<nav aria-label="Primary" class="container mx-auto flex justify-between items-center">
+<div class="flex items-center gap-4">
+<a aria-label="Go to current livestream" class="relative block w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105" href="https://www.youtube.com/@LeonGrayJ/live" id="logo-livestream-link" rel="noopener noreferrer" target="_blank">
+<img alt="LeongrayJ Logo" class="" id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"/>
+<span class="absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full translate-x-1/4 translate-y-1/4 shadow-lg animate-pulse hidden" id="live-badge">LIVE</span>
+</a>
+<h1 class="text-2xl font-bold text-white tracking-wide">
+<span class="text-purple-400">LeonGrayJ</span>
+</h1>
+</div>
+<ul class="hidden md:flex gap-6 text-sm font-semibold">
+<li><a class="text-gray-300 hover:text-purple-400 transition" href="index.html#featured-playlists">Featured</a></li>
+<li><a class="text-purple-400 transition" href="arcade.html">Leon's Arcade</a></li>
+<li><a class="text-gray-300 hover:text-purple-400 transition" href="high_priority.html">High Priority</a></li>
+<li><a class="text-gray-300 hover:text-purple-400 transition" href="moderate_priority.html">Moderate Priority</a></li>
+<li><a class="text-gray-300 hover:text-purple-400 transition" href="low_priority.html">Low Priority</a></li>
+<li><a class="text-gray-300 hover:text-purple-400 transition" href="index.html#about-me">About Me</a></li>
+</ul>
+</nav>
+</header>
+<main class="container mx-auto px-6 py-24 flex-grow" id="main-content">
+<section class="relative h-[60vh] md:h-[70vh] flex flex-col items-center justify-center text-center overflow-hidden pt-16 hero-arcade rounded-2xl mb-16">
+<div class="relative z-10 p-6 max-w-4xl mx-auto">
+<h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 text-shadow-lg leading-tight text-center">
+      Leon's Arcade
+    </h2>
+<p class="text-xl md:text-2xl text-gray-300 mb-8 text-shadow-lg text-center">
+      Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.
+    </p>
+</div>
+</section>
+<section class="mt-20">
+<h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-gray-800 rounded-lg shadow-xl game-card">
+<img alt="Starfield Playlist" class="w-full card-image rounded-t-lg" src="https://images.unsplash.com/photo-1694291882650-705b637731d1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<div class="p-6">
+<h4 class="text-2xl font-bold text-white mb-2">🚀 Starfield</h4>
+<p class="text-gray-300 mb-4">Journey through the stars in this epic space exploration RPG. Relive every moment of my cosmic adventure.</p>
+<a class="inline-flex items-center text-purple-400 hover:text-pink-400 font-semibold" href="http://googleusercontent.com/youtube.com/starfield" target="_blank">Watch Playlist ↗</a>
+</div>
+</div>
+<div class="bg-gray-800 rounded-lg shadow-xl game-card">
+<img alt="Diablo IV Playlist" class="w-full card-image rounded-t-lg" src="https://images.unsplash.com/photo-1626279169601-5231c77894a8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<div class="p-6">
+<h4 class="text-2xl font-bold text-white mb-2">🔥 Diablo IV</h4>
+<p class="text-gray-300 mb-4">Descend into hell and battle demonic forces. All the dark and epic gameplay moments are here.</p>
+<a class="inline-flex items-center text-purple-400 hover:text-pink-400 font-semibold" href="http://googleusercontent.com/youtube.com/diablo" target="_blank">Watch Playlist ↗</a>
+</div>
+</div>
+<div class="bg-gray-800 rounded-lg shadow-xl game-card">
+<img alt="Elden Ring Playlist" class="w-full card-image rounded-t-lg" src="https://images.unsplash.com/photo-1647414811340-025ac9120612?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<div class="p-6">
+<h4 class="text-2xl font-bold text-white mb-2">⚔️ Elden Ring</h4>
+<p class="text-gray-300 mb-4">Explore the Lands Between and conquer mighty foes with this full playthrough playlist.</p>
+<a class="inline-flex items-center text-purple-400 hover:text-pink-400 font-semibold" href="http://googleusercontent.com/youtube.com/elden-ring" target="_blank">Watch Playlist ↗</a>
+</div>
+</div>
+<div class="bg-gray-800 rounded-lg shadow-xl game-card">
+<img alt="Hogwarts Legacy Playlist" class="w-full card-image rounded-t-lg" src="https://images.unsplash.com/photo-1678121659779-e3001e3b08e7?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+<div class="p-6">
+<h4 class="text-2xl font-bold text-white mb-2">🧙‍♀️ Hogwarts Legacy</h4>
+<p class="text-gray-300 mb-4">Step into the wizarding world and cast your spells. A full series of magical adventures awaits!</p>
+<a class="inline-flex items-center text-purple-400 hover:text-pink-400 font-semibold" href="http://googleusercontent.com/youtube.com/hogwarts" target="_blank">Watch Playlist ↗</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-900 py-8 px-6 md:px-12 text-center text-gray-400 text-sm" role="contentinfo">
+<div class="container mx-auto">
+<p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
+<div class="flex justify-center gap-6">
+<a class="hover:text-purple-400 transition" href="https://discord.gg/XY66hCpFcB" rel="noopener noreferrer" target="_blank">Discord</a>
+<a class="hover:text-purple-400 transition" href="https://www.youtube.com/@LeonGrayJ" rel="noopener noreferrer" target="_blank">YouTube</a>
+<a class="hover:text-purple-400 transition" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<button aria-label="Back to top" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-3 rounded-full shadow-lg hidden z-50" id="backToTop" title="Go to top">⬆️</button>
+<script defer="" src="./assets/js/main.js" type="module"></script>
+</body>
+</html>
