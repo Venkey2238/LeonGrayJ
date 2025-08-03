@@ -11,6 +11,9 @@
 
 /* Custom Scrollbar for a premium look */
 /* For Webkit browsers (Chrome, Safari) */
+html {
+  scroll-padding-top: 100px; /* Adjust this value based on the exact height of your fixed elements */
+}
 ::-webkit-scrollbar {
     width: 12px; /* Width of the scrollbar */
 }
