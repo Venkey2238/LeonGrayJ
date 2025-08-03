@@ -63,22 +63,29 @@
     a, button {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23D946EF" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), pointer;
     }
-    .hero-arcade {
-      background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-arcade::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: 0;
-    }
+.hero-arcade {
+  background: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-arcade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.hero-arcade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('videos/DVx4.gif') no-repeat center center;
+  background-size: contain;
+  z-index: 0;
+}
     .hero-content {
       position: relative;
       z-index: 1;
