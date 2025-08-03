@@ -73,26 +73,26 @@
   position: absolute;
   inset: 0;
   background: url('videos/DVx4.gif') no-repeat center center;
-  background-size: contain; /* or use 'cover' if you want it to fully fill */
-  z-index: 0; /* BELOW the content */
+  background-size: contain; /* Or 'cover' if you prefer */
+  z-index: 0;
   opacity: 1;
 }
 
-/* optional: light overlay for readability */
 .hero-arcade::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25); /* just a very light tint */
-  z-index: 1; /* ABOVE the GIF, BELOW the text */
+  background: rgba(0, 0, 0, 0.25); /* You can reduce this or set to 0 */
+  z-index: 1;
 }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
+.hero-content {
+  position: relative;
+  z-index: 2; /* ✅ Make this higher than before */
+  padding: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
     .hero-title, .hero-subtitle {
       animation-name: text-reveal;
       animation-duration: 1s;
