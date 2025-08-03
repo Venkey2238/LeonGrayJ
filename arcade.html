@@ -120,6 +120,16 @@
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
     }
+.fixed-gif {
+  position: fixed;
+  bottom: 20px;   /* adjust as needed */
+  left: 20px;     /* adjust as needed */
+  width: 100px;   /* scale size */
+  height: auto;
+  z-index: 1000;  /* make sure it stays on top */
+  pointer-events: none; /* prevents GIF from blocking clicks */
+}
+
   </style>
 </head>
 <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
@@ -206,5 +216,6 @@
 </footer>
 
 <script defer type="module" src="./assets/js/main.js"></script>
+<img src="path/to/your.gif" alt="Floating GIF" class="fixed-gif">
 </body>
 </html>
