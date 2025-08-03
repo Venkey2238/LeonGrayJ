@@ -28,58 +28,47 @@
             'custom-bg': '#0D0A13'
           },
           keyframes: {
-            'neon-glow': {
-              '0%, 100%': { boxShadow: '0 0 5px #EC4899, 0 0 10px #EC4899, 0 0 20px #D946EF, 0 0 40px #D946EF' },
-              '50%': { boxShadow: '0 0 2.5px #EC4899, 0 0 5px #EC4899, 0 0 10px #D946EF, 0 0 20px #D946EF' }
-            },
-            'glare-sweep': {
-              '0%': { transform: 'translateX(-100%) skewX(-30deg)' },
-              '50%': { transform: 'translateX(200%) skewX(-30deg)' },
-              '100%': { transform: 'translateX(200%) skewX(-30deg)' }
-            },
             'text-reveal': {
               '0%': { transform: 'translateY(20px)', opacity: '0' },
               '100%': { transform: 'translateY(0)', opacity: '1' }
             }
           },
           animation: {
-            'neon-glow': 'neon-glow 2s ease-in-out infinite',
-            'glare-sweep': 'glare-sweep 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'text-reveal': 'text-reveal 1s ease forwards'
           }
         }
       }
     };
   </script>
-  <link rel="stylesheet" href="./assets/css/reset.css" />
-  <link rel="stylesheet" href="./assets/css/main.css" />
   <style>
     body {
       background-color: #0d0a13;
       font-family: 'Inter', sans-serif;
     }
-    a, button {
-      cursor: inherit;
-    }
     .hero-arcade {
-      background-image: url('./videos/DVx4.gif');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
       position: relative;
       overflow: hidden;
+    }
+    .hero-arcade img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
     .hero-arcade::before {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: 0;
+      backdrop-filter: blur(4px);
+      z-index: 1;
     }
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       padding: 2rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
@@ -114,27 +103,6 @@
 </head>
 <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
 
-<script>
-  const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
-  let currentIndex = 0;
-
-  function updateCursor() {
-    const color = colors[currentIndex];
-    const svgCursor = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-        <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
-      </svg>`;
-    const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
-    document.body.style.cursor = dataUrl;
-
-    currentIndex = (currentIndex + 1) % colors.length;
-  }
-
-  setInterval(updateCursor, 2500);
-  updateCursor(); // initial
-</script>
-</head>
-<body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
 <header class="bg-gray-900/40 backdrop-blur-lg shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20">
   <nav class="container mx-auto flex justify-between items-center">
     <div class="flex items-center gap-4">
@@ -156,9 +124,12 @@
 
 <main class="container mx-auto px-6 py-24">
   <section class="hero-arcade rounded-2xl mb-16 flex items-center justify-center h-[60vh] md:h-[70vh] text-center">
-    <div class="hero-content max-w-4xl mx-auto z-10">
+    <img src="./videos/DVx4.gif" alt="Hero Background" />
+    <div class="hero-content max-w-4xl mx-auto">
       <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hero-title">Leon's Arcade</h2>
-      <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.</p>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">
+        Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.
+      </p>
     </div>
   </section>
 
