@@ -1,166 +1,137 @@
 <!DOCTYPE html>
- <html class="scroll-smooth" lang="en">
- <head>
-   <meta charset="utf-8" />
-   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="description" content="Explore all of LeongrayJ's favorite games and curated YouTube playlists in one place. Your personal gaming arcade." />
-   <meta property="og:title" content="Leon's Arcade - LeongrayJ Gaming Blog" />
-   <meta property="og:description" content="A collection of LeongrayJ's most exciting gaming playlists and highlights." />
-   <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
-   <meta property="og:type" content="website" />
-   <meta name="twitter:card" content="summary_large_image" />
-   <title>Leon's Arcade</title>
-   <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
-   <link rel="preconnect" href="https://fonts.googleapis.com" />
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-   <script src="https://cdn.tailwindcss.com"></script>
-   <script>
-     tailwind.config = {
-       darkMode: 'class',
-       theme: {
-         extend: {
-           colors: {
-             'custom-purple': '#EC4899',
-             'custom-pink': '#D946EF',
-             'custom-blue': '#8B5CF6',
-             'custom-bg': '#0D0A13'
-           },
-           keyframes: {
-             'neon-glow': {
-               '0%, 100%': { boxShadow: '0 0 5px #EC4899, 0 0 10px #EC4899, 0 0 20px #D946EF, 0 0 40px #D946EF' },
-               '50%': { boxShadow: '0 0 2.5px #EC4899, 0 0 5px #EC4899, 0 0 10px #D946EF, 0 0 20px #D946EF' }
-             },
-             'glare-sweep': {
-               '0%': { transform: 'translateX(-100%) skewX(-30deg)' },
-               '50%': { transform: 'translateX(200%) skewX(-30deg)' },
-               '100%': { transform: 'translateX(200%) skewX(-30deg)' }
-             },
-             'text-reveal': {
-               '0%': { transform: 'translateY(20px)', opacity: '0' },
-               '100%': { transform: 'translateY(0)', opacity: '1' }
-             }
-           },
-           animation: {
-             'neon-glow': 'neon-glow 2s ease-in-out infinite',
-             'glare-sweep': 'glare-sweep 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-             'text-reveal': 'text-reveal 1s ease forwards'
-           }
-         }
-       }
-     };
-   </script>
-   <link rel="stylesheet" href="./assets/css/reset.css" />
-   <link rel="stylesheet" href="./assets/css/main.css" />
-   <style>
-     body {
-       background-color: #0d0a13;
-       font-family: 'Inter', sans-serif;
-     }
-     a, button {
-       cursor: inherit;
-     }
-     .hero-arcade {
-       background-image: url('./videos/DVx4.gif');
-       background-size: contain;
-       background-repeat: no-repeat;
-       background-position: center;
-       background-attachment: fixed;
-       position: relative;
-       overflow: hidden;
-     }
-     .hero-arcade::before {
-       content: '';
-       position: absolute;
-       inset: 0;
-       background: rgba(0, 0, 0, 0.6);
-       backdrop-filter: blur(5px);
-       z-index: 0;
-     }
-     .hero-content {
-       position: relative;
-       z-index: 1;
-       padding: 2rem;
-       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-     }
-     .hero-title, .hero-subtitle {
-       animation-name: text-reveal;
-       animation-duration: 1s;
-       animation-fill-mode: forwards;
-       opacity: 0;
-     }
-     .hero-subtitle { animation-delay: 0.5s; }
-     .game-card {
-       position: relative;
-       overflow: hidden;
-       transition: transform 0.3s ease, box-shadow 0.3s ease;
-       background: rgba(255, 255, 255, 0.05);
-       border: 1px solid rgba(255, 255, 255, 0.1);
-       backdrop-filter: blur(10px);
-       border-radius: 12px;
-       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-     }
-     .game-card:hover {
-       transform: translateY(-10px) scale(1.02);
-       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
-     }
-     .card-video {
-       width: 100%;
-       height: 200px;
-       border-top-left-radius: 12px;
-       border-top-right-radius: 12px;
-     }
-   </style>
- </head>
- <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
- <script>
-   const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
-   let currentIndex = 0;
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore all of LeongrayJ's favorite games and curated YouTube playlists in one place. Your personal gaming arcade." />
+  <meta property="og:title" content="Leon's Arcade - LeongrayJ Gaming Blog" />
+  <meta property="og:description" content="A collection of LeongrayJ's most exciting gaming playlists and highlights." />
+  <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Leon's Arcade</title>
+  <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'custom-purple': '#EC4899',
+            'custom-pink': '#D946EF',
+            'custom-blue': '#8B5CF6',
+            'custom-bg': '#0D0A13'
+          },
+          keyframes: {
+            'text-reveal': {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          },
+          animation: {
+            'text-reveal': 'text-reveal 1s ease forwards'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #0d0a13;
+      font-family: 'Inter', sans-serif;
+    }
+    .hero-arcade {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-arcade img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-arcade::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    .hero-title, .hero-subtitle {
+      animation-name: text-reveal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      opacity: 0;
+    }
+    .hero-subtitle { animation-delay: 0.5s; }
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+    .game-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
+    }
+    .card-video {
+      width: 100%;
+      height: 200px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+  </style>
+</head>
+<body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
 
-   function updateCursor() {
-     const color = colors[currentIndex];
-     const svgCursor = `
-       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-         <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
-       </svg>`;
-     const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
-     document.body.style.cursor = dataUrl;
+<header class="bg-gray-900/40 backdrop-blur-lg shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20">
+  <nav class="container mx-auto flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="w-14 h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden hover:scale-105 transition">
+        <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" />
+      </a>
+      <h1 class="text-2xl font-bold text-white tracking-wide"><span class="text-purple-400">LeonGrayJ</span></h1>
+    </div>
+    <ul class="hidden md:flex gap-6 text-sm font-semibold">
+      <li><a class="hover:text-custom-purple" href="index.html#featured-playlists">Featured</a></li>
+      <li><a class="text-custom-purple" href="arcade.html">Leon's Arcade</a></li>
+      <li><a class="hover:text-custom-purple" href="high_priority.html">High Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="moderate_priority.html">Moderate Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="low_priority.html">Low Priority</a></li>
+      <li><a class="hover:text-custom-purple" href="index.html#about-me">About Me</a></li>
+    </ul>
+  </nav>
+</header>
 
-     currentIndex = (currentIndex + 1) % colors.length;
-   }
-
-   setInterval(updateCursor, 2500);
-   updateCursor(); // initial
- </script>
- </head>
- <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
- <header class="bg-gray-900/40 backdrop-blur-lg shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20">
-   <nav class="container mx-auto flex justify-between items-center">
-     <div class="flex items-center gap-4">
-       <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="w-14 h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden hover:scale-105 transition">
-         <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" />
-       </a>
-       <h1 class="text-2xl font-bold text-white tracking-wide"><span class="text-purple-400">LeonGrayJ</span></h1>
-     </div>
-     <ul class="hidden md:flex gap-6 text-sm font-semibold">
-       <li><a class="hover:text-custom-purple" href="index.html#featured-playlists">Featured</a></li>
-       <li><a class="text-custom-purple" href="arcade.html">Leon's Arcade</a></li>
-       <li><a class="hover:text-custom-purple" href="high_priority.html">High Priority</a></li>
-       <li><a class="hover:text-custom-purple" href="moderate_priority.html">Moderate Priority</a></li>
-       <li><a class="hover:text-custom-purple" href="low_priority.html">Low Priority</a></li>
-       <li><a class="hover:text-custom-purple" href="index.html#about-me">About Me</a></li>
-     </ul>
-   </nav>
- </header>
-
- <main class="container mx-auto px-6 py-24">
-   <section class="hero-arcade rounded-2xl mb-16 flex items-center justify-center h-[60vh] md:h-[70vh] text-center">
-     <div class="hero-content max-w-4xl mx-auto z-10">
-       <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hero-title">Leon's Arcade</h2>
-       <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.</p>
-     </div>
-   </section>
+<main class="container mx-auto px-6 py-24">
+  <section class="hero-arcade rounded-2xl mb-16 flex items-center justify-center h-[60vh] md:h-[70vh] text-center">
+    <img src="./videos/DVx4.gif" alt="Hero Background" />
+    <div class="hero-content max-w-4xl mx-auto">
+      <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hero-title">Leon's Arcade</h2>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">
+        Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.
+      </p>
+    </div>
+  </section>
 
    <section>
      <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
