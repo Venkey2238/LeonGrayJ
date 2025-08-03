@@ -58,11 +58,30 @@
     body {
       background-color: #0d0a13;
       font-family: 'Inter', sans-serif;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), auto;
     }
-    a, button {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23D946EF" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), pointer;
-    }
+    :root {
+    --cursor-color: #EC4899;
+  }
+
+  @keyframes cursorColorCycle {
+    0%   { --cursor-color: #EC4899; } /* pink */
+    20%  { --cursor-color: #8B5CF6; } /* purple */
+    40%  { --cursor-color: #EF4444; } /* red */
+    60%  { --cursor-color: #F59E0B; } /* orange */
+    80%  { --cursor-color: #10B981; } /* green */
+    100% { --cursor-color: #EC4899; } /* pink again */
+  }
+
+  body {
+    animation: cursorColorCycle 5s linear infinite;
+    font-family: 'Inter', sans-serif;
+  }
+
+  body,
+  a,
+  button {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><polygon fill='{{color}}' points='0,0 0,32 32,16'/></svg>".replace('{{color}}', encodeURIComponent(getComputedStyle(document.documentElement).getPropertyValue('--cursor-color').trim()))) 0 0, auto;
+  }
     .hero-arcade {
       background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
       background-size: cover;
@@ -197,6 +216,22 @@
   </div>
 </footer>
 
-<script defer type="module" src="./assets/js/main.js"></script>
+<script defer type="module" src="./assets/js/main.js">
+  const svgBase = color => `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><polygon fill='${color}' points='0,0 0,32 32,16'/></svg>`;
+  const root = document.documentElement;
+  const body = document.body;
+  const cursorColors = ['#EC4899', '#8B5CF6', '#EF4444', '#F59E0B', '#10B981']; // pink, purple, red, orange, green
+  let i = 0;
+
+  setInterval(() => {
+    const color = cursorColors[i];
+    const encoded = encodeURIComponent(color);
+    const cursorSVG = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><polygon fill='${color}' points='0,0 0,32 32,16'/></svg>`;
+    const cssCursor = `url("${cursorSVG}") 0 0, auto`;
+    body.style.cursor = cssCursor;
+    document.querySelectorAll('a, button').forEach(el => el.style.cursor = cssCursor);
+    i = (i + 1) % cursorColors.length;
+  }, 800); // change every 0.8s
+</script>
 </body>
 </html>
