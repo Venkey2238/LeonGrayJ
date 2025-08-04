@@ -52,18 +52,7 @@
       }
     };
   </script>
-   <script>
-    function loadVideo(container, playlistId) {
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
-      iframe.frameBorder = "0";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-      iframe.allowFullscreen = true;
-      iframe.className = "w-full h-64 sm:h-80 md:h-96";
-      container.innerHTML = '';
-      container.appendChild(iframe);
-    }
-  </script>
+
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
   <style>
@@ -178,35 +167,57 @@
     <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<div class="game-card">
-  <div class="relative cursor-pointer" onclick="loadVideo(this, 'PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH')">
-    <img class="card-video" src="https://img.youtube.com/vi/J_TGnv1BRmI/0.jpg" alt="Cyberpunk 2077 Thumbnail">
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M6 4l12 6-12 6V4z" />
-      </svg>
-    </div>
-  </div>
-  <div class="p-6">
-    <h4 class="text-2xl font-bold text-white mb-2">Cyberpunk 2077</h4>
-    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
-  </div>
-</div>
+    <script>
+  const games = [
+    { title: "Cyberpunk 2077", id: "PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH", thumb: "J_TGnv1BRmI" },
+    { title: "Cyberpunk 2077: Phantom Liberty", id: "PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe", thumb: "xYFCS2kZyN0" },
+    { title: "Death Stranding", id: "PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY", thumb: "hI9nr6hGt08" },
+    { title: "Final Fantasy 7 Remake Intergrade", id: "PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2", thumb: "5UVYYz0Kh_M" },
+    { title: "Horizon Forbidden West", id: "PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e", thumb: "ZlDq9B6daW4" },
+    { title: "Subnautica", id: "PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS", thumb: "RVR3PgNEOHY" },
+    { title: "Grounded", id: "PLWia9WmNWzl3b0gw5JRC3KvD5FaWtUtsP", thumb: "F4KNZYOTGTA" },
+    { title: "Elden Ring", id: "PLWia9WmNWzl0-CVtEuvzEZDKTMA9vSvyO", thumb: "AKXiKBnzpBQ" },
+    { title: "Elden Ring: Shadow of the Erdtree", id: "PLWia9WmNWzl0XEz638HHJg0CbyVS0AcNi", thumb: "xD2x8oG29Z0" },
+    { title: "Wuthering Waves", id: "PLWia9WmNWzl0f_uPEwRB2oIaKfACUiq8c", thumb: "7I3piWSW7XM" },
+    { title: "Stray", id: "PLWia9WmNWzl1fIznmlp7JyNbMNBYGQiay", thumb: "u84hRUQlaio" },
+    { title: "Raft", id: "PLWia9WmNWzl2fgIWv6jTbqjvFxJl1MAVn", thumb: "Z2p1Y5ZVot8" },
+    { title: "God of War (5) Ragnarök + DLC", id: "PLWia9WmNWzl1Q-Ie1sDTXee0yEP0FUOYG", thumb: "EE-4GvjKcfs" },
+    { title: "High On Life", id: "PLWia9WmNWzl3WGYs1Q9rKfeC7z5o3egvC", thumb: "z5nNeRZ3bJ0" },
+    { title: "Gris", id: "PLWia9WmNWzl35YYbgSNdeu2v5N5lDNRiA", thumb: "FucgEDYYLm4" },
+    { title: "Resident Evil 2 Remake", id: "PLWia9WmNWzl0kYtIH-RMIOV8lqbST9hsc", thumb: "c4OH0xkSnpM" },
+    { title: "Dead By Daylight", id: "PLWia9WmNWzl2ZGbzsWJkynJK1j8nTiZRJ", thumb: "uwf3g7hzAMI" },
+    { title: "A Plague Tale: Innocence", id: "PLWia9WmNWzl0t8zzet5L58mkkHvNIYb-A", thumb: "Ud4RJz2qglI" },
+    { title: "A Plague Tale: Requiem", id: "PLWia9WmNWzl0WK-SxI_SvUKuF1oM2y9PP", thumb: "fY3N3fHfVtY" },
+    { title: "What Remains of Edith Finch", id: "PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO", thumb: "CFyBa5uBvKs" },
+    { title: "The Alters", id: "PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD", thumb: "Up9P4i0K7z8" },
+    { title: "The Walking Dead: Telltale Definitive", id: "PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia", thumb: "kR2o_EUfy9g" },
+  ];
 
-<div class="game-card">
-  <div class="relative cursor-pointer" onclick="loadVideo(this, 'PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe')">
-    <img class="card-video" src="https://img.youtube.com/vi/xYFCS2kZyN0/0.jpg" alt="Cyberpunk 2077: Phantom Liberty Thumbnail">
-    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-      <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M6 4l12 6-12 6V4z" />
-      </svg>
-    </div>
-  </div>
-  <div class="p-6">
-    <h4 class="text-2xl font-bold text-white mb-2">Cyberpunk 2077: Phantom Liberty</h4>
-    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
-  </div>
-</div>
+  window.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('main.container');
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game-card';
+      div.innerHTML = `
+        <div class="relative cursor-pointer" onclick="loadVideo(this, '${game.id}')">
+          <img class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M6 4l12 6-12 6V4z" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-6">
+          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
+          <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  });
+</script>
+
+<!-- Game Cards End -->
 
     </div>
   </section>
