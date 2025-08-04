@@ -950,14 +950,17 @@ window.addEventListener('load', function() {
   const loadingScreen = document.getElementById('loading-screen');
   const floatingGif = document.getElementById('floating-gif');
 
-  if (loadingScreen) {
-    loadingScreen.style.display = 'none';
-    loadingScreen.remove(); // optional
-  }
+  // Delay hiding the loading screen by 5 seconds (5000 ms)
+  setTimeout(() => {
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+      loadingScreen.remove(); // optional
+    }
 
-  if (floatingGif) {
-    floatingGif.style.display = 'block';
-  }
+    if (floatingGif) {
+      floatingGif.style.display = 'block';
+    }
+  }, 5000); // <-- 5000 milliseconds = 5 seconds
 });
 </script>
 <script>
