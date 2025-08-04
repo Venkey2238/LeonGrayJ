@@ -119,14 +119,14 @@
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
     }
-.fixed-video {
+.fixed-gif {
   position: fixed;
   bottom: 20px;   /* adjust as needed */
   left: 20px;     /* adjust as needed */
   width: 100px;   /* scale size */
   height: auto;
   z-index: 1000;  /* make sure it stays on top */
-  pointer-events: none; /* prevents video from blocking clicks */
+  pointer-events: none; /* prevents GIF from blocking clicks */
 }
 
   </style>
@@ -215,9 +215,7 @@
 </footer>
 
 <script defer type="module" src="./assets/js/main.js"></script>
-<video autoplay muted loop playsinline class="fixed-video">
-  <source src="./videos/VEED.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<img src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif">
+
 </body>
 </html>
