@@ -163,11 +163,13 @@
     </div>
   </section>
 
-  <section>
-    <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-    <script>
+<section>
+  <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
+  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Game Cards will be injected here by JS -->
+  </div>
+</section>
+<script>
   const games = [
     { title: "Cyberpunk 2077", id: "PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH", thumb: "J_TGnv1BRmI" },
     { title: "Cyberpunk 2077: Phantom Liberty", id: "PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe", thumb: "xYFCS2kZyN0" },
@@ -194,7 +196,7 @@
   ];
 
   window.addEventListener('DOMContentLoaded', () => {
-    const container = document.querySelector('main.container');
+    const grid = document.getElementById('game-grid');
     games.forEach(game => {
       const div = document.createElement('div');
       div.className = 'game-card';
@@ -212,15 +214,12 @@
           <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
         </div>
       `;
-      container.appendChild(div);
+      grid.appendChild(div);
     });
   });
 </script>
 
-<!-- Game Cards End -->
 
-    </div>
-  </section>
 </main>
 
 <footer class="bg-gray-900/40 backdrop-blur-lg py-8 px-6 md:px-12 text-center text-gray-400 text-sm">
