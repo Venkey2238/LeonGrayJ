@@ -218,16 +218,20 @@
 </footer>
 <script>
 window.addEventListener('load', function() {
-   const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-      // Optional: remove the element from the DOM
-      loadingScreen.remove();
-     }
-   });
+  const loadingScreen = document.getElementById('loading-screen');
+  const floatingGif = document.getElementById('floating-gif');
+
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+    loadingScreen.remove(); // optional
+  }
+
+  if (floatingGif) {
+    floatingGif.style.display = 'block';
+  }
+});
 </script>
 <script defer type="module" src="./assets/js/main.js"></script>
-<img src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif">
-
+<img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
 </body>
 </html>
