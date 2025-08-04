@@ -1,3 +1,4 @@
+<!-- 🎮 Leon's Arcade Full HTML with Embedded Playlists Working -->
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
@@ -12,8 +13,45 @@
   <meta name="twitter:card" content="summary_large_image" />
   <title>Leon's Arcade</title>
   <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'custom-purple': '#EC4899',
+            'custom-pink': '#D946EF',
+            'custom-blue': '#8B5CF6',
+            'custom-bg': '#0D0A13'
+          },
+          keyframes: {
+            'neon-glow': {
+              '0%, 100%': { boxShadow: '0 0 5px #EC4899, 0 0 10px #EC4899, 0 0 20px #D946EF, 0 0 40px #D946EF' },
+              '50%': { boxShadow: '0 0 2.5px #EC4899, 0 0 5px #EC4899, 0 0 10px #D946EF, 0 0 20px #D946EF' }
+            },
+            'glare-sweep': {
+              '0%': { transform: 'translateX(-100%) skewX(-30deg)' },
+              '50%': { transform: 'translateX(200%) skewX(-30deg)' },
+              '100%': { transform: 'translateX(200%) skewX(-30deg)' }
+            },
+            'text-reveal': {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          },
+          animation: {
+            'neon-glow': 'neon-glow 2s ease-in-out infinite',
+            'glare-sweep': 'glare-sweep 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'text-reveal': 'text-reveal 1s ease forwards'
+          }
+        }
+      }
+    };
+  </script>
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
   <style>
@@ -25,67 +63,82 @@
     a, button {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23D946EF" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), pointer;
     }
-    .hero-arcade {
-      background: url('videos/DVx4.gif') no-repeat center center;
-      background-size: cover;
-      height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
+.hero-arcade {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-arcade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('videos/DVx4.gif') no-repeat center center;
+  background-size: contain; /* Or 'cover' if you prefer */
+  z-index: 0;
+  opacity: 1;
+}
+
+.hero-arcade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); /* You can reduce this or set to 0 */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* ✅ Make this higher than before */
+  padding: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+    .hero-title, .hero-subtitle {
+      animation-name: text-reveal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      opacity: 0;
     }
-    .hero-arcade::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 0;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-subtitle { animation-delay: 0.5s; }
     .game-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
     .game-card:hover {
       transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 0 20px #EC4899, 0 0 40px #D946EF;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
     }
-    .placeholder-thumb {
+    .card-video {
       width: 100%;
       height: 200px;
-      object-fit: cover;
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
-      cursor: pointer;
     }
-    .fixed-gif {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 100px;
-      height: auto;
-      z-index: 1000;
-      pointer-events: none;
-    }
+.fixed-gif {
+  position: fixed;
+  bottom: 20px;   /* adjust as needed */
+  left: 20px;     /* adjust as needed */
+  width: 100px;   /* scale size */
+  height: auto;
+  z-index: 1000;  /* make sure it stays on top */
+  pointer-events: none; /* prevents GIF from blocking clicks */
+}
+
   </style>
 </head>
 <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
 <div id="loading-screen" class="fixed inset-0 flex items-center justify-center bg-custom-bg z-[1000]">
-  <img src="./videos/new.gif" alt="Loading..." class="w-32 h-32 md:w-48 md:h-48" />
+  <img src="./videos/new.gif" alt="Loading..." class="w-32 h-32 md:w-48 md:h-48" />
 </div>
-
 <header class="bg-gray-900/40 backdrop-blur-lg shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20">
   <nav class="container mx-auto flex justify-between items-center">
     <div class="flex items-center gap-4">
-      <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="w-14 h-14 rounded-full border-2 border-purple-400 overflow-hidden hover:scale-105 transition">
+      <a href="https://www.youtube.com/@LeonGrayJ/live" target="_blank" class="w-14 h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden hover:scale-105 transition">
         <img src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" />
       </a>
       <h1 class="text-2xl font-bold text-white tracking-wide"><span class="text-purple-400"><a href="index.html">LeonGrayJ</a></span></h1>
@@ -102,16 +155,120 @@
 </header>
 
 <main class="container mx-auto px-6 py-24">
-  <section class="hero-arcade rounded-2xl mb-16">
-    <div class="hero-content max-w-4xl mx-auto">
-      <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Leon's Arcade</h2>
-      <p class="text-xl md:text-2xl text-gray-300">Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.</p>
+ <section class="hero-arcade rounded-2xl mb-16 flex items-center justify-center h-[60vh] md:h-[70vh] text-center">
+    <div class="hero-content max-w-4xl mx-auto z-10">
+      <h2 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hero-title">Leon's Arcade</h2>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 hero-subtitle">Step into my personal arcade and explore a curated collection of my all-time favorite games and their YouTube playlists.</p>
     </div>
   </section>
 
   <section>
     <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="playlist-grid"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- 🌆 Cyberpunk 2077 -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH" title="Cyberpunk 2077 Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🌆 Cyberpunk 2077</h4>
+    <p class="text-gray-300 mb-4">Dive into Night City and unravel a futuristic dystopian narrative filled with cybernetic action and intrigue.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🔥 Phantom Liberty -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe" title="Cyberpunk 2077: Phantom Liberty Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🔥 Phantom Liberty</h4>
+    <p class="text-gray-300 mb-4">A spy-thriller expansion to Cyberpunk 2077 that explores trust, betrayal, and high-tech espionage.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🎒 Death Stranding -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY" title="Death Stranding Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🎒 Death Stranding</h4>
+    <p class="text-gray-300 mb-4">Reconnect a fractured world in this atmospheric and emotional journey across post-apocalyptic America.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 💎 Final Fantasy 7 Remake Intergrade -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2" title="Final Fantasy 7 Remake Intergrade Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">💎 Final Fantasy 7 Remake Intergrade</h4>
+    <p class="text-gray-300 mb-4">A visually stunning reimagining of the legendary JRPG with expanded storylines and new playable characters.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🌄 Horizon Forbidden West -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e" title="Horizon Forbidden West Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🌄 Horizon Forbidden West</h4>
+    <p class="text-gray-300 mb-4">Explore distant lands, fight awe-inspiring machines, and uncover thrilling secrets of Earth’s future.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🌊 Subnautica -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS" title="Subnautica Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🌊 Subnautica</h4>
+    <p class="text-gray-300 mb-4">Dive deep into an alien underwater world filled with mystery, beauty, and danger in this survival adventure.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+
+
+<!-- 🕯️ What Remains of Edith Finch -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO" title="🕯️ What Remains of Edith Finch Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🕯️ What Remains of Edith Finch</h4>
+    <p class="text-gray-300 mb-4">A storytelling masterpiece where each family member’s tale is uniquely and tragically told.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🧬 The Alters -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD" title="🧬 The Alters Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🧬 The Alters</h4>
+    <p class="text-gray-300 mb-4">A psychological sci-fi survival story about alternate selves and the decisions that shape us.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+<!-- 🧟 The Walking Dead -->
+<div class="game-card">
+  <iframe class="card-video" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" title="🧟 The Walking Dead Playlist"></iframe>
+  <div class="p-6">
+    <h4 class="text-2xl font-bold text-white mb-2">🧟 The Walking Dead</h4>
+    <p class="text-gray-300 mb-4">Survive the apocalypse and make impossible choices in this gripping narrative adventure.</p>
+    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
+  </div>
+</div>
+
+
+    </div>
   </section>
 </main>
 
@@ -125,45 +282,22 @@
     </div>
   </div>
 </footer>
-
-<img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
-<script defer src="./assets/js/main.js"></script>
 <script>
-window.addEventListener('load', () => {
-  document.getElementById('loading-screen')?.remove();
-  document.getElementById('floating-gif').style.display = 'block';
+window.addEventListener('load', function() {
+  const loadingScreen = document.getElementById('loading-screen');
+  const floatingGif = document.getElementById('floating-gif');
 
-  const games = [
-    { title: '🌆 Cyberpunk 2077', description: 'Dive into Night City...', id: 'PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH' },
-    { title: '🔥 Phantom Liberty', description: 'A spy-thriller expansion...', id: 'PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe' },
-    // Add more here as needed
-  ];
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+    loadingScreen.remove(); // optional
+  }
 
-  const grid = document.getElementById('playlist-grid');
-  games.forEach(game => {
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    card.innerHTML = `
-      <img class="placeholder-thumb" src="https://img.youtube.com/vi?list=${game.id}&index=0&fmt=jpg" alt="${game.title}" onclick="loadVideo(this, '${game.id}')" />
-      <div class="p-6">
-        <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
-        <p class="text-gray-300 mb-4">${game.description}</p>
-        <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank" class="text-custom-purple hover:text-custom-pink font-semibold">View on YouTube ↗</a>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
+  if (floatingGif) {
+    floatingGif.style.display = 'block';
+  }
 });
-
-function loadVideo(thumb, listId) {
-  const iframe = document.createElement('iframe');
-  iframe.className = 'card-video';
-  iframe.setAttribute('frameborder', '0');
-  iframe.setAttribute('allowfullscreen', '');
-  iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-  iframe.src = `https://www.youtube.com/embed/videoseries?list=${listId}`;
-  thumb.parentNode.replaceChild(iframe, thumb);
-}
 </script>
+<script defer type="module" src="./assets/js/main.js"></script>
+<img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
 </body>
 </html>
