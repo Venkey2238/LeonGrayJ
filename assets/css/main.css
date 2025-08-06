@@ -123,7 +123,7 @@ header nav a:hover::after {
   display: inline-block;
   /* Adjust padding-left based on content length for smoother start */
   padding-left: 100%;
-  animation: premium-marquee 25s linear infinite; /* Slower for high-end feel */
+  animation: premium-marquee 180s linear infinite; /* Slower for high-end feel */
   animation-delay: 1s; /* Slight delay before animation starts */
 }
 
