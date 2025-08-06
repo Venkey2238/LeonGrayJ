@@ -279,6 +279,23 @@ body {
   opacity: 1;
 }
 
+@keyframes marquee {
+  100% {
+    transform: translateX(100%); /* Start already in view */
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.animate-premium-marquee {
+  display: inline-block;
+  /* Adjust padding-left based on content length for smoother start */
+  padding-left: 100%;
+  animation: premium-marquee 85s linear infinite; /* Slower for high-end feel */
+  animation-delay: 1s; /* Slight delay before animation starts */
+}
 
 /* Section Entrance Animation (for the entire featured section) */
 @keyframes section-entrance {
