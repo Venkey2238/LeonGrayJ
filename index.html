@@ -691,21 +691,20 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
+  const apiKey = 'b162f72fadcc5c39885332a7dcfa90ce'; 
   const marquee = document.getElementById('dynamic-marquee');
 
-  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.mmobomb.com/api1/latestnews'))
+  fetch(`https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${apiKey}`)
     .then(response => {
-      if (!response.ok) throw new Error("Network response was not OK.");
+      if (!response.ok) throw new Error("API response not OK.");
       return response.json();
     })
     .then(data => {
-      const newsData = JSON.parse(data.contents);
-      marquee.innerHTML = ''; // Clear placeholder
-
-      newsData.slice(0, 8).forEach(item => {
+      marquee.innerHTML = ''; // Clear loading message
+      data.articles.forEach(article => {
         const span = document.createElement('span');
         span.className = "mr-8";
-        span.textContent = `📰 ${item.title}`;
+        span.textContent = `📰 ${article.title}`;
         marquee.appendChild(span);
       });
     })
