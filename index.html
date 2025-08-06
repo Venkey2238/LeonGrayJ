@@ -718,7 +718,7 @@ window.addEventListener('load', function() {
       marquee.innerHTML = '<span class="mr-8">⚠️ Failed to load latest news. Try again later.</span>';
     });
 setInterval(() => {
-  fetch('https://www.mmobomb.com/api1/latestnews')
+  fetch('https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${b162f72fadcc5c39885332a7dcfa90ce}')
     .then(response => response.json())
     .then(data => {
       const headlines = data.slice(0, 10).map(item => item.title);
