@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://img.youtube.com" crossorigin>
+  <link rel="dns-prefetch" href="https://img.youtube.com">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -170,57 +172,61 @@
   </div>
 </section>
 <script>
-const games = [
-  { title: "Cyberpunk 2077", id: "PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH", thumb: "FIRST_VIDEO_ID_1" },
-  { title: "Cyberpunk 2077: Phantom Liberty", id: "PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe", thumb: "FIRST_VIDEO_ID_2" },
-  { title: "Death Stranding", id: "PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY", thumb: "FIRST_VIDEO_ID_3" },
-   { title: "Final Fantasy 7 Remake Intergrade", id: "PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2", thumb: "5UVYYz0Kh_M" },
-    { title: "Horizon Forbidden West", id: "PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e", thumb: "ZlDq9B6daW4" },
-    { title: "Subnautica", id: "PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS", thumb: "RVR3PgNEOHY" },
-    { title: "Grounded", id: "PLWia9WmNWzl3b0gw5JRC3KvD5FaWtUtsP", thumb: "F4KNZYOTGTA" },
-    { title: "Elden Ring", id: "PLWia9WmNWzl0-CVtEuvzEZDKTMA9vSvyO", thumb: "AKXiKBnzpBQ" },
-    { title: "Elden Ring: Shadow of the Erdtree", id: "PLWia9WmNWzl0XEz638HHJg0CbyVS0AcNi", thumb: "xD2x8oG29Z0" },
-    { title: "Wuthering Waves", id: "PLWia9WmNWzl0f_uPEwRB2oIaKfACUiq8c", thumb: "7I3piWSW7XM" },
-    { title: "Stray", id: "PLWia9WmNWzl1fIznmlp7JyNbMNBYGQiay", thumb: "u84hRUQlaio" },
-    { title: "Raft", id: "PLWia9WmNWzl2fgIWv6jTbqjvFxJl1MAVn", thumb: "Z2p1Y5ZVot8" },
-    { title: "God of War (5) Ragnarök + DLC", id: "PLWia9WmNWzl1Q-Ie1sDTXee0yEP0FUOYG", thumb: "EE-4GvjKcfs" },
-    { title: "High On Life", id: "PLWia9WmNWzl3WGYs1Q9rKfeC7z5o3egvC", thumb: "z5nNeRZ3bJ0" },
-    { title: "Gris", id: "PLWia9WmNWzl35YYbgSNdeu2v5N5lDNRiA", thumb: "FucgEDYYLm4" },
-    { title: "Resident Evil 2 Remake", id: "PLWia9WmNWzl0kYtIH-RMIOV8lqbST9hsc", thumb: "c4OH0xkSnpM" },
-    { title: "Dead By Daylight", id: "PLWia9WmNWzl2ZGbzsWJkynJK1j8nTiZRJ", thumb: "uwf3g7hzAMI" },
-    { title: "A Plague Tale: Innocence", id: "PLWia9WmNWzl0t8zzet5L58mkkHvNIYb-A", thumb: "Ud4RJz2qglI" },
-    { title: "A Plague Tale: Requiem", id: "PLWia9WmNWzl0WK-SxI_SvUKuF1oM2y9PP", thumb: "fY3N3fHfVtY" },
-    { title: "What Remains of Edith Finch", id: "PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO", thumb: "CFyBa5uBvKs" },
-    { title: "The Alters", id: "PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD", thumb: "Up9P4i0K7z8" },
-    { title: "The Walking Dead: Telltale Definitive", id: "PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia", thumb: "kR2o_EUfy9g" },
-  // …and so on for each playlist…
-];
+  const games = [
+    { title: "Cyberpunk 2077", id: "PLWia9WmNWzl0J7Q8MxOdnt85QRN8MEogH", thumb: "sgHGruE_JYA" },
+    { title: "Cyberpunk 2077: Phantom Liberty", id: "PLWia9WmNWzl1dhmgiqIg6clgsT7cTucKe", thumb: "EjwaIsDcxsI" },
+    { title: "Death Stranding", id: "PLWia9WmNWzl3wcY1hcyGnuokUOLo4BLMY", thumb: "Vr3oK9tFvDc" },
+    { title: "Final Fantasy 7 Remake Intergrade", id: "PLWia9WmNWzl0eh2YP56iPpdIaGTRUkyV2", thumb: "rtDGj2kmkjI" },
+    { title: "Horizon Forbidden West", id: "PLWia9WmNWzl3Dlq3jMSziaaFEeBqprs3e", thumb: "pC1IZ1xYrwE" },
+    { title: "Subnautica", id: "PLWia9WmNWzl2PRhmaqTRN65mD_pW2UsCS", thumb: "PSPIWP3Rako" },
+    { title: "Grounded", id: "PLWia9WmNWzl3b0gw5JRC3KvD5FaWtUtsP", thumb: "zIGrlC6wFIc" },
+    { title: "Elden Ring", id: "PLWia9WmNWzl0-CVtEuvzEZDKTMA9vSvyO", thumb: "jvJ-ZENRIWw" },
+    { title: "Elden Ring: Shadow of the Erdtree", id: "PLWia9WmNWzl0XEz638HHJg0CbyVS0AcNi", thumb: "JcG0vUrCc_c" },
+    { title: "Wuthering Waves", id: "PLWia9WmNWzl0f_uPEwRB2oIaKfACUiq8c", thumb: "XbBV1hexQzk" },
+    { title: "Stray", id: "PLWia9WmNWzl1fIznmlp7JyNbMNBYGQiay", thumb: "NPa0q205DsY" },
+    { title: "Raft", id: "PLWia9WmNWzl2fgIWv6jTbqjvFxJl1MAVn", thumb: "q-3WeHFPmW4" },
+    { title: "God of War (5) Ragnarök + DLC", id: "PLWia9WmNWzl1Q-Ie1sDTXee0yEP0FUOYG", thumb: "PoOwdXE3xGk" },
+    { title: "High On Life", id: "PLWia9WmNWzl3WGYs1Q9rKfeC7z5o3egvC", thumb: "eWJ8lsz-syI" },
+    { title: "Gris", id: "PLWia9WmNWzl35YYbgSNdeu2v5N5lDNRiA", thumb: "xRhd5MAzccQ" },
+    { title: "Resident Evil 2 Remake", id: "PLWia9WmNWzl0kYtIH-RMIOV8lqbST9hsc", thumb: "m9ioqDWDoWA" },
+    { title: "Dead By Daylight", id: "PLWia9WmNWzl2ZGbzsWJkynJK1j8nTiZRJ", thumb: "EAVh1qB8JLQ" },
+    { title: "A Plague Tale: Innocence", id: "PLWia9WmNWzl0t8zzet5L58mkkHvNIYb-A", thumb: "KVREdwEWXZA" },
+    { title: "A Plague Tale: Requiem", id: "PLWia9WmNWzl0WK-SxI_SvUKuF1oM2y9PP", thumb: "TNDJWVidpGg" },
+    { title: "What Remains of Edith Finch", id: "PLWia9WmNWzl3vmBXqiIVG6RaQAzK3a0dO", thumb: "Vi6vZFKeNt8" },
+    { title: "The Alters", id: "PLWia9WmNWzl1hhzxG1XDxOXOaNKnKKUoD", thumb: "B-nYwFbXIHw" },
+    { title: "The Walking Dead: The Telltale Definitive Series", id: "PLWia9WmNWzl1JKHK_rQ-YjAv3AwCH3hia", thumb: "of2reY8GzDo" }
+  ];
 
-window.addEventListener('DOMContentLoaded', () => {
-  const grid = document.getElementById('game-grid');
-  games.forEach(game => {
-    const div = document.createElement('div');
-    div.className = 'game-card';
-    div.innerHTML = `
-      <div class="relative cursor-pointer" onclick="loadVideo(this, '${game.id}')">
-        <img class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M6 4l12 6-12 6V4z" />
-          </svg>
+  window.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('game-grid');
+    const fragment = document.createDocumentFragment();
+
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game-card';
+      div.innerHTML = `
+        <div class="relative cursor-pointer" onclick="loadVideo(this, '${game.id}')">
+          <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+          <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M6 4l12 6-12 6V4z" />
+            </svg>
+          </div>
         </div>
-      </div>
-      <div class="p-6">
-        <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
-        <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank"
-           class="text-custom-purple hover:text-custom-pink font-semibold">
-          View on YouTube ↗
-        </a>
-      </div>`;
-    grid.appendChild(div);
+        <div class="p-6">
+          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
+          <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank"
+             class="text-custom-purple hover:text-custom-pink font-semibold">
+            View on YouTube ↗
+          </a>
+        </div>`;
+      fragment.appendChild(div);
+    });
+
+    grid.appendChild(fragment);
   });
-});
 </script>
+
 
 
 
