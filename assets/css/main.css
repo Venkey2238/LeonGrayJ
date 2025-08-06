@@ -126,11 +126,11 @@ header nav a:hover::after {
 
 .animate-premium-marquee {
   display: inline-block;
-  /* Adjust padding-left based on content length for smoother start */
   padding-left: 100%;
-  animation: premium-marquee 85s linear infinite; /* Slower for high-end feel */
-  animation-delay: 1s; /* Slight delay before animation starts */
+  animation: marquee 85s linear infinite; /* 👈 Fix is here */
+  animation-delay: 1s;
 }
+
 
 /* Optional: Pause marquee on hover for better readability */
 #premium-news-scroller:hover .animate-premium-marquee {
