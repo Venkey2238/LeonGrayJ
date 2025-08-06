@@ -696,26 +696,25 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
+ const apiKey = 'b162f72fadcc5c39885332a7dcfa90ce'; // Replace with your GNews API key
   const marquee = document.getElementById('dynamic-marquee');
 
-  fetch("https://api.rss2json.com/v1/api.json?rss_url=https://feeds.ign.com/ign/games-all")
+  fetch(`https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${apiKey}`)
     .then(response => {
       if (!response.ok) throw new Error("API response not OK.");
       return response.json();
     })
     .then(data => {
-      marquee.innerHTML = ''; // Clear old content
-
-      // Add top 8 news titles
-      data.items.slice(0, 8).forEach(item => {
+      marquee.innerHTML = ''; // Clear loading message
+      data.articles.forEach(article => {
         const span = document.createElement('span');
         span.className = "mr-8";
-        span.textContent = `🎮 ${item.title}`;
+        span.textContent = `📰 ${article.title}`;
         marquee.appendChild(span);
       });
     })
     .catch(error => {
-      console.error("Failed to fetch IGN news:", error);
+      console.error("Failed to fetch news:", error);
       marquee.innerHTML = '<span class="mr-8">⚠️ Failed to load latest news. Try again later.</span>';
     });
 setInterval(() => {
