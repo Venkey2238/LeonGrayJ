@@ -696,7 +696,6 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
-<script>
   const marquee = document.getElementById('dynamic-marquee');
 
   fetch("https://api.rss2json.com/v1/api.json?rss_url=https://feeds.ign.com/ign/games-all")
@@ -719,7 +718,6 @@ window.addEventListener('load', function() {
       console.error("Failed to fetch IGN news:", error);
       marquee.innerHTML = '<span class="mr-8">⚠️ Failed to load latest news. Try again later.</span>';
     });
-</script>
 setInterval(() => {
   fetch('https://gnews.io/api/v4/search?q=gaming&lang=en&max=10&apikey=${b162f72fadcc5c39885332a7dcfa90ce}')
     .then(response => response.json())
