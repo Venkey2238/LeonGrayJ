@@ -116,7 +116,7 @@ header nav a:hover::after {
 /* Premium News Scroller Animation */
 @keyframes marquee {
   0% {
-    transform: translateX(5%); /* Start already in view */
+    transform: translateX(35%); /* Start already in view */
   }
   100% {
     transform: translateX(-100%);
