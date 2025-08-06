@@ -691,14 +691,18 @@ window.addEventListener('load', function() {
 </script>
 
 <script>
-  fetch('https://www.mmobomb.com/api1/latestnews')
-    .then(response => response.json())
-    .then(data => {
-      const marquee = document.getElementById('dynamic-marquee');
-      marquee.innerHTML = ''; // Clear old static content
+  const marquee = document.getElementById('dynamic-marquee');
 
-      // Limit to 8 headlines (or any number you prefer)
-      data.slice(0, 8).forEach(item => {
+  fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.mmobomb.com/api1/latestnews'))
+    .then(response => {
+      if (!response.ok) throw new Error("Network response was not OK.");
+      return response.json();
+    })
+    .then(data => {
+      const newsData = JSON.parse(data.contents);
+      marquee.innerHTML = ''; // Clear placeholder
+
+      newsData.slice(0, 8).forEach(item => {
         const span = document.createElement('span');
         span.className = "mr-8";
         span.textContent = `📰 ${item.title}`;
@@ -707,7 +711,6 @@ window.addEventListener('load', function() {
     })
     .catch(error => {
       console.error("Failed to fetch news:", error);
-      const marquee = document.getElementById('dynamic-marquee');
       marquee.innerHTML = '<span class="mr-8">⚠️ Failed to load latest news. Try again later.</span>';
     });
 setInterval(() => {
