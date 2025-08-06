@@ -114,10 +114,15 @@ header nav a:hover::after {
 }
 /* News Ticker Animation */
 /* Premium News Scroller Animation */
-@keyframes premium-marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+@keyframes marquee {
+  0% {
+    transform: translateX(0%); /* Start already in view */
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
+
 
 .animate-premium-marquee {
   display: inline-block;
