@@ -10,11 +10,13 @@
   <meta property="og:image" content="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>Leon's High Priority</title>
+  <title>Leon's Arcade</title>
   <link rel="icon" type="image/x-icon" href="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://img.youtube.com" crossorigin>
+  <link rel="dns-prefetch" href="https://img.youtube.com">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -51,23 +53,11 @@
       }
     };
   </script>
+
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
   <style>
-    .hero-title, .hero-subtitle {
-      animation-name: text-reveal;
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      opacity: 0;
-    }
-    .hero-subtitle { animation-delay: 0.5s; }
-    .card-video {
-      width: 100%;
-      height: 200px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
-body {
+    body {
       background-color: #0d0a13;
       font-family: 'Inter', sans-serif;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), auto;
@@ -152,28 +142,8 @@ body {
   z-index: 1000;  /* make sure it stays on top */
   pointer-events: none; /* prevents GIF from blocking clicks */
 }
+
   </style>
-</head>
-
-<script>
-  const colors = ["#EC4899", "#D946EF", "#F87171", "#A78BFA", "#FBBF24"];
-  let currentIndex = 0;
-
-  function updateCursor() {
-    const color = colors[currentIndex];
-    const svgCursor = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-        <path fill="${color}" d="M16 0L0 16l16 16 16-16L16 0z"/>
-      </svg>`;
-    const dataUrl = `url('data:image/svg+xml;utf8,${encodeURIComponent(svgCursor)}'), auto`;
-    document.body.style.cursor = dataUrl;
-
-    currentIndex = (currentIndex + 1) % colors.length;
-  }
-
-  setInterval(updateCursor, 2500);
-  updateCursor(); // initial
-</script>
 </head>
 
 <body class="bg-custom-bg text-gray-100 antialiased leading-relaxed">
