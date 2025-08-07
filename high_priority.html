@@ -54,35 +54,56 @@
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/main.css" />
   <style>
-    body {
+    .hero-title, .hero-subtitle {
+      animation-name: text-reveal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      opacity: 0;
+    }
+    .hero-subtitle { animation-delay: 0.5s; }
+    .card-video {
+      width: 100%;
+      height: 200px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+body {
       background-color: #0d0a13;
       font-family: 'Inter', sans-serif;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23EC4899" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), auto;
     }
     a, button {
-      cursor: inherit;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23D946EF" d="M16 0L0 16l16 16 16-16L16 0z" /></svg>'), pointer;
     }
-    .hero-arcade {
-      background-image: url('https://wallpapers.com/images/hd/space-battle-cyberpunk-5k-9qf426c117b9609f.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-arcade::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      z-index: 0;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 2rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
+.hero-arcade {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-arcade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('videos/DVx4.gif') no-repeat center center;
+  background-size: contain; /* Or 'cover' if you prefer */
+  z-index: 0;
+  opacity: 1;
+}
+
+.hero-arcade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25); /* You can reduce this or set to 0 */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* ✅ Make this higher than before */
+  padding: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
     .hero-title, .hero-subtitle {
       animation-name: text-reveal;
       animation-duration: 1s;
@@ -91,25 +112,46 @@
     }
     .hero-subtitle { animation-delay: 0.5s; }
     .game-card {
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-    .game-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px #EC4899, 0 0 40px #D946EF;
-    }
-    .card-video {
-      width: 100%;
-      height: 200px;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .game-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 16px #EC4899, 0 0 32px #D946EF;
+  }
+  .card-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    flex-shrink: 0;
+  }
+  .game-card .p-6 {
+    flex-grow: 1;
+    padding: 1.5rem;
+  }
+  .game-card h4 {
+    font-size: 1.75rem;
+  }
+.fixed-gif {
+  position: fixed;
+  bottom: 20px;   /* adjust as needed */
+  left: 20px;     /* adjust as needed */
+  width: 100px;   /* scale size */
+  height: auto;
+  z-index: 1000;  /* make sure it stays on top */
+  pointer-events: none; /* prevents GIF from blocking clicks */
+}
   </style>
 </head>
 
