@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://img.youtube.com" crossorigin>
+  <link rel="dns-prefetch" href="https://img.youtube.com">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -127,8 +129,6 @@
   .game-card .p-6 {
     flex-grow: 1;
     padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
   }
   .game-card h4 {
     font-size: 1.75rem;
@@ -170,9 +170,10 @@
 </header>
 <main class='container mx-auto px-6 py-24 flex-grow'>
 <section>
-  <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
-  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      </div>
+  <h3 class="text-4xl font-bold text-white mb-12 text-center">My High Priority Game list</h3>
+  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Game Cards will be injected here by JS -->
+  </div>
 </section>
 <script>
   const games = [
@@ -230,109 +231,64 @@
   ];
 
 window.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('game-grid');
-    const fragment = document.createDocumentFragment();
+    const grid = document.getElementById('game-grid');
+    const fragment = document.createDocumentFragment();
 
-    games.forEach(game => {
-      const div = document.createElement('div');
-      div.className = 'game-card';
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game-card';
+      div.onclick = () => loadVideo(div, game.id);
 
-      div.innerHTML =         `<img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
-        <div class="p-6 flex flex-col">
-          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
-          <a href="https://www.youtube.com/watch?v=${game.id}" target="_blank"
-             class="mt-auto text-custom-purple hover:text-custom-pink font-semibold">
-            View on YouTube ↗
-          </a>
-        </div>`;
-      fragment.appendChild(div);
-    });
+      div.innerHTML = `
+        <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+        <div class="p-6 flex flex-col">
+          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
+          <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank"
+             class="mt-auto text-custom-purple hover:text-custom-pink font-semibold">
+            View on YouTube ↗
+          </a>
+        </div>`;
+      fragment.appendChild(div);
+    });
 
-    grid.appendChild(fragment);
-  });
+    grid.appendChild(fragment);
+  });
 </script>
+
+
+
+
 </main>
+
+<footer class="bg-gray-900/40 backdrop-blur-lg py-8 px-6 md:px-12 text-center text-gray-400 text-sm">
+  <div class="container mx-auto">
+    <p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
+    <div class="flex justify-center gap-6">
+      <a class="hover:text-custom-purple transition" href="https://discord.gg/XY66hCpFcB" target="_blank">Discord</a>
+      <a class="hover:text-custom-purple transition" href="https://www.youtube.com/@LeonGrayJ" target="_blank">YouTube</a>
+      <a class="hover:text-custom-purple transition" href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
 <script>
 window.addEventListener('load', function() {
   const loadingScreen = document.getElementById('loading-screen');
   const floatingGif = document.getElementById('floating-gif');
 
-  // Delay hiding the loading screen by 5 seconds (5000 ms)
-  setTimeout(() => {
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-      loadingScreen.remove(); // optional
-    }
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+    loadingScreen.remove(); // optional
+  }
 
-    if (floatingGif) {
-      floatingGif.style.display = 'block';
-    }
-  }, 4000); // <-- 5000 milliseconds = 5 seconds
+  if (floatingGif) {
+    floatingGif.style.display = 'block';
+  }
 });
 </script>
-<script>
-    // JavaScript for lazy loading YouTube videos
-    document.addEventListener('DOMContentLoaded', function() {
-        const lazyVideos = document.querySelectorAll('.youtube-lazy');
 
-        lazyVideos.forEach(lazyVideo => {
-            lazyVideo.addEventListener('click', function() {
-                // Only load the iframe if it hasn't been loaded yet
-                if (!this.dataset.loaded) {
-                    const videoId = this.dataset.id;
-                    const iframe = document.createElement('iframe');
-                    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1`);
-                    iframe.setAttribute('frameborder', '0');
-                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                    iframe.setAttribute('allowfullscreen', '');
-                    // Add Tailwind classes for full size within the container
-                    iframe.classList.add('absolute', 'top-0', 'left-0', 'w-full', 'h-full', 'rounded-lg');
-
-                    // Clear thumbnail and button, then append the iframe
-                    this.innerHTML = '';
-                    this.appendChild(iframe);
-                    this.dataset.loaded = 'true'; // Mark as loaded
-                }
-            });
-        });
-    });
-
-    // Optional: Live badge animation (if you have a live stream status API)
-    // This is a placeholder for dynamic "LIVE" badge functionality.
-    // In a real scenario, you'd fetch your livestream status and toggle the 'hidden' class.
-    document.addEventListener('DOMContentLoaded', function() {
-        const liveBadge = document.getElementById('live-badge');
-        // Example: Simulate live status after a delay
-        // setTimeout(() => {
-        //     liveBadge.classList.remove('hidden');
-        // }, 5000);
-    });
-
-    // Optional: Section fade-in animation
-    document.addEventListener('DOMContentLoaded', function() {
-        const sections = document.querySelectorAll('.section-fade-in');
-        const observerOptions = {
-            root: null, // relative to the viewport
-            rootMargin: '0px',
-            threshold: 0.1 // 10% of the section must be visible
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-    });
-</script>
+<script defer type="module" src="./assets/js/main.js"></script>
 <img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
+<!-- Video modal container -->
 <div id="video-modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden">
   <div class="relative w-full max-w-6xl aspect-video bg-black rounded-lg shadow-lg">
     <iframe id="video-iframe" class="w-full h-full rounded-lg"
@@ -365,5 +321,6 @@ window.addEventListener('load', function() {
     }
   });
 </script>
+
 </body>
 </html>
