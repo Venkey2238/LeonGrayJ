@@ -127,6 +127,8 @@
   .game-card .p-6 {
     flex-grow: 1;
     padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
   }
   .game-card h4 {
     font-size: 1.75rem;
@@ -169,7 +171,7 @@
 <main class='container mx-auto px-6 py-24 flex-grow'>
 <section>
   <h3 class="text-4xl font-bold text-white mb-12 text-center">My Favorite Game Playlists</h3>
-  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
       </div>
 </section>
 <script>
@@ -235,8 +237,7 @@ window.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.className = 'game-card';
 
-      div.innerHTML = `
-        <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+      div.innerHTML =         `<img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
         <div class="p-6 flex flex-col">
           <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
           <a href="https://www.youtube.com/watch?v=${game.id}" target="_blank"
@@ -331,9 +332,7 @@ window.addEventListener('load', function() {
         });
     });
 </script>
-<script defer type="module" src="./assets/js/main.js"></script>
 <img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
-<!-- Video modal container -->
 <div id="video-modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden">
   <div class="relative w-full max-w-6xl aspect-video bg-black rounded-lg shadow-lg">
     <iframe id="video-iframe" class="w-full h-full rounded-lg"
