@@ -183,8 +183,8 @@
     <div id="game-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       </div>
   </section>
-  <script>
-const games = [
+<script>
+  const games = [
     { title: "Clair Obscur: Expedition 33", id: "2VaLOc1FpSo", thumb: "2VaLOc1FpSo" },
     { title: "Indiana Jones and the Great Circle", id: "vrgE2poDKIw", thumb: "vrgE2poDKIw" },
     { title: "Mortal Shell", id: "9-j85HUx9Pg", thumb: "9-j85HUx9Pg" },
@@ -237,88 +237,96 @@ const games = [
     { title: "The Elder Scrolls 6", id: "Mq_Cod6Q3Ac", thumb: "Mq_Cod6Q3Ac" },
     { title: "Hellmart", id: "Jquaclu6G3g", thumb: "Jquaclu6G3g" }
   ];
-    window.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('game-grid');
-      const fragment = document.createDocumentFragment();
 
-      games.forEach(game => {
-        const div = document.createElement('div');
-        div.className = 'game-card';
-        // Note: The click handler is now inside the link, not the whole card
-        // div.onclick = () => loadVideo(div, game.id); // Removed to avoid modal conflict
-        div.innerHTML = `
-          <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
-          <div class="p-6 flex flex-col">
-            <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
-            <a href="https://www.youtube.com/playlist?list=${game.id}" target="_blank"
-               class="mt-auto text-custom-purple hover:text-custom-pink font-semibold">
-              View on YouTube ↗
-            </a>
-          </div>`;
-        fragment.appendChild(div);
-      });
+window.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('game-grid');
+    const fragment = document.createDocumentFragment();
 
-      grid.appendChild(fragment);
-    });
-  </script>
+    games.forEach(game => {
+      const div = document.createElement('div');
+      div.className = 'game-card';
+      div.onclick = () => loadVideo(div, game.id);
+
+      div.innerHTML = `
+        <img loading="lazy" class="card-video" src="https://img.youtube.com/vi/${game.thumb}/0.jpg" alt="${game.title} Thumbnail">
+        <div class="p-6 flex flex-col">
+          <h4 class="text-2xl font-bold text-white mb-2">${game.title}</h4>
+          <a href="https://www.youtube.com/watch?v=${game.id}" target="_blank"
+             class="mt-auto text-custom-purple hover:text-custom-pink font-semibold">
+            View on YouTube ↗
+          </a>
+        </div>`;
+      fragment.appendChild(div);
+    });
+
+    grid.appendChild(fragment);
+  });
+</script>
+
+
+
+
 </main>
+
 <footer class="bg-gray-900/40 backdrop-blur-lg py-8 px-6 md:px-12 text-center text-gray-400 text-sm">
-  <div class="container mx-auto">
-    <p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
-    <div class="flex justify-center gap-6">
-      <a class="hover:text-custom-purple transition" href="https://discord.gg/XY66hCpFcB" target="_blank">Discord</a>
-      <a class="hover:text-custom-purple transition" href="https://www.youtube.com/@LeonGrayJ" target="_blank">YouTube</a>
-      <a class="hover:text-custom-purple transition" href="#">Privacy Policy</a>
-    </div>
-  </div>
+  <div class="container mx-auto">
+    <p class="mb-4">© 2025 LeonGrayJ. All Rights Reserved.</p>
+    <div class="flex justify-center gap-6">
+      <a class="hover:text-custom-purple transition" href="https://discord.gg/XY66hCpFcB" target="_blank">Discord</a>
+      <a class="hover:text-custom-purple transition" href="https://www.youtube.com/@LeonGrayJ" target="_blank">YouTube</a>
+      <a class="hover:text-custom-purple transition" href="#">Privacy Policy</a>
+    </div>
+  </div>
 </footer>
 <script>
 window.addEventListener('load', function() {
-  const loadingScreen = document.getElementById('loading-screen');
-  const floatingGif = document.getElementById('floating-gif');
+  const loadingScreen = document.getElementById('loading-screen');
+  const floatingGif = document.getElementById('floating-gif');
 
-  if (loadingScreen) {
-    loadingScreen.style.display = 'none';
-    loadingScreen.remove();
-  }
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+    loadingScreen.remove(); // optional
+  }
 
-  if (floatingGif) {
-    floatingGif.style.display = 'block';
-  }
+  if (floatingGif) {
+    floatingGif.style.display = 'block';
+  }
 });
 </script>
 
-<script defer type="module" src="./assets/js/main.js"></script>
 <img id="floating-gif" src="./videos/Z6W9.gif" alt="Floating GIF" class="fixed-gif" style="display: none;">
 <div id="video-modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden">
-  <div class="relative w-full max-w-6xl aspect-video bg-black rounded-lg shadow-lg">
-    <iframe id="video-iframe" class="w-full h-full rounded-lg"
-            src="" frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen></iframe>
-    <button id="modal-close"
-            class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-pink-400 transition">
-      ×
-    </button>
-  </div>
+  <div class="relative w-full max-w-6xl aspect-video bg-black rounded-lg shadow-lg">
+    <iframe id="video-iframe" class="w-full h-full rounded-lg"
+            src="" frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+    <button id="modal-close"
+            class="absolute top-2 right-2 text-white text-3xl font-bold hover:text-pink-400 transition">
+      ×
+    </button>
+  </div>
 </div>
-<script>
-  function loadVideo(card, playlistId) {
-    const iframe = document.getElementById('video-iframe');
-    iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`;
-    document.getElementById('video-modal').classList.remove('hidden');
-  }
 
-  document.getElementById('modal-close').addEventListener('click', () => {
-    document.getElementById('video-modal').classList.add('hidden');
-    document.getElementById('video-iframe').src = '';
-  });
-  // Also close when clicking outside iframe container
-  document.getElementById('video-modal').addEventListener('click', e => {
-    if (e.target.id === 'video-modal') {
-      document.getElementById('modal-close').click();
-    }
-  });
+
+<script>
+  function loadVideo(card, videoId) {
+    const iframe = document.getElementById('video-iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    document.getElementById('video-modal').classList.remove('hidden');
+  }
+
+  document.getElementById('modal-close').addEventListener('click', () => {
+    document.getElementById('video-modal').classList.add('hidden');
+    document.getElementById('video-iframe').src = '';
+  });
+  // Also close when clicking outside iframe container
+  document.getElementById('video-modal').addEventListener('click', e => {
+    if (e.target.id === 'video-modal') {
+      document.getElementById('modal-close').click();
+    }
+  });
 </script>
+
 </body>
 </html>
