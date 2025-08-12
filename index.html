@@ -382,25 +382,38 @@ body {
     .hero-subtitle { animation-delay: 0.5s; }
 /* --- CSS Variables and Global Styles --- */
 :root {
-  --background-dark: #0e0e0e;
-  --surface-dark: rgba(30, 30, 30, 0.85);
-  --text-primary: #f5f5f5;
-  --text-secondary: #b3b3b3;
-  --accent-color: #c084fc; 
-  --highlight-color: #9a5ce5; 
-  --gradient-accent: linear-gradient(135deg, #c084fc, #40e0d0, #9a5ce5);
-  --font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+  --background-dark: #09090b; /* Slightly darker for deeper contrast */
+  --surface-dark: rgba(20, 20, 25, 0.7); /* Deeper, more saturated surface color */
+  --text-primary: #e6e6e6;
+  --text-secondary: #a3a3a3;
+  --accent-color: #c084fc;
+  --highlight-color: #a855f7;
+  --gradient-accent: linear-gradient(
+    135deg,
+    #c084fc,
+    #8b5cf6,
+    #40e0d0,
+    #38bdf8
+  ); /* More dynamic, multi-color gradient */
+  --gradient-hover: linear-gradient(135deg, #a855f7, #6366f1);
+  --font-family-primary: 'Poppins', 'Helvetica Neue', sans-serif;
+  --font-family-secondary: 'Inter', 'Helvetica Neue', sans-serif;
+  --border-radius-card: 1.5rem;
+  --border-radius-button: 2.5rem;
 }
 
+/* Subtle noise texture for a premium feel */
 body {
   background-color: var(--background-dark);
   color: var(--text-primary);
-  font-family: var(--font-family);
+  font-family: var(--font-family-primary);
   margin: 0;
   padding: 0;
+  background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%" height="100%" filter="url(%23noise)" opacity="0.04"/%3E%3C/svg%3E');
+  overflow-x: hidden;
 }
 
-/* --- Section --- */
+/* --- Section Layout --- */
 .premium-playlist-section {
   display: flex;
   justify-content: center;
@@ -409,25 +422,47 @@ body {
   padding: 4rem 1rem;
   position: relative;
   overflow: hidden;
+  perspective: 1500px;
 }
 
-/* Floating Accent Orbs */
+/* Enhanced Floating Accent Orbs & Animated Grid */
 .premium-playlist-section::before,
 .premium-playlist-section::after {
   content: "";
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(192, 132, 252, 0.15) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
-  filter: blur(60px);
+  filter: blur(80px);
   z-index: 0;
+  animation: floatOrb 12s infinite ease-in-out;
 }
-.premium-playlist-section::before { top: -50px; left: -80px; }
-.premium-playlist-section::after { bottom: -50px; right: -80px; }
+.premium-playlist-section::before {
+  top: -50px;
+  left: -80px;
+  animation-delay: -3s;
+}
+.premium-playlist-section::after {
+  bottom: -50px;
+  right: -80px;
+}
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, 30px) scale(1.1);
+  }
+}
 
 .content-container {
-  max-width: 1100px;
+  max-width: 900px; /* Slightly reduced width for a more curated feel */
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -436,9 +471,9 @@ body {
 
 .section-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 0; /* Adjust margin for subtitle */
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: var(--gradient-accent);
@@ -448,36 +483,73 @@ body {
   background-size: 200% 100%;
 }
 
-@keyframes text-shine {
-  0% { background-position: 200% 0%; }
-  100% { background-position: -200% 0%; }
+.section-subtitle {
+  display: block;
+  font-family: var(--font-family-secondary);
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+  opacity: 0.8;
 }
 
-/* --- Playlist Card --- */
+@keyframes text-shine {
+  0% {
+    background-position: 200% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+/* --- Playlist Card - More refined glassmorphism and 3D effects --- */
 .playlist-card {
   display: flex;
   flex-direction: column;
   background: var(--surface-dark);
-  border-radius: 1.3rem;
+  border-radius: var(--border-radius-card);
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  max-width: 1000px;
+  backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.05); /* Added inset shadow */
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.playlist-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-accent);
+  border-radius: var(--border-radius-card);
+  z-index: -1;
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.5s ease-in-out;
 }
 
 @media (min-width: 768px) {
   .playlist-card {
     flex-direction: row;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    gap: 2rem;
+    padding: 2rem;
   }
 }
 
 .playlist-card:hover {
-  transform: translateY(-8px) scale(1.015);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
+  transform: translateY(-10px) rotateX(2deg) rotateZ(-0.5deg) scale(1.02);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 40px var(--accent-color);
+}
+.playlist-card:hover::before {
+  opacity: 1;
 }
 
 /* Video Frame with Parallax Hover */
@@ -486,9 +558,10 @@ body {
   position: relative;
   padding-bottom: 56.25%;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 1.2rem;
   transform-style: preserve-3d;
-  perspective: 1000px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
 }
 
 .video-frame iframe {
@@ -498,12 +571,12 @@ body {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 1rem;
-  transition: transform 0.4s ease;
+  border-radius: 1.2rem;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .video-frame:hover iframe {
-  transform: scale(1.03) rotateX(2deg);
+  transform: scale(1.05) translateZ(10px); /* Enhanced 3D pop-out */
 }
 
 .card-details {
@@ -514,52 +587,83 @@ body {
   justify-content: center;
 }
 
-/* New Metadata Row */
 .playlist-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
+  font-family: var(--font-family-secondary);
 }
 
 .playlist-meta span {
-  background: rgba(255,255,255,0.08);
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.7rem;
+  transition: background 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.playlist-meta span:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .playlist-description {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-family: var(--font-family-secondary);
 }
 
-/* --- Call-to-Action Button --- */
+/* --- Call-to-Action Button with Shine Effect --- */
 .cta-button {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   background: var(--gradient-accent);
   color: var(--background-dark);
   text-decoration: none;
-  font-weight: 600;
-  padding: 0.8rem 1.8rem;
-  border-radius: 3rem;
-  transition: all 0.3s ease-in-out;
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--border-radius-button);
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   letter-spacing: 0.05em;
-  box-shadow: 0 5px 20px rgba(192,132,252,0.4);
+  box-shadow: 0 8px 30px rgba(192, 132, 252, 0.3);
+  -webkit-mask-image: linear-gradient(-75deg, #000 30%, #000 60%, #000 90%);
+  -webkit-mask-size: 200%;
+}
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-hover);
+  transition: left 0.4s ease-in-out;
+  z-index: 0;
+  border-radius: var(--border-radius-button);
+}
+.cta-button span {
+  position: relative;
+  z-index: 1;
 }
 
 .cta-button:hover {
-  background: var(--highlight-color);
-  box-shadow: 0 8px 25px rgba(154,92,229,0.5);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(154, 92, 229, 0.6);
   color: #fff;
-  transform: translateY(-2px);
 }
-
+.cta-button:hover::before {
+  left: 0;
+}
 
   </style>
 
@@ -643,12 +747,17 @@ body {
 </section>
 <section class="premium-playlist-section">
   <div class="content-container">
-    <h2 class="section-title">Featured Playlist</h2>
+    <h2 class="section-title">
+      Featured Playlist
+      <span class="section-subtitle">Exclusively curated for you.</span>
+    </h2>
     <div class="playlist-card">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-                allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-                title="Curated Playlist"></iframe>
+        <iframe
+          src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+          allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+          title="Curated Playlist"
+        ></iframe>
       </div>
       <div class="card-details">
         <div class="playlist-meta">
@@ -657,12 +766,16 @@ body {
           <span>⏱ 3hr 15min</span>
         </div>
         <p class="playlist-description">
-          Dive into an exclusive selection of tracks & videos, hand-picked for ultimate inspiration. 
-          Whether you’re working, creating, or relaxing — this playlist sets the perfect tone.
+          Dive into an exclusive selection of tracks & videos, hand-picked for
+          ultimate inspiration. Whether you’re working, creating, or relaxing —
+          this playlist sets the perfect tone.
         </p>
-        <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-           target="_blank"
-           class="cta-button">Watch on YouTube <span>↗</span></a>
+        <a
+          href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+          target="_blank"
+          class="cta-button"
+          ><span>Watch on YouTube ↗</span></a
+        >
       </div>
     </div>
   </div>
