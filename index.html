@@ -380,58 +380,144 @@ body {
       opacity: 0;
     }
     .hero-subtitle { animation-delay: 0.5s; }
-    .premium-playlist-section {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, rgba(30,30,40,0.8), rgba(60,0,60,0.8));
+    /* --- CSS Variables and Global Styles --- */
+:root {
+  --background-dark: #121212;
+  --surface-dark: #1e1e1e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --accent-color: #bb86fc; /* A subtle, elegant purple */
+  --highlight-color: #9258d4; /* A slightly darker version for effects */
+  --font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Section and Layout --- */
+.premium-playlist-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+}
+
+.content-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--accent-color), #40e0d0, var(--highlight-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shine 4s infinite linear;
+  background-size: 200% 100%;
+}
+
+@keyframes text-shine {
+  0% { background-position: 200% 0%; }
+  100% { background-position: -200% 0%; }
+}
+
+/* --- Playlist Card --- */
+.playlist-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-.gradient-heading {
-  font-size: 3rem;
-  background: linear-gradient(90deg, #d08bf2, #f25ba7);
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 2rem;
-}
-.playlist-card {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: var(--surface-dark);
   border-radius: 1.5rem;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px); /* A modern, high-end effect */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
+@media (min-width: 768px) {
+  .playlist-card {
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
 .playlist-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
+
+.video-frame {
+  flex: 2;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
 .video-frame iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-}
-.youtube-button {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(255,255,255,0.25);
-  color: #fff;
-  border-radius: 0.75rem;
-  text-decoration: none;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.3s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 1rem;
 }
-.playlist-card:hover .youtube-button {
-  transform: translateY(0);
-  opacity: 1;
+
+.card-details {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.playlist-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* --- Call-to-Action Button --- */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent-color);
+  color: var(--background-dark);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.8rem 1.8rem;
+  border-radius: 3rem;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 0.05em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+  background: var(--highlight-color);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+  color: #fff;
 }
 
   </style>
@@ -515,14 +601,21 @@ body {
 </div>
 </section>
 <section class="premium-playlist-section">
-  <h2 class="gradient-heading animate__animated animate__fadeInDown">Featured Playlist</h2>
-  <div class="playlist-card animate__animated animate__fadeInUp">
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-              allow="autoplay; encrypted-media;" title="Curated Playlist"></iframe>
+  <div class="content-container">
+    <h2 class="section-title">Featured Playlist</h2>
+    <div class="playlist-card">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+                allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+                title="Curated Playlist"></iframe>
+      </div>
+      <div class="card-details">
+        <p class="playlist-description">Dive into our exclusive collection of hand-picked music and videos, designed to inspire and captivate. Perfect for your focus sessions or creative moments.</p>
+        <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+           target="_blank"
+           class="cta-button">Watch on YouTube <span>↗</span></a>
+      </div>
     </div>
-    <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH" target="_blank"
-       class="youtube-button animate__animated animate__zoomIn">Watch on YouTube ↗</a>
   </div>
 </section>
 
