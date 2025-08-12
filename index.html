@@ -380,14 +380,15 @@ body {
       opacity: 0;
     }
     .hero-subtitle { animation-delay: 0.5s; }
-    /* --- CSS Variables and Global Styles --- */
+/* --- CSS Variables and Global Styles --- */
 :root {
-  --background-dark: #121212;
-  --surface-dark: #1e1e1e;
-  --text-primary: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --accent-color: #bb86fc; /* A subtle, elegant purple */
-  --highlight-color: #9258d4; /* A slightly darker version for effects */
+  --background-dark: #0e0e0e;
+  --surface-dark: rgba(30, 30, 30, 0.85);
+  --text-primary: #f5f5f5;
+  --text-secondary: #b3b3b3;
+  --accent-color: #c084fc; 
+  --highlight-color: #9a5ce5; 
+  --gradient-accent: linear-gradient(135deg, #c084fc, #40e0d0, #9a5ce5);
   --font-family: 'Poppins', 'Helvetica Neue', sans-serif;
 }
 
@@ -397,22 +398,40 @@ body {
   font-family: var(--font-family);
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* --- Section and Layout --- */
+/* --- Section --- */
 .premium-playlist-section {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 4rem 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Floating Accent Orbs */
+.premium-playlist-section::before,
+.premium-playlist-section::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(192,132,252,0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 0;
+}
+.premium-playlist-section::before { top: -50px; left: -80px; }
+.premium-playlist-section::after { bottom: -50px; right: -80px; }
+
 .content-container {
-  max-width: 1200px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .section-title {
@@ -422,10 +441,10 @@ body {
   margin-bottom: 3rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--accent-color), #40e0d0, var(--highlight-color));
+  background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: text-shine 4s infinite linear;
+  animation: text-shine 6s infinite linear;
   background-size: 200% 100%;
 }
 
@@ -439,33 +458,37 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--surface-dark);
-  border-radius: 1.5rem;
+  border-radius: 1.3rem;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px); /* A modern, high-end effect */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  max-width: 1000px;
 }
 
 @media (min-width: 768px) {
   .playlist-card {
     flex-direction: row;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
 }
 
 .playlist-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65);
 }
 
+/* Video Frame with Parallax Hover */
 .video-frame {
-  flex: 2;
+  flex: 1.8;
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 56.25%;
   overflow: hidden;
   border-radius: 1rem;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .video-frame iframe {
@@ -476,33 +499,50 @@ body {
   height: 100%;
   border: none;
   border-radius: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.video-frame:hover iframe {
+  transform: scale(1.03) rotateX(2deg);
 }
 
 .card-details {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  text-align: left;
+}
+
+/* New Metadata Row */
+.playlist-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.playlist-meta span {
+  background: rgba(255,255,255,0.08);
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
 }
 
 .playlist-description {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 2rem;
-  opacity: 0.8;
+  margin-bottom: 1.5rem;
 }
 
 /* --- Call-to-Action Button --- */
 .cta-button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: var(--accent-color);
+  gap: 0.6rem;
+  background: var(--gradient-accent);
   color: var(--background-dark);
   text-decoration: none;
   font-weight: 600;
@@ -510,15 +550,16 @@ body {
   border-radius: 3rem;
   transition: all 0.3s ease-in-out;
   letter-spacing: 0.05em;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 20px rgba(192,132,252,0.4);
 }
 
 .cta-button:hover {
   background: var(--highlight-color);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(154,92,229,0.5);
   color: #fff;
+  transform: translateY(-2px);
 }
+
 
   </style>
 
@@ -610,7 +651,15 @@ body {
                 title="Curated Playlist"></iframe>
       </div>
       <div class="card-details">
-        <p class="playlist-description">Dive into our exclusive collection of hand-picked music and videos, designed to inspire and captivate. Perfect for your focus sessions or creative moments.</p>
+        <div class="playlist-meta">
+          <span>🎵 42 Tracks</span>
+          <span>🔥 Trending</span>
+          <span>⏱ 3hr 15min</span>
+        </div>
+        <p class="playlist-description">
+          Dive into an exclusive selection of tracks & videos, hand-picked for ultimate inspiration. 
+          Whether you’re working, creating, or relaxing — this playlist sets the perfect tone.
+        </p>
         <a href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
            target="_blank"
            class="cta-button">Watch on YouTube <span>↗</span></a>
@@ -618,6 +667,7 @@ body {
     </div>
   </div>
 </section>
+
 
 </section></section></section></section></section></main></div>
 
