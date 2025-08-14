@@ -463,32 +463,33 @@ body {
 </div>
 </section>
 
-<section class="feature-of-the-month py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
+<section class="feature-month-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
   <!-- Background Layers -->
-  <div class="absolute inset-0 z-0 bg-hyperspace-grid"></div>
-  <div class="absolute inset-0 z-10 bg-hyperspace-stars animate-stars"></div>
-  <div class="absolute inset-0 z-20 pointer-events-none bg-noise-texture opacity-10"></div>
-  <div class="absolute inset-0 z-30 bg-particles"></div>
+  <div class="absolute inset-0 z-0 bg-stars"></div>
+  <div class="absolute inset-0 z-0 bg-nebula"></div>
+  <div class="absolute inset-0 z-0 bg-particles"></div>
 
   <!-- Content -->
-  <div class="max-w-5xl mx-auto text-center relative z-40 animate-section-reveal">
-    <h2 class="section-heading glitch-text" data-text="Feature of the Month">Feature of the Month</h2>
-    <h3 class="game-title neon-gradient">Clair Obscur: Expedition 33</h3>
+  <div class="max-w-5xl mx-auto text-center relative z-30">
+    <h4 class="text-lg tracking-widest mb-2 animate-subheading">FEATURE OF THE MONTH</h4>
+    <h2 class="text-5xl md:text-7xl font-black mb-10 relative animate-main-heading">
+      <span class="neon-text">Clair Obscur: Expedition 33</span>
+      <span class="neon-glow"></span>
+    </h2>
 
     <!-- Playlist Card -->
-    <div class="card-3d-container max-w-3xl mx-auto mt-12" data-hover-intensity="0.05">
+    <div class="card-3d-container max-w-4xl mx-auto" data-hover-intensity="0.05">
       <div class="card-inner-wrapper relative group perspective-1000">
-        <div class="card-body relative rounded-3xl overflow-hidden shadow-2xl backdrop-blur-xl animate-float-3d">
-          <div class="card-animated-border"></div>
-          <div class="card-glitch-overlay"></div>
-
+        <div class="card-body relative rounded-3xl overflow-hidden backdrop-blur-3xl shadow-2xl">
+          <div class="card-border"></div>
+          <div class="card-glitch"></div>
           <div class="video-frame aspect-video relative z-10">
-            <div class="glare-effect-light"></div>
+            <div class="glare-effect"></div>
             <iframe class="w-full h-full rounded-3xl"
               src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
               allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-              title="Clair Obscur: Expedition 33 - Curated Playlist"></iframe>
+              title="Clair Obscur: Expedition 33 Playlist"></iframe>
           </div>
         </div>
       </div>
@@ -496,177 +497,168 @@ body {
   </div>
 
   <style>
-    /* --- Variables --- */
     :root {
-      --neon-blue: #00f0ff;
-      --neon-pink: #ff00ff;
-      --neon-green: #00ff73;
-      --bg-dark: #0a0a0a;
-      --text-light: #ffffff;
+      --neon-primary: #00f0ff;
+      --neon-secondary: #ff00ff;
+      --neon-tertiary: #00ff73;
+      --dark-bg: #0a0a0a;
     }
 
-    /* --- Background Layers --- */
-    .bg-hyperspace-grid {
-      background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: 0.1;
+    /* Background Animations */
+    .bg-stars {
+      background: radial-gradient(white 1px, transparent 1px);
+      background-size: 2px 2px;
+      opacity: 0.3;
+      animation: moveStars 200s linear infinite;
     }
-    .bg-hyperspace-stars {
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 2px);
-      background-size: 20px 20px;
-      animation: moveStars 60s linear infinite;
-    }
-    .bg-noise-texture {
-      background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgz/f6AAAAAXNSR0IArs4c6QAAADFJREFUGFdjYGBgeM/A3wEkwE/A0QG6o4Y4gIuK/o8p2Fz1HwEkwO8yQAAwMTEgAQAAJc2/b+8lS7YAAAAASUVORK5CYII=");
-      background-size: 6px 6px;
+    .bg-nebula {
+      background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.15), transparent 60%),
+                  radial-gradient(circle at 70% 70%, rgba(255,0,255,0.15), transparent 60%);
+      animation: nebulaDrift 60s ease-in-out infinite alternate;
     }
     .bg-particles {
-      background-image: radial-gradient(circle, rgba(0,240,255,0.1) 2px, transparent 2px),
-                        radial-gradient(circle, rgba(255,0,255,0.1) 2px, transparent 2px),
-                        radial-gradient(circle, rgba(0,255,115,0.1) 2px, transparent 2px);
-      background-size: 120px 120px, 200px 200px, 160px 160px;
-      animation: moveParticles 40s linear infinite;
+      background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      opacity: 0.05;
+      animation: particleDrift 120s linear infinite;
     }
 
-    /* --- Headings --- */
-    .section-heading {
-      font-size: 2.5rem;
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      position: relative;
-      text-transform: uppercase;
+    /* Heading Animations */
+    .animate-subheading {
+      animation: fadeUp 1.2s ease forwards;
+      opacity: 0;
     }
-    .game-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      text-transform: uppercase;
+    .animate-main-heading {
+      animation: fadeUp 1.5s ease 0.3s forwards;
+      opacity: 0;
     }
-    .neon-gradient {
-      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
-      background-size: 300%;
+    .neon-text {
+      background: linear-gradient(45deg, var(--neon-primary), var(--neon-secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: neonShift 6s linear infinite;
+      text-shadow: 0 0 5px var(--neon-primary), 0 0 15px var(--neon-secondary);
+      animation: neonFlicker 2.5s infinite;
     }
-
-    /* --- Glitch Effect --- */
-    .glitch-text {
-      color: var(--text-light);
-      position: relative;
-    }
-    .glitch-text::before, .glitch-text::after {
-      content: attr(data-text);
+    .neon-glow {
       position: absolute;
-      left: 0;
-      width: 100%;
-      background: transparent;
-      overflow: hidden;
-      clip: rect(0, 900px, 0, 0);
-    }
-    .glitch-text::before {
-      animation: glitchTop 3s infinite linear alternate-reverse;
-      color: var(--neon-pink);
-    }
-    .glitch-text::after {
-      animation: glitchBottom 2s infinite linear alternate-reverse;
-      color: var(--neon-blue);
+      inset: -10px;
+      background: radial-gradient(circle, var(--neon-primary), transparent 70%);
+      filter: blur(30px);
+      opacity: 0.15;
+      z-index: -1;
     }
 
-    /* --- Card Styles --- */
+    /* Card Styles */
     .card-3d-container {
       perspective: 1000px;
     }
     .card-body {
-      background-color: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       transform-style: preserve-3d;
-      animation: float3d 7s ease-in-out infinite;
-      transition: transform 0.3s ease;
+      animation: float3d 8s ease-in-out infinite;
+      position: relative;
     }
     .card-body:hover {
       animation-play-state: paused;
-      transform: scale(1.05);
-      box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+      transform: scale(1.03);
     }
-
-    /* --- Border Animation --- */
-    .card-animated-border {
+    .card-border {
       position: absolute;
-      inset: -3px;
-      border: 3px solid transparent;
+      inset: -2px;
       border-radius: 1.5rem;
-      animation: animatedBorder 4s linear infinite;
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      border: 2px solid transparent;
+      animation: animatedBorder 5s linear infinite;
     }
-    .card-body:hover .card-animated-border {
-      opacity: 1;
-    }
-
-    /* --- Glitch Overlay --- */
-    .card-glitch-overlay {
+    .card-glitch {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(transparent, transparent 2px, rgba(255,255,255,0.05) 3px);
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 2px);
       opacity: 0;
       transition: opacity 0.3s ease;
-      animation: cardGlitch 0.5s infinite;
     }
-    .card-body:hover .card-glitch-overlay {
-      opacity: 0.15;
+    .card-body:hover .card-glitch {
+      opacity: 0.1;
+      animation: glitchSkew 0.5s infinite;
     }
 
-    /* --- Glare Effect --- */
-    .glare-effect-light::after {
+    /* Glare Effect */
+    .glare-effect::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-      animation: glareSweep 5s infinite 2s;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: glareSweep 5s infinite;
     }
 
-    /* --- Keyframes --- */
-    @keyframes moveStars { 0% { background-position: 0 0; } 100% { background-position: -200% -200%; } }
-    @keyframes moveParticles { 0% { background-position: 0 0, 0 0, 0 0; } 100% { background-position: 100% 100%, -100% -100%, 50% -50%; } }
-    @keyframes neonShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
-    @keyframes glitchTop { 0% { clip: rect(0, 900px, 0, 0); } 5% { clip: rect(0, 900px, 100px, 0); transform: translate(-5px, -5px); } 10% { clip: rect(0, 900px, 0, 0); } }
-    @keyframes glitchBottom { 0% { clip: rect(0, 900px, 0, 0); } 5% { clip: rect(50px, 900px, 100px, 0); transform: translate(5px, 5px); } 10% { clip: rect(0, 900px, 0, 0); } }
-    @keyframes float3d { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    @keyframes animatedBorder { 0% { border-color: var(--neon-blue); transform: rotate(0deg); } 50% { border-color: var(--neon-pink); transform: rotate(180deg); } 100% { border-color: var(--neon-green); transform: rotate(360deg); } }
-    @keyframes cardGlitch { 0% { transform: skew(0deg); } 20% { transform: skew(3deg,-2deg); } 40% { transform: skew(-5deg,3deg); } 60% { transform: skew(2deg,-4deg); } 100% { transform: skew(0deg); } }
-    @keyframes glareSweep { 0% { left: -100%; } 100% { left: 150%; } }
-    @keyframes sectionReveal { 0% { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
-
-    /* --- Animation Helpers --- */
-    .animate-section-reveal { animation: sectionReveal 1.5s ease forwards; }
+    /* Keyframes */
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: -10000px 10000px; }
+    }
+    @keyframes nebulaDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 200px; }
+    }
+    @keyframes particleDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 200px 400px; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes neonFlicker {
+      0%, 100% { text-shadow: 0 0 5px var(--neon-primary), 0 0 15px var(--neon-secondary); }
+      50% { text-shadow: none; }
+    }
+    @keyframes float3d {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes animatedBorder {
+      0% { border-color: var(--neon-primary); }
+      50% { border-color: var(--neon-secondary); }
+      100% { border-color: var(--neon-primary); }
+    }
+    @keyframes glitchSkew {
+      0% { transform: skew(0deg); }
+      20% { transform: skew(2deg); }
+      40% { transform: skew(-2deg); }
+      60% { transform: skew(1deg); }
+      80% { transform: skew(-1deg); }
+      100% { transform: skew(0deg); }
+    }
+    @keyframes glareSweep {
+      0% { left: -75%; }
+      100% { left: 125%; }
+    }
   </style>
 
   <script>
-    // Parallax 3D effect
     document.addEventListener('mousemove', (e) => {
       const card = document.querySelector('.card-3d-container');
-      if (!card) return;
       const cardInner = card.querySelector('.card-inner-wrapper');
-      const intensity = parseFloat(card.dataset.hoverIntensity) || 0.05;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 15 * -1 * intensity;
-      const rotateY = ((x - centerX) / centerX) * 15 * intensity;
-      cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const intensity = parseFloat(card.dataset.hoverIntensity);
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 10 * -1 * intensity;
+        const rotateY = ((x - centerX) / centerX) * 10 * intensity;
+        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
     });
     document.querySelector('.card-3d-container').addEventListener('mouseleave', () => {
-      document.querySelector('.card-inner-wrapper').style.transform = 'rotateX(0) rotateY(0)';
+      const cardInner = document.querySelector('.card-inner-wrapper');
+      cardInner.style.transform = 'rotateX(0) rotateY(0)';
     });
   </script>
 </section>
+
 
 </section></section></section></section></section></main></div>
 
