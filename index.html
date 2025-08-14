@@ -381,7 +381,249 @@ body {
     }
     .hero-subtitle { animation-delay: 0.5s; }
 
+  /* ------------------------------
+       Design Tokens
+    ------------------------------ */
+    :root {
+      /* Core Palette */
+      --bg-0: #0b0b11;               /* page background */
+      --bg-1: #11111a;               /* section surface */
+      --bg-2: #171725;               /* card surface */
+      --ink-1: #eaeaf7;              /* primary text */
+      --ink-2: #b6b6cf;              /* secondary text */
+      --accent-1: #c084fc;           /* violet */
+      --accent-2: #22d3ee;           /* cyan */
+      --accent-3: #f472b6;           /* pink */
+      --success: #34d399;            
+      --shadow: 0 20px 40px rgba(0,0,0,.45);
 
+      /* Radii & spacing */
+      --r-xl: 24px;   
+      --r-2xl: 32px;
+      --r-3xl: 44px;
+      --pad: clamp(16px, 3vw, 28px);
+
+      /* Typography */
+      --title-size: clamp(32px, 7vw, 84px);
+      --subtitle-size: clamp(14px, 2.2vw, 20px);
+
+      /* Borders */
+      --border-1: 1px solid rgba(255,255,255,.10);
+      --border-2: 1px solid rgba(255,255,255,.16);
+
+      /* Effects */
+      --glass: saturate(1.2) blur(12px);
+      --ring: 0 0 0 1px rgba(255,255,255,.18) inset, 0 0 1px rgba(255,255,255,.1) inset;
+    }
+
+    /* ------------------------------
+       Base / Reset
+    ------------------------------ */
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0; background: var(--bg-0); color: var(--ink-1); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none }
+
+    /* ------------------------------
+       Section Shell
+    ------------------------------ */
+    .premium-playlist-section {
+      position: relative; isolation: isolate; overflow: clip;
+      padding: clamp(64px, 8vw, 128px) min(max(20px, 4vw), 64px);
+      background:
+        radial-gradient(1200px 600px at 85% -10%, color-mix(in oklab, var(--accent-2) 20%, transparent), transparent 60%),
+        radial-gradient(900px 700px at -10% 80%, color-mix(in oklab, var(--accent-1) 22%, transparent), transparent 60%),
+        linear-gradient(180deg, #0a0a0f 0%, #0d0d15 30%, #0b0b11 100%);
+    }
+
+    /* Animated starfield backdrop */
+    .premium-playlist-section::before,
+    .premium-playlist-section::after {
+      content: ""; position: absolute; inset: -10% -10%; z-index: -2; pointer-events: none;
+      background-image: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.25) 55%, transparent 60%),
+                        radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,.18) 55%, transparent 60%),
+                        radial-gradient(1.5px 1.5px at 80% 20%, rgba(255,255,255,.15) 55%, transparent 60%),
+                        radial-gradient(1px 1px at 35% 85%, rgba(255,255,255,.14) 55%, transparent 60%);
+      transform: translateZ(0);
+      animation: drift 40s linear infinite;
+      opacity: .4;
+      filter: drop-shadow(0 0 8px rgba(255,255,255,.08));
+    }
+    .premium-playlist-section::after { animation-direction: reverse; animation-duration: 65s; opacity: .25; }
+
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) }
+      to   { transform: translate3d(-6%, -6%, 0) }
+    }
+
+    /* Flow container */
+    .content-container { 
+      max-width: min(1200px, 92vw);
+      margin: 0 auto; position: relative;
+    }
+
+    /* Floating gradient orbs */
+    .orb { position:absolute; filter: blur(24px) saturate(1.3); opacity:.25; z-index:-1; mix-blend-mode: screen; border-radius: 999px; }
+    .orb.orb-a { width: 420px; height: 420px; left:-120px; top:-40px; background: radial-gradient(closest-side, var(--accent-3), transparent 70%); animation: floaty 12s ease-in-out infinite; }
+    .orb.orb-b { width: 520px; height: 520px; right:-140px; top:20%; background: radial-gradient(closest-side, var(--accent-2), transparent 70%); animation: floaty 14s ease-in-out -2s infinite; }
+    .orb.orb-c { width: 360px; height: 360px; left: 50%; bottom:-120px; transform: translateX(-50%); background: radial-gradient(closest-side, var(--accent-1), transparent 70%); animation: floaty 18s ease-in-out -4s infinite; }
+
+    @keyframes floaty {
+      0%,100% { transform: translate3d(0,0,0) scale(1) }
+      50% { transform: translate3d(0,-20px,0) scale(1.06) }
+    }
+
+    /* ------------------------------
+       Title
+    ------------------------------ */
+    .section-title {
+      margin: 0 0 24px; line-height: .95; letter-spacing: .5px; font-weight: 800;
+      font-size: var(--title-size);
+      background: conic-gradient(from 220deg at 50% 50%, var(--accent-2), var(--accent-1), var(--accent-3), var(--accent-2));
+      background-clip: text; -webkit-background-clip: text; color: transparent;
+      position: relative; display: inline-block;
+      filter: drop-shadow(0 8px 24px rgba(135, 92, 245, .12));
+    }
+
+    .section-title::after {
+      content: ""; position: absolute; left: 0; bottom: -12px; width: 100%; height: 6px; border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+      mask: radial-gradient(12px 12px at 10% 50%, black 95%, transparent) repeat-x; mask-size: 28px 8px;
+      animation: shimmer 2.6s linear infinite;
+      opacity: .55;
+    }
+
+    @keyframes shimmer {
+      from { mask-position: 0 0 }
+      to   { mask-position: 100% 0 }
+    }
+
+    .subtitle {
+      margin: 6px 0 34px; font-size: var(--subtitle-size); color: var(--ink-2);
+      letter-spacing: .3px;
+    }
+
+    /* ------------------------------
+       Card / Video Frame
+    ------------------------------ */
+    .playlist-card {
+      position: relative; padding: 2px; border-radius: var(--r-3xl);
+      background: linear-gradient(120deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border: var(--border-1); box-shadow: var(--shadow);
+    }
+
+    /* Animated border glow */
+    .playlist-card::before {
+      content: ""; position: absolute; inset: -2px; z-index: -1; border-radius: inherit; filter: blur(16px);
+      background: conic-gradient(from 0deg, color-mix(in oklab, var(--accent-1) 55%, transparent), color-mix(in oklab, var(--accent-2) 55%, transparent), color-mix(in oklab, var(--accent-3) 55%, transparent), color-mix(in oklab, var(--accent-1) 55%, transparent));
+      animation: spin 14s linear infinite;
+      opacity: .45;
+    }
+
+    @keyframes spin { to { transform: rotate(1turn) } }
+
+    .playlist-inner {
+      background: rgba(255,255,255,.02);
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      border-radius: inherit;
+      overflow: clip;
+      position: relative;
+    }
+
+    /* Decorative grid overlay */
+    .grid-overlay { position:absolute; inset:0; pointer-events:none; opacity:.12; mix-blend-mode: overlay; }
+    .grid-overlay::before, .grid-overlay::after {
+      content:""; position:absolute; inset:0; background-size: 40px 40px; background-repeat: repeat;
+    }
+    .grid-overlay::before { background-image: linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px); }
+    .grid-overlay::after  { background-image: radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.16), transparent 60%); background-size: 20px 20px; opacity:.6; }
+
+    .video-frame { position: relative; aspect-ratio: 16 / 9; border-radius: calc(var(--r-3xl) - 6px); overflow: hidden; }
+
+    /* Frame chrome */
+    .frame-chrome { position:absolute; inset:0; pointer-events:none; }
+    .frame-chrome::before {
+      content:""; position:absolute; inset:0; border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), inset 0 0 40px rgba(255,255,255,.04);
+    }
+    .frame-chrome::after {
+      content:""; position:absolute; inset:0; border-radius: inherit; mix-blend-mode: screen; opacity:.4;
+      background: radial-gradient(110% 70% at 50% -10%, rgba(255,255,255,.25), transparent 60%),
+                  radial-gradient(90% 70% at 10% 90%, rgba(255,255,255,.12), transparent 60%);
+    }
+
+    /* YouTube iframe */
+    .video-frame iframe {
+      position:absolute; inset:0; width:100%; height:100%; border:0; display:block;
+      transform-origin: center; transition: transform .8s cubic-bezier(.2,.8,.2,1), filter .8s; filter: saturate(1.05) contrast(1.05);
+    }
+
+    /* Hover interactions */
+    .playlist-card:hover .video-frame iframe { transform: scale(1.02); filter: saturate(1.12) contrast(1.08); }
+    .playlist-card:hover .pulse { opacity: .9 }
+
+    /* Moving light sweep */
+    .sweep {
+      position:absolute; inset:-30% -20%; pointer-events:none; background: radial-gradient(60% 20% at 20% 50%, rgba(255,255,255,.2), transparent 70%);
+      transform: translateX(-60%) rotate(6deg); filter: blur(12px); opacity:.3; animation: sweep 6s cubic-bezier(.22,.61,.36,1) infinite;
+    }
+
+    @keyframes sweep { 50% { transform: translateX(60%) rotate(6deg) } }
+
+    /* Animated pulse rings */
+    .pulse { position:absolute; width: 240px; height: 240px; left: -40px; bottom: -60px; opacity: .6; filter: blur(2px); pointer-events:none; }
+    .pulse::before, .pulse::after {
+      content:""; position:absolute; inset:0; border-radius: 999px; border: 2px solid currentColor; color: var(--accent-2);
+      animation: pulse 5s ease-out infinite; box-shadow: 0 0 40px currentColor;
+    }
+    .pulse::after { animation-delay: 1.2s; color: var(--accent-1); }
+
+    @keyframes pulse {
+      0%   { transform: scale(.2); opacity: .8 }
+      70%  { opacity: .05 }
+      100% { transform: scale(1.6); opacity: 0 }
+    }
+
+    /* CTA Row */
+    .cta-row { display:flex; gap: 12px; align-items:center; margin-top: 18px; flex-wrap: wrap; }
+    .pill {
+      display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border-radius: 999px; font-weight: 600; letter-spacing:.2px; font-size: 14px; color: var(--ink-1);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border: var(--border-2); box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .pill:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.35); }
+
+    .pill.play { background:
+      linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+      linear-gradient(90deg, color-mix(in oklab, var(--accent-2) 35%, transparent), color-mix(in oklab, var(--accent-1) 35%, transparent));
+      border: 1px solid color-mix(in oklab, var(--accent-2) 35%, rgba(255,255,255,.16));
+    }
+
+    .pill.secondary { color: var(--ink-2); }
+
+    .pill .dot { width:8px; height:8px; border-radius:999px; background: var(--success); box-shadow: 0 0 18px var(--success); }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(20px) scale(.98); filter: blur(2px); transition: all .9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in-view { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+
+    /* Accessibility: Reduce Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .premium-playlist-section::before, .premium-playlist-section::after, .orb, .sweep, .pulse::before, .pulse::after { animation: none !important }
+      .playlist-card:hover .video-frame iframe { transform: none; }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 720px) {
+      .cta-row { gap: 10px }
+      .pill { width: 100%; justify-content:center }
+    }
 
   </style>
 
@@ -462,45 +704,44 @@ body {
       Explore My List
     </a>
 </div>
-  <!-- Premium Playlist Section -->
-  <section class="premium-playlist-section" aria-labelledby="exp33-heading">
-    <!-- Ambient Background Effects -->
-    <div class="ambient" aria-hidden="true">
-      <div class="blob b1"></div>
-      <div class="blob b2"></div>
-      <div class="blob b3"></div>
-    </div>
-    <div class="particles" aria-hidden="true" id="particles"></div>
+</section>
+
+ <!-- SECTION START -->
+  <section class="premium-playlist-section">
+    <div class="orb orb-a" aria-hidden="true"></div>
+    <div class="orb orb-b" aria-hidden="true"></div>
+    <div class="orb orb-c" aria-hidden="true"></div>
 
     <div class="content-container">
-      <h2 class="section-title reveal" id="exp33-heading">
-        Clair Obscur<br />
-        Expedition 33
-      </h2>
+      <h2 class="section-title reveal">Clair Obscur<br/>Expedition 33</h2>
+      <p class="subtitle reveal" style="max-width: 60ch">
+        A curated, high-fidelity playlist of trailers, showcases, and deep dives. Sit back, go full screen, and enjoy the journey.
+      </p>
 
-      <div class="playlist-card reveal" role="region" aria-label="Clair Obscur: Expedition 33 Curated Playlist">
-        <div class="grid-overlay" aria-hidden="true"></div>
-        <div class="badge top-left">Curated • Premium</div>
-        <div class="badge bottom-right">4K • Playlist</div>
-
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-            allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            title="Clair Obscur: Expedition 33 - Curated Playlist">
-          </iframe>
+      <div class="playlist-card reveal" style="--tilt: 6deg">
+        <div class="playlist-inner">
+          <div class="grid-overlay" aria-hidden="true"></div>
+          <div class="sweep" aria-hidden="true"></div>
+          <div class="pulse" aria-hidden="true"></div>
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH" title="Clair Obscur: Expedition 33 - Curated Playlist" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <div class="frame-chrome" aria-hidden="true"></div>
+          </div>
         </div>
+      </div>
 
-        <div class="cta-row" role="group" aria-label="Playlist actions">
-          <a class="btn primary" href="#" aria-label="Start the playlist">▶ Start Playlist</a>
-          <a class="btn" href="#" aria-label="Save to favorites">★ Save</a>
-          <a class="btn" href="#" aria-label="Share this playlist">⤴ Share</a>
-        </div>
+      <div class="cta-row reveal">
+        <a class="pill play" href="https://www.youtube.com/playlist?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH" target="_blank" rel="noopener noreferrer">
+          ▶️ Play on YouTube
+        </a>
+        <span class="pill secondary" title="Auto-updating playlist">
+          <span class="dot" aria-hidden="true"></span> Live updates enabled
+        </span>
       </div>
     </div>
   </section>
-  <div class="grain" aria-hidden="true"></div>
+  <!-- SECTION END -->
+
 
 </section></section></section></section></section></main></div>
 
@@ -739,6 +980,30 @@ setInterval(() => {
     card.addEventListener('pointerleave', () => {
       card.style.transform = '';
     });
+  </script>
+  <script>
+    // Intersection Observer for reveal-on-scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('in-view');
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Subtle 3D tilt on mouse move
+    const card = document.querySelector('.playlist-card');
+    if (card) {
+      const frame = card.querySelector('.video-frame');
+      const reset = () => card.style.transform = '';
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        const rx = (y - .5) * -8; // rotateX
+        const ry = (x - .5) * 12; // rotateY
+        card.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('pointerleave', reset);
+      card.addEventListener('blur', reset);
+    }
   </script>
 <script defer="" src="./assets/js/main.js" type="module"></script>
 <script defer="" src="./assets/js/lazy-youtube.js"></script>
