@@ -634,18 +634,30 @@ body {
     }
 
     /* VIDEO SHOWCASE */
-    .video-showcase {
-      border: 4px solid rgba(0,255,255,0.8);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
-      margin-bottom: 3rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .video-showcase:hover {
-      transform: scale(1.03) rotate(0.5deg);
-      box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6);
-    }
+.video-showcase {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9; /* Keeps perfect 16:9 shape */
+  border: 4px solid rgba(0,255,255,0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
+  margin: 0 auto 3rem auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-showcase iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* No inner border from the iframe */
+}
+.video-showcase:hover {
+  transform: scale(1.03) rotate(0.5deg);
+  box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6);
+}
 
     /* GAME INFO */
     .game-info {
