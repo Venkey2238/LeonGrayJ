@@ -463,15 +463,29 @@ body {
 </div>
 </section>
 
-<section class="premium-playlist-section py-20 px-4 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-  <div class="max-w-5xl mx-auto text-center animate-fadeInUp">
-    <h2 class="text-4xl md:text-5xl font-bold mb-10 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient">
+<section class="premium-playlist-section py-20 px-4 relative overflow-hidden">
+  <!-- Background Animated Layers -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(139,92,246,0.2),transparent_70%)] animate-gradientMove"></div>
+  <div class="absolute inset-0 pointer-events-none opacity-40 animate-particles"></div>
+
+  <div class="max-w-5xl mx-auto text-center relative z-10 animate-fadeInUp">
+    <!-- Title -->
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-10 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient">
       Clair Obscur<br>Expedition 33
     </h2>
-    <div class="relative group max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-lg transform transition-transform duration-500 hover:scale-105 hover:shadow-purple-500/50 animate-float">
+
+    <!-- Playlist Card -->
+    <div class="relative group max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-lg border border-white/20 transform transition-transform duration-700 hover:scale-105 hover:shadow-purple-500/50 animate-float">
+      <!-- Glow Border -->
+      <div class="absolute inset-0 rounded-3xl border-2 border-transparent group-hover:border-purple-400/40 animate-borderGlow"></div>
+
+      <!-- Sweep Light -->
       <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden rounded-3xl">
-        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-sweep"></span>
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-sweep"></span>
       </div>
+
+      <!-- Video Frame -->
       <div class="video-frame aspect-video">
         <iframe class="w-full h-full rounded-3xl"
           src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
@@ -483,39 +497,59 @@ body {
   </div>
 
   <style>
+    /* Keyframes */
     @keyframes gradientMove {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
+      0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+      50% { transform: translateY(-8px); }
     }
     @keyframes sweep {
       0% { transform: translateX(-100%); }
       100% { transform: translateX(100%); }
     }
+    @keyframes particles {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+    @keyframes borderGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.5); }
+    }
 
+    /* Animation Classes */
     .animate-gradient {
       background-size: 200% 200%;
       animation: gradientMove 6s ease infinite;
     }
     .animate-fadeInUp {
-      animation: fadeInUp 1s ease forwards;
+      animation: fadeInUp 1.2s ease forwards;
     }
     .animate-float {
-      animation: float 4s ease-in-out infinite;
+      animation: float 5s ease-in-out infinite;
     }
     .animate-sweep {
-      animation: sweep 2.5s ease-in-out infinite;
+      animation: sweep 3s ease-in-out infinite;
+    }
+    .animate-particles {
+      background-image: url('data:image/svg+xml;utf8,<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" opacity="0.2"/></svg>');
+      background-repeat: repeat;
+      background-size: 4px 4px;
+      animation: particles 20s linear infinite;
+    }
+    .animate-borderGlow {
+      animation: borderGlow 4s ease-in-out infinite;
     }
   </style>
 </section>
+
 
 
 </section></section></section></section></section></main></div>
