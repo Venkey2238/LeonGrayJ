@@ -463,84 +463,78 @@ body {
 </div>
 </section>
 
-<section class="feature-month-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
-  <div class="background-effects">
-    <div class="bg-stars"></div>
-    <div class="bg-nebula"></div>
-    <div class="bg-particles"></div>
-  </div>
+<section class="feature-month-section relative overflow-hidden text-white font-sans">
+  <!-- Cinematic Background Layers -->
+  <div class="bg-layer bg-stars"></div>
+  <div class="bg-layer bg-nebula"></div>
+  <div class="bg-layer bg-particles"></div>
+  <div class="bg-overlay"></div>
 
-  <div class="max-w-7xl mx-auto text-center relative z-30 space-y-8">
-    <h4 class="text-xl md:text-2xl tracking-widest mb-2 animate-subheading">FEATURING OF THE MONTH</h4>
-    <h2 class="text-6xl md:text-8xl font-extrabold mb-10 relative animate-main-heading">
-      <span class="glitch-text" data-text="Clair Obscur: Expedition 33">Clair Obscur: Expedition 33</span>
-      <span class="glitch-effect"></span>
-    </h2>
+  <!-- Section Content -->
+  <div class="container relative z-20 mx-auto px-4 py-24 max-w-7xl text-center">
+    <h2 class="subheading animate-fade-in-up">FEATURING OF THE MONTH</h4>
+    <h3 class="main-heading glitch-text" data-text="Clair Obscur: Expedition 33">Clair Obscur: Expedition 33</h2>
 
-    <div class="card-3d-container max-w-5xl mx-auto" data-hover-intensity="0.1">
-      <div class="card-inner-wrapper relative group perspective-1000">
-        <div class="card-body relative rounded-3xl overflow-hidden backdrop-blur-3xl shadow-2xl">
-          <div class="card-border"></div>
-          <div class="card-glitch"></div>
-          <div class="video-frame aspect-video relative z-10">
-            <div class="glare-effect"></div>
-            <iframe class="w-full h-full rounded-3xl"
-              src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-              allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              title="Clair Obscur: Expedition 33 Playlist"></iframe>
-          </div>
-        </div>
-      </div>
+    <!-- Video Showcase Card -->
+    <div class="video-card mx-auto mt-12 relative" data-tilt>
+      <div class="video-border"></div>
+      <div class="glare"></div>
+      <iframe class="video-frame rounded-3xl" 
+        src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+        title="Clair Obscur: Expedition 33 Playlist" 
+        allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <div class="info-card relative max-w-5xl mx-auto p-8 rounded-3xl overflow-hidden text-left mt-12">
-      <div class="info-card-background"></div>
-      <div class="info-card-content relative z-10 space-y-6">
-        <h3 class="text-3xl font-bold">About the Game</h3>
-        <p class="text-gray-300">
-          Clair Obscur: Expedition 33 is a cinematic, turn-based RPG set in a stunning, fantastical world.
-          Embark on an epic journey with a team of heroes to face the Painting, a malevolent force that erases humanity
-          from existence, one year at a time. The game features unique turn-based combat with real-time elements,
-          challenging boss fights, and a rich, emotional narrative.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="text-xl font-semibold text-neon-tertiary">Key Features</h4>
-            <ul class="list-disc list-inside space-y-1 text-gray-400 mt-2">
-              <li>Turn-based combat with interactive mechanics</li>
-              <li>A beautiful and immersive world to explore</li>
-              <li>Compelling and heartfelt story</li>
-              <li>Visually striking art direction</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-xl font-semibold text-neon-tertiary">Developer & Publisher</h4>
-            <ul class="space-y-1 text-gray-400 mt-2">
-              <li><span class="font-medium text-white">Developer:</span> Sandfall Interactive</li>
-              <li><span class="font-medium text-white">Publisher:</span> Kepler Interactive</li>
-            </ul>
-          </div>
+    <!-- Game Info -->
+    <div class="game-info mt-16 max-w-5xl mx-auto text-left p-8 rounded-3xl">
+      <h3 class="info-title">About the Game</h3>
+      <p class="info-desc">
+        <strong>Clair Obscur: Expedition 33</strong> is a cinematic, turn-based RPG that blends breathtaking visuals with a deep, emotional narrative. 
+        Embark on a journey to stop the mysterious Painting from erasing humanity year after year. 
+        Expect a world of stunning art, unforgettable characters, and challenging real-time turn-based battles.
+      </p>
+
+      <div class="info-grid">
+        <div>
+          <h4 class="info-subtitle">Key Features</h4>
+          <ul class="info-list">
+            <li>Turn-based combat with real-time mechanics</li>
+            <li>Highly stylized, painterly art direction</li>
+            <li>Epic boss encounters with unique mechanics</li>
+            <li>Emotional storytelling with branching dialogue</li>
+            <li>Exploration of surreal, dreamlike environments</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="info-subtitle">Developer & Publisher</h4>
+          <ul class="info-list">
+            <li><span>Developer:</span> Sandfall Interactive</li>
+            <li><span>Publisher:</span> Kepler Interactive</li>
+            <li><span>Platform:</span> PC, PS5, Xbox Series X|S</li>
+            <li><span>Release Date:</span> 2025</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Cinematic CSS -->
   <style>
     :root {
       --neon-primary: #00f0ff;
       --neon-secondary: #ff00ff;
       --neon-tertiary: #00ff73;
-      --dark-bg: #0a0a0a;
+      --dark-bg: #06060f;
     }
-
     .feature-month-section {
-      background-color: #0d0d1a;
+      background: var(--dark-bg);
       font-family: 'Poppins', sans-serif;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Background Animations */
-    .background-effects {
+    /* Background Layers */
+    .bg-layer {
       position: absolute;
       inset: 0;
       z-index: 0;
@@ -550,47 +544,51 @@ body {
       background: radial-gradient(white 1px, transparent 1px);
       background-size: 2px 2px;
       opacity: 0.3;
-      animation: moveStars 200s linear infinite;
+      animation: starsMove 200s linear infinite;
     }
     .bg-nebula {
-      background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.15), transparent 60%),
-                  radial-gradient(circle at 70% 70%, rgba(255,0,255,0.15), transparent 60%);
+      background: radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 70%),
+                  radial-gradient(circle at 80% 80%, rgba(255,0,255,0.15), transparent 70%);
+      filter: blur(20px);
       animation: nebulaDrift 60s ease-in-out infinite alternate;
-      filter: blur(15px);
     }
     .bg-particles {
-      background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
       background-size: 4px 4px;
-      opacity: 0.05;
-      animation: particleDrift 120s linear infinite;
+      opacity: 0.07;
+      animation: particleFloat 120s linear infinite;
+    }
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%);
+      z-index: 1;
     }
 
-    /* Heading Animations */
-    .animate-subheading {
-      animation: fadeUp 1.2s ease forwards;
+    /* Headings */
+    .subheading {
+      font-size: 1.2rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
       opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
-    .animate-main-heading {
-      animation: fadeUp 1.5s ease 0.3s forwards;
-      opacity: 0;
-    }
-    .glitch-text {
+    .main-heading {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      margin-top: 0.5rem;
       position: relative;
-      display: inline-block;
-      font-weight: 800;
       color: var(--neon-tertiary);
-      text-shadow: 0 0 5px rgba(0,255,115,0.8), 0 0 15px rgba(0,255,115,0.6);
-      animation: glitchText 3s infinite linear alternate;
+      text-shadow: 0 0 8px rgba(0,255,115,0.8), 0 0 20px rgba(0,255,115,0.6);
+      animation: fadeInUp 1.5s ease 0.3s forwards;
     }
     .glitch-text::before,
     .glitch-text::after {
       content: attr(data-text);
       position: absolute;
-      top: 0;
-      left: 0;
+      left: 0; top: 0;
       width: 100%;
       height: 100%;
-      background: transparent;
     }
     .glitch-text::before {
       left: 2px;
@@ -602,154 +600,108 @@ body {
       text-shadow: 2px 0 var(--neon-secondary);
       clip-path: inset(0 0 40%);
     }
-    .glitch-effect {
-      position: absolute;
-      inset: -10px;
-      background: radial-gradient(circle, var(--neon-tertiary), transparent 70%);
-      filter: blur(30px);
-      opacity: 0.15;
-      z-index: -1;
-      animation: glitchEffectPulse 4s infinite ease-in-out alternate;
-    }
 
-    /* Card Styles */
-    .card-3d-container {
-      perspective: 1000px;
-    }
-    .card-body {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      transform-style: preserve-3d;
-      animation: float3d 8s ease-in-out infinite;
-      position: relative;
-    }
-    .card-body:hover {
-      animation-play-state: paused;
-      transform: scale(1.03);
-    }
-    .card-border {
-      position: absolute;
-      inset: -2px;
+    /* Video Card */
+    .video-card {
+      max-width: 900px;
       border-radius: 1.5rem;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 40px rgba(0,255,255,0.15);
+      transform-style: preserve-3d;
+      animation: floatCard 8s ease-in-out infinite;
+    }
+    .video-border {
+      position: absolute;
+      inset: 0;
       border: 2px solid transparent;
+      border-radius: 1.5rem;
       background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary), var(--neon-tertiary)) border-box;
       mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      animation: animatedBorder 5s linear infinite;
+      animation: borderShift 5s linear infinite;
+      z-index: 1;
     }
-    .card-glitch {
+    .glare {
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 2px);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      clip-path: inset(0);
-    }
-    .card-body:hover .card-glitch {
-      opacity: 0.1;
-      animation: glitchSkew 0.5s infinite;
-    }
-
-    /* Glare Effect */
-    .glare-effect::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 75%; height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+      mix-blend-mode: overlay;
       animation: glareSweep 6s infinite ease-in-out;
+      z-index: 2;
+    }
+    .video-frame {
+      width: 100%;
+      height: 500px;
+      z-index: 3;
+      position: relative;
     }
 
-    /* Info Card */
-    .info-card {
-      background: linear-gradient(145deg, rgba(20, 20, 40, 0.8), rgba(15, 15, 30, 0.8));
+    /* Game Info */
+    .game-info {
+      background: linear-gradient(145deg, rgba(20,20,40,0.85), rgba(10,10,20,0.85));
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
-      animation: float3d-info 10s ease-in-out infinite;
+      animation: floatInfo 12s ease-in-out infinite;
     }
-    .info-card-background {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 10% 90%, rgba(255,0,255,0.1), transparent 50%),
-                  radial-gradient(circle at 90% 10%, rgba(0,255,255,0.1), transparent 50%);
-      filter: blur(25px);
+    .info-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--neon-primary);
+    }
+    .info-desc {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .info-subtitle {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--neon-tertiary);
+      margin-bottom: 0.5rem;
+    }
+    .info-list {
+      list-style: disc;
+      padding-left: 1.2rem;
+      color: #aaa;
+    }
+    .info-list li span {
+      color: #fff;
+      font-weight: 500;
     }
 
-    /* Keyframes */
-    @keyframes moveStars {
-      0% { background-position: 0 0; }
-      100% { background-position: -10000px 10000px; }
-    }
-    @keyframes nebulaDrift {
-      0% { background-position: 0 0; }
-      100% { background-position: 100px 200px; }
-    }
-    @keyframes particleDrift {
-      0% { background-position: 0 0; }
-      100% { background-position: 200px 400px; }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes glitchText {
-      0%, 20%, 40%, 60%, 80%, 100% {
-        text-shadow: 0 0 5px rgba(0,255,115,0.8), 0 0 15px rgba(0,255,115,0.6);
-      }
-      10%, 30%, 50%, 70%, 90% {
-        text-shadow: none;
-      }
-    }
-    @keyframes glitchEffectPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    @keyframes float3d {
-      0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
-      50% { transform: translateY(-8px) rotateX(2deg) rotateY(2deg); }
-    }
-    @keyframes float3d-info {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    @keyframes animatedBorder {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes glitchSkew {
-      0% { clip-path: inset(0); transform: skew(0deg); }
-      20% { clip-path: inset(10% 0 80%); transform: skew(2deg); }
-      40% { clip-path: inset(30% 0 60%); transform: skew(-2deg); }
-      60% { clip-path: inset(50% 0 40%); transform: skew(1deg); }
-      80% { clip-path: inset(70% 0 20%); transform: skew(-1deg); }
-      100% { clip-path: inset(0); transform: skew(0deg); }
-    }
-    @keyframes glareSweep {
-      0% { left: -100%; }
-      100% { left: 150%; }
-    }
+    /* Animations */
+    @keyframes starsMove { to { background-position: -10000px 10000px; } }
+    @keyframes nebulaDrift { to { background-position: 100px 200px; } }
+    @keyframes particleFloat { to { background-position: 200px 400px; } }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes floatCard { 50% { transform: translateY(-8px) rotateX(2deg) rotateY(2deg); } }
+    @keyframes floatInfo { 50% { transform: translateY(-5px); } }
+    @keyframes borderShift { 50% { background-position: 100% 50%; } }
+    @keyframes glareSweep { 0% { transform: translateX(-150%); } 100% { transform: translateX(150%); } }
   </style>
 
+  <!-- Tilt Interaction -->
   <script>
-    document.addEventListener('mousemove', (e) => {
-      const card = document.querySelector('.card-3d-container');
-      const cardInner = card.querySelector('.card-inner-wrapper');
-      const intensity = parseFloat(card.dataset.hoverIntensity);
-      if (card) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * 15 * -1 * intensity;
-        const rotateY = ((x - centerX) / centerX) * 15 * intensity;
-        cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      }
+    document.addEventListener('mousemove', e => {
+      const card = document.querySelector('.video-card');
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 8;
+      const rotateY = ((x - centerX) / centerX) * -8;
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-    document.querySelector('.card-3d-container').addEventListener('mouseleave', () => {
-      const cardInner = document.querySelector('.card-inner-wrapper');
-      cardInner.style.transform = 'rotateX(0) rotateY(0)';
+    document.querySelector('.video-card').addEventListener('mouseleave', () => {
+      document.querySelector('.video-card').style.transform = 'rotateX(0) rotateY(0)';
     });
   </script>
 </section>
