@@ -464,21 +464,20 @@ body {
 </section>
 
 <section class="feature-month-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
-  <!-- Background Layers -->
-  <div class="absolute inset-0 z-0 bg-stars"></div>
-  <div class="absolute inset-0 z-0 bg-nebula"></div>
-  <div class="absolute inset-0 z-0 bg-particles"></div>
+  <div class="background-effects">
+    <div class="bg-stars"></div>
+    <div class="bg-nebula"></div>
+    <div class="bg-particles"></div>
+  </div>
 
-  <!-- Content -->
-  <div class="max-w-5xl mx-auto text-center relative z-30">
-    <h4 class="text-lg tracking-widest mb-2 animate-subheading">FEATURE OF THE MONTH</h4>
-    <h2 class="text-5xl md:text-7xl font-black mb-10 relative animate-main-heading">
-      <span class="neon-text">Clair Obscur: Expedition 33</span>
-      <span class="neon-glow"></span>
+  <div class="max-w-7xl mx-auto text-center relative z-30 space-y-8">
+    <h4 class="text-xl md:text-2xl tracking-widest mb-2 animate-subheading">FEATURING OF THE MONTH</h4>
+    <h2 class="text-6xl md:text-8xl font-extrabold mb-10 relative animate-main-heading">
+      <span class="glitch-text" data-text="Clair Obscur: Expedition 33">Clair Obscur: Expedition 33</span>
+      <span class="glitch-effect"></span>
     </h2>
 
-    <!-- Playlist Card -->
-    <div class="card-3d-container max-w-4xl mx-auto" data-hover-intensity="0.05">
+    <div class="card-3d-container max-w-5xl mx-auto" data-hover-intensity="0.1">
       <div class="card-inner-wrapper relative group perspective-1000">
         <div class="card-body relative rounded-3xl overflow-hidden backdrop-blur-3xl shadow-2xl">
           <div class="card-border"></div>
@@ -494,6 +493,37 @@ body {
         </div>
       </div>
     </div>
+
+    <div class="info-card relative max-w-5xl mx-auto p-8 rounded-3xl overflow-hidden text-left mt-12">
+      <div class="info-card-background"></div>
+      <div class="info-card-content relative z-10 space-y-6">
+        <h3 class="text-3xl font-bold">About the Game</h3>
+        <p class="text-gray-300">
+          Clair Obscur: Expedition 33 is a cinematic, turn-based RPG set in a stunning, fantastical world.
+          Embark on an epic journey with a team of heroes to face the Painting, a malevolent force that erases humanity
+          from existence, one year at a time. The game features unique turn-based combat with real-time elements,
+          challenging boss fights, and a rich, emotional narrative.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-xl font-semibold text-neon-tertiary">Key Features</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-400 mt-2">
+              <li>Turn-based combat with interactive mechanics</li>
+              <li>A beautiful and immersive world to explore</li>
+              <li>Compelling and heartfelt story</li>
+              <li>Visually striking art direction</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold text-neon-tertiary">Developer & Publisher</h4>
+            <ul class="space-y-1 text-gray-400 mt-2">
+              <li><span class="font-medium text-white">Developer:</span> Sandfall Interactive</li>
+              <li><span class="font-medium text-white">Publisher:</span> Kepler Interactive</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <style>
@@ -504,7 +534,18 @@ body {
       --dark-bg: #0a0a0a;
     }
 
+    .feature-month-section {
+      background-color: #0d0d1a;
+      font-family: 'Poppins', sans-serif;
+    }
+
     /* Background Animations */
+    .background-effects {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
     .bg-stars {
       background: radial-gradient(white 1px, transparent 1px);
       background-size: 2px 2px;
@@ -515,6 +556,7 @@ body {
       background: radial-gradient(circle at 30% 30%, rgba(0,255,255,0.15), transparent 60%),
                   radial-gradient(circle at 70% 70%, rgba(255,0,255,0.15), transparent 60%);
       animation: nebulaDrift 60s ease-in-out infinite alternate;
+      filter: blur(15px);
     }
     .bg-particles {
       background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
@@ -532,20 +574,42 @@ body {
       animation: fadeUp 1.5s ease 0.3s forwards;
       opacity: 0;
     }
-    .neon-text {
-      background: linear-gradient(45deg, var(--neon-primary), var(--neon-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 5px var(--neon-primary), 0 0 15px var(--neon-secondary);
-      animation: neonFlicker 2.5s infinite;
+    .glitch-text {
+      position: relative;
+      display: inline-block;
+      font-weight: 800;
+      color: var(--neon-tertiary);
+      text-shadow: 0 0 5px rgba(0,255,115,0.8), 0 0 15px rgba(0,255,115,0.6);
+      animation: glitchText 3s infinite linear alternate;
     }
-    .neon-glow {
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+    .glitch-text::before {
+      left: 2px;
+      text-shadow: -2px 0 var(--neon-primary);
+      clip-path: inset(60% 0 0);
+    }
+    .glitch-text::after {
+      left: -2px;
+      text-shadow: 2px 0 var(--neon-secondary);
+      clip-path: inset(0 0 40%);
+    }
+    .glitch-effect {
       position: absolute;
       inset: -10px;
-      background: radial-gradient(circle, var(--neon-primary), transparent 70%);
+      background: radial-gradient(circle, var(--neon-tertiary), transparent 70%);
       filter: blur(30px);
       opacity: 0.15;
       z-index: -1;
+      animation: glitchEffectPulse 4s infinite ease-in-out alternate;
     }
 
     /* Card Styles */
@@ -568,6 +632,9 @@ body {
       inset: -2px;
       border-radius: 1.5rem;
       border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary), var(--neon-tertiary)) border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
       animation: animatedBorder 5s linear infinite;
     }
     .card-glitch {
@@ -576,6 +643,7 @@ body {
       background: repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 2px);
       opacity: 0;
       transition: opacity 0.3s ease;
+      clip-path: inset(0);
     }
     .card-body:hover .card-glitch {
       opacity: 0.1;
@@ -586,10 +654,25 @@ body {
     .glare-effect::after {
       content: '';
       position: absolute;
-      top: 0; left: -75%;
-      width: 50%; height: 100%;
+      top: 0; left: -100%;
+      width: 75%; height: 100%;
       background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
-      animation: glareSweep 5s infinite;
+      animation: glareSweep 6s infinite ease-in-out;
+    }
+
+    /* Info Card */
+    .info-card {
+      background: linear-gradient(145deg, rgba(20, 20, 40, 0.8), rgba(15, 15, 30, 0.8));
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+      animation: float3d-info 10s ease-in-out infinite;
+    }
+    .info-card-background {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 90%, rgba(255,0,255,0.1), transparent 50%),
+                  radial-gradient(circle at 90% 10%, rgba(0,255,255,0.1), transparent 50%);
+      filter: blur(25px);
     }
 
     /* Keyframes */
@@ -609,30 +692,42 @@ body {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes neonFlicker {
-      0%, 100% { text-shadow: 0 0 5px var(--neon-primary), 0 0 15px var(--neon-secondary); }
-      50% { text-shadow: none; }
+    @keyframes glitchText {
+      0%, 20%, 40%, 60%, 80%, 100% {
+        text-shadow: 0 0 5px rgba(0,255,115,0.8), 0 0 15px rgba(0,255,115,0.6);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        text-shadow: none;
+      }
+    }
+    @keyframes glitchEffectPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     @keyframes float3d {
+      0%, 100% { transform: translateY(0) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-8px) rotateX(2deg) rotateY(2deg); }
+    }
+    @keyframes float3d-info {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-5px); }
     }
     @keyframes animatedBorder {
-      0% { border-color: var(--neon-primary); }
-      50% { border-color: var(--neon-secondary); }
-      100% { border-color: var(--neon-primary); }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     @keyframes glitchSkew {
-      0% { transform: skew(0deg); }
-      20% { transform: skew(2deg); }
-      40% { transform: skew(-2deg); }
-      60% { transform: skew(1deg); }
-      80% { transform: skew(-1deg); }
-      100% { transform: skew(0deg); }
+      0% { clip-path: inset(0); transform: skew(0deg); }
+      20% { clip-path: inset(10% 0 80%); transform: skew(2deg); }
+      40% { clip-path: inset(30% 0 60%); transform: skew(-2deg); }
+      60% { clip-path: inset(50% 0 40%); transform: skew(1deg); }
+      80% { clip-path: inset(70% 0 20%); transform: skew(-1deg); }
+      100% { clip-path: inset(0); transform: skew(0deg); }
     }
     @keyframes glareSweep {
-      0% { left: -75%; }
-      100% { left: 125%; }
+      0% { left: -100%; }
+      100% { left: 150%; }
     }
   </style>
 
@@ -647,8 +742,8 @@ body {
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * 10 * -1 * intensity;
-        const rotateY = ((x - centerX) / centerX) * 10 * intensity;
+        const rotateX = ((y - centerY) / centerY) * 15 * -1 * intensity;
+        const rotateY = ((x - centerX) / centerX) * 15 * intensity;
         cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       }
     });
