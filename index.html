@@ -463,184 +463,235 @@ body {
 </div>
 </section>
 
-<section class="premium-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white">
-  <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_left,_var(--color-primary-light),transparent_70%)] animate-pulseGradient"></div>
-  <div class="absolute inset-0 z-10 bg-grid-pattern opacity-10"></div>
-  <div class="absolute inset-0 z-20 pointer-events-none opacity-30 animate-warp"></div>
+<section class="cyber-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans">
+  <div class="absolute inset-0 z-0 bg-hyperspace-grid"></div>
+  <div class="absolute inset-0 z-10 bg-hyperspace-stars animate-hyperspace-move"></div>
+  <div class="absolute inset-0 z-20 pointer-events-none bg-noise-texture opacity-10"></div>
   
-  <div class="max-w-5xl mx-auto text-center relative z-30 animate-fadeInUp">
-    <h2 class="text-4xl md:text-6xl font-extrabold mb-10 text-transparent animate-glitch-text">
-      <span class="text-stroke-title">Clair Obscur<br>Expedition 33</span>
+  <div class="max-w-5xl mx-auto text-center relative z-30 animate-digital-reveal">
+    <h2 class="text-4xl md:text-6xl font-black mb-10 text-transparent relative animate-neon-flicker">
+      <span class="neon-text">Clair Obscur<br>Expedition 33</span>
+      <span class="neon-glow-effect"></span>
     </h2>
     
-    <div class="card-container relative group max-w-3xl mx-auto rounded-3xl overflow-hidden shadow-2xl backdrop-blur-3xl transform transition-transform duration-700 hover:scale-105 animate-float-subtle">
-      <div class="card-border-glow"></div>
-      
-      <div class="video-frame aspect-video relative z-10">
-        <div class="glare-effect"></div>
-        <iframe class="w-full h-full rounded-3xl"
-          src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
-          allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="Clair Obscur: Expedition 33 - Curated Playlist"></iframe>
+    <div class="card-3d-container max-w-3xl mx-auto" data-hover-intensity="0.05">
+      <div class="card-inner-wrapper relative group perspective-1000">
+        <div class="card-body relative rounded-3xl overflow-hidden shadow-2xl backdrop-blur-3xl transform transition-transform duration-700 animate-float-3d">
+          <div class="card-animated-border"></div>
+          <div class="card-glitch-overlay"></div>
+          
+          <div class="video-frame aspect-video relative z-10">
+            <div class="glare-effect-light"></div>
+            <iframe class="w-full h-full rounded-3xl"
+              src="https://www.youtube.com/embed/videoseries?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
+              allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              title="Clair Obscur: Expedition 33 - Curated Playlist"></iframe>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
 <style>
-  /* CSS Variables for easier customization */
+  /* --- CSS Variables --- */
   :root {
-    --color-primary: #a855f7;
-    --color-secondary: #ec4899;
-    --color-tertiary: #ef4444;
+    --color-neon-primary: #00f0ff;
+    --color-neon-secondary: #ff00ff;
+    --color-neon-tertiary: #00ff73;
+    --color-dark-gray: #111;
     --color-white: #ffffff;
-    --font-family: 'Poppins', sans-serif;
-  }
-  
-  body {
-    font-family: var(--font-family);
   }
   
   /* --- Keyframes for Animations --- */
-  @keyframes pulseGradient {
-    0%, 100% {
-      background-size: 150% 150%;
-      background-position: 0% 50%;
-    }
-    50% {
-      background-size: 180% 180%;
-      background-position: 100% 50%;
-    }
+  @keyframes digitalReveal {
+    0% { opacity: 0; transform: translateY(50px); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
   
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes neonFlicker {
+    0%, 100% { text-shadow: 0 0 5px var(--color-neon-primary), 0 0 10px var(--color-neon-primary), 0 0 20px var(--color-neon-primary); }
+    50% { text-shadow: none; }
   }
   
-  @keyframes floatSubtle {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-5px) scale(1.01); }
+  @keyframes hyperspaceMove {
+    0% { background-position: 0 0; }
+    100% { background-position: -200% -200%; }
   }
   
-  @keyframes glare {
+  @keyframes float3d {
+    0%, 100% { transform: translateZ(0) translateY(0); }
+    50% { transform: translateZ(20px) translateY(-8px); }
+  }
+
+  @keyframes cardGlitch {
+    0% { transform: skew(0); }
+    20% { transform: skew(3deg, -2deg); }
+    40% { transform: skew(-5deg, 3deg); }
+    60% { transform: skew(2deg, -4deg); }
+    80% { transform: skew(-4deg, 5deg); }
+    100% { transform: skew(0); }
+  }
+
+  @keyframes animatedBorder {
+    0% { border-color: var(--color-neon-primary); transform: rotate(0deg); }
+    50% { border-color: var(--color-neon-secondary); transform: rotate(180deg); }
+    100% { border-color: var(--color-neon-primary); transform: rotate(360deg); }
+  }
+
+  @keyframes glareSweep {
     0% { transform: translateX(-150%) skewX(-30deg); }
     100% { transform: translateX(150%) skewX(-30deg); }
   }
-  
-  @keyframes warp {
-    0% { background-position: 0 0; }
-    100% { background-position: 100% 100%; }
-  }
-  
-  @keyframes glitch {
-    0%, 100% { clip-path: inset(0 0 0 0); }
-    20% { clip-path: inset(30px 0 0 0); }
-    40% { clip-path: inset(0 0 20px 0); }
-    60% { clip-path: inset(50px 0 0 0); }
-    80% { clip-path: inset(0 0 10px 0); }
-  }
-  
-  @keyframes borderPulse {
-    0%, 100% { box-shadow: 0 0 15px var(--color-primary); opacity: 0.8; }
-    50% { box-shadow: 0 0 30px var(--color-secondary); opacity: 1; }
-  }
-  
+
   /* --- Component Styles --- */
-  .premium-playlist-section {
+  .cyber-playlist-section {
     position: relative;
     overflow: hidden;
-    background-color: #000;
-  }
-  
-  /* Background effects */
-  .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-  
-  .animate-warp {
-    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100h-100z" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/></svg>');
-    background-repeat: repeat;
-    animation: warp 60s linear infinite;
-  }
-  
-  /* Title with unique effects */
-  .animate-glitch-text {
-    animation: fadeInUp 1.2s ease forwards, glitch 0.8s infinite 2s;
-    -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+    background-color: var(--color-dark-gray);
+    font-family: 'Segoe UI', 'Roboto', sans-serif; /* A more modern, tech-y font */
   }
 
-  .text-stroke-title {
-    text-shadow: 0 0 5px var(--color-primary), 0 0 15px var(--color-secondary), 0 0 30px var(--color-tertiary);
-    background-image: linear-gradient(to right, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+  /* Background Layers */
+  .bg-hyperspace-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.1;
+  }
+  .bg-hyperspace-stars {
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 2px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+    animation: hyperspaceMove 60s linear infinite;
+  }
+  .bg-noise-texture {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgz/f6AAAAAXNSR0IArs4c6QAAADFJREFUGFdjYGBgeM/A3wEkwE/A0QG6o4Y4gIuK/o8p2Fz1HwEkwO8yQAAwMTEgAQAAJc2/b+8lS7YAAAAASUVORK5CYII=");
+    background-size: 6px 6px;
+    animation: none;
+  }
+
+  /* Title Styles */
+  .animate-digital-reveal {
+    animation: digitalReveal 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+  }
+  .animate-neon-flicker {
+    animation: neonFlicker 2s ease-in-out infinite;
+  }
+  .neon-text {
+    background-image: linear-gradient(45deg, var(--color-neon-primary), var(--color-neon-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px var(--color-neon-primary), 0 0 20px var(--color-neon-secondary);
+  }
+  .neon-glow-effect {
+    position: absolute;
+    inset: -5px;
+    content: '';
+    background-image: radial-gradient(circle, var(--color-neon-primary) 0%, transparent 50%);
+    opacity: 0.2;
+    filter: blur(10px);
+    z-index: -1;
   }
 
-  /* Card with advanced effects */
-  .card-container {
+  /* Card Styles */
+  .card-3d-container {
+    perspective: 1000px;
+  }
+  .card-inner-wrapper {
+    transition: transform 0.3s ease-out;
+  }
+  .card-body {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: float3d 7s ease-in-out infinite;
+  }
+  .card-body:hover {
+    animation-play-state: paused;
+    transform: rotateX(0) rotateY(0) scale(1.05);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
   }
 
-  .card-container:hover {
-    box-shadow: 0 0 40px rgba(168, 85, 247, 0.3), 0 0 80px rgba(236, 72, 153, 0.2);
-  }
-
-  .card-border-glow {
+  /* Animated Border and Glitch */
+  .card-animated-border {
     position: absolute;
-    inset: -2px;
-    border: 2px solid transparent;
+    inset: -3px;
+    border: 3px solid transparent;
     border-radius: 3rem;
-    z-index: -1;
+    z-index: 10;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    animation: borderPulse 4s ease-in-out infinite;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    animation: animatedBorder 4s linear infinite;
   }
-
-  .card-container:hover .card-border-glow {
+  .card-body:hover .card-animated-border {
     opacity: 1;
   }
-  
-  /* Glare effect on video */
-  .glare-effect {
+  .card-glitch-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+    inset: 0;
     pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 2px);
+    background-size: 20px 20px;
+    animation: cardGlitch 0.5s infinite;
+  }
+  .card-body:hover .card-glitch-overlay {
+    opacity: 0.2;
+    animation-play-state: running;
   }
 
-  .glare-effect::after {
+  /* Glare Effect */
+  .glare-effect-light {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
+  }
+  .glare-effect-light::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 60%;
     height: 100%;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: glare 4s infinite 1s;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+    animation: glareSweep 5s infinite 2s;
   }
-  
-  /* Additional Animation Classes */
-  .animate-pulseGradient {
-    animation: pulseGradient 8s ease infinite;
-  }
-  
-  .animate-fadeInUp {
-    animation: fadeInUp 1.2s ease forwards;
-  }
-  
-  .animate-float-subtle {
-    animation: floatSubtle 6s ease-in-out infinite;
-  }
+
+  /* JavaScript for Parallax Effect */
+  /* This script creates a subtle 3D parallax effect on the card. */
+  document.addEventListener('mousemove', (e) => {
+    const card = document.querySelector('.card-3d-container');
+    const cardInner = card.querySelector('.card-inner-wrapper');
+    const intensity = parseFloat(card.dataset.hoverIntensity);
+    
+    if (card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * 15 * -1 * intensity;
+      const rotateY = ((x - centerX) / centerX) * 15 * intensity;
+      
+      cardInner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    }
+  });
+
+  /* Reset transform on mouseleave */
+  document.querySelector('.card-3d-container').addEventListener('mouseleave', () => {
+    const cardInner = document.querySelector('.card-inner-wrapper');
+    cardInner.style.transform = 'rotateX(0) rotateY(0)';
+  });
 </style>
 </section>
-
 </section></section></section></section></section></main></div>
 
 
