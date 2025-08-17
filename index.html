@@ -651,12 +651,16 @@ body {
     .playlist-link:hover { text-decoration: underline; }
 
     .facts-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-      gap: 0.5rem; margin-top: 0.5rem;
+      display: flex; /* Changed from grid to flexbox */
+      flex-wrap: nowrap; /* Forces items to stay in one line */
+      justify-content: space-around; /* Distributes items evenly with space */
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }
     .fact-panel {
       background: rgba(0, 0, 0, 0.65); border: 1px solid rgba(0, 255, 255, 0.4); border-radius: 5px;
       padding: 0.4rem; text-align: center; transition: all 0.3s ease; font-weight: bold;
+      flex: 1; /* Allows panels to grow and shrink evenly */
     }
     .fact-panel:hover { background: rgba(0, 255, 255, 0.15); box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); }
     .fact-icon { font-size: 1.2rem; display: block; margin-bottom: 0.2rem; }
@@ -664,7 +668,6 @@ body {
   </style>
 
 </section>
-
     
 </section></section></section></section></section></main></div>
 
