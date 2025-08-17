@@ -471,7 +471,7 @@ body {
 </div>
 </section>
 
-<section class="cinematic-playlist-section py-6 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
+<section class="cinematic-playlist-section py-4 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
 
   <div class="absolute inset-0 z-0">
     <div class="stars-layer"></div>
@@ -481,7 +481,7 @@ body {
     <div class="spotlight-sweep"></div>
   </div>
 
-  <div class="relative z-10 max-w-6xl mx-auto text-center">
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
     <div class="holo-badge">NOW FEATURING</div>
     <h2 class="title">🎮 Featured Games</h2>
     <p class="subtitle">Explore breathtaking journeys and cinematic adventures</p>
@@ -620,15 +620,15 @@ body {
     /* CONTENT STYLING */
     .holo-badge {
       display: inline-block;
-      padding: 0.3rem 0.6rem;
-      margin-bottom: 0.6rem;
+      padding: 0.2rem 0.5rem;
+      margin-bottom: 0.5rem;
       background: linear-gradient(90deg, #0ff, #f0f);
       background-size: 200% 200%;
       animation: holo-shift 3s ease-in-out infinite;
       color: black;
       font-weight: bold;
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
     }
     @keyframes holo-shift {
@@ -636,27 +636,28 @@ body {
       50% { background-position: 100% 50%; }
     }
     .title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: bold;
-      text-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
-      margin-bottom: 0.5rem;
+      text-shadow: 0 0 12px #0ff, 0 0 24px #f0f;
+      margin-bottom: 0.3rem;
     }
     .game-title {
-      font-size: 1.8rem;
-      text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
-      margin-bottom: 0.8rem;
+      font-size: 1.6rem;
+      text-shadow: 0 0 8px #0ff, 0 0 16px #f0f;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
     }
     .subtitle {
-      font-size: 1rem;
+      font-size: 0.9rem;
       opacity: 0.9;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
     .neon-divider {
-      height: 2px;
-      width: 60px;
+      height: 1.5px;
+      width: 50px;
       background: linear-gradient(90deg, #0ff, #f0f, #0ff);
       background-size: 200% 200%;
-      margin: 1rem auto;
+      margin: 0.8rem auto;
       animation: divider-glow 2s linear infinite;
     }
     @keyframes divider-glow {
@@ -667,13 +668,13 @@ body {
     .video-showcase {
       position: relative;
       width: 100%;
-      max-width: 600px;
+      max-width: 550px;
       aspect-ratio: 16 / 9;
-      border: 3px solid rgba(0, 255, 255, 0.8);
-      border-radius: 10px;
+      border: 2px solid rgba(0, 255, 255, 0.8);
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.4);
-      margin: 0 auto 1.2rem auto;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.6), 0 0 24px rgba(255, 0, 255, 0.4);
+      margin: 0 auto 0.8rem auto;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .video-showcase iframe {
@@ -685,24 +686,29 @@ body {
       border: none;
     }
     .video-showcase:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6);
+      transform: scale(1.01);
+      box-shadow: 0 0 18px rgba(0, 255, 255, 0.8), 0 0 36px rgba(255, 0, 255, 0.6);
     }
     /* GAME INFO */
     .game-info {
-      margin: 1.2rem auto;
+      margin: 0.8rem auto;
       max-width: 800px;
       text-align: left;
-      line-height: 1.4;
-      font-size: 0.9rem;
+      line-height: 1.3;
+      font-size: 0.85rem;
       background: rgba(0, 0, 0, 0.6);
-      padding: 1rem;
+      padding: 0.8rem;
       border: 1px solid rgba(0, 255, 255, 0.3);
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    }
+    .game-info h4 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
     }
     .game-description {
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.5rem;
     }
     .playlist-link {
       color: #0ff;
@@ -714,36 +720,36 @@ body {
     /* FACT PANELS */
     .facts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.8rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.8rem;
     }
     .fact-panel {
       background: rgba(0, 0, 0, 0.65);
       border: 1px solid rgba(0, 255, 255, 0.4);
-      border-radius: 6px;
-      padding: 0.6rem;
+      border-radius: 5px;
+      padding: 0.5rem;
       text-align: center;
       transition: all 0.3s ease;
       font-weight: bold;
     }
     .fact-panel:hover {
       background: rgba(0, 255, 255, 0.15);
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
     }
     .fact-icon {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       display: block;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
     .fact-text {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
     /* === Carousel CSS from the new code === */
     .carousel-container {
       position: relative;
       overflow: hidden;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
     }
     .carousel {
       display: flex;
@@ -751,7 +757,7 @@ body {
     }
     .carousel-item {
       min-width: 100%;
-      padding: 0.5rem;
+      padding: 0.4rem;
       box-sizing: border-box;
     }
     .carousel-btn {
@@ -759,12 +765,12 @@ body {
       top: 50%;
       transform: translateY(-50%);
       background: rgba(0,0,0,0.5);
-      border: 2px solid #0ff;
+      border: 1px solid #0ff;
       border-radius: 50%;
-      width: 35px;
-      height: 35px;
+      width: 30px;
+      height: 30px;
       color: #0ff;
-      font-size: 1.2rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
       z-index: 20;
@@ -801,7 +807,6 @@ body {
     });
   </script>
 </section>
-
 </section></section></section></section></section></main></div>
 
 
