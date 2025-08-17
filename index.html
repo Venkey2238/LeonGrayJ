@@ -471,7 +471,7 @@ body {
 </div>
 </section>
 
-<section class="cinematic-playlist-section py-10 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
+<section class="cinematic-playlist-section py-6 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
 
   <div class="absolute inset-0 z-0">
     <div class="stars-layer"></div>
@@ -620,15 +620,15 @@ body {
     /* CONTENT STYLING */
     .holo-badge {
       display: inline-block;
-      padding: 0.4rem 0.8rem; /* Reduced padding */
-      margin-bottom: 0.8rem;  /* Reduced margin */
+      padding: 0.3rem 0.6rem;
+      margin-bottom: 0.6rem;
       background: linear-gradient(90deg, #0ff, #f0f);
       background-size: 200% 200%;
       animation: holo-shift 3s ease-in-out infinite;
       color: black;
       font-weight: bold;
       border-radius: 9999px;
-      font-size: 0.8rem; /* Reduced font size */
+      font-size: 0.75rem;
       text-transform: uppercase;
     }
     @keyframes holo-shift {
@@ -636,27 +636,27 @@ body {
       50% { background-position: 100% 50%; }
     }
     .title {
-      font-size: 2.8rem; /* Reduced font size */
+      font-size: 2.2rem;
       font-weight: bold;
       text-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
       margin-bottom: 0.5rem;
     }
     .game-title {
-        font-size: 2rem; /* New, smaller title for carousel items */
-        text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
-        margin-bottom: 1rem;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
+      margin-bottom: 0.8rem;
     }
     .subtitle {
-      font-size: 1.1rem; /* Reduced font size */
+      font-size: 1rem;
       opacity: 0.9;
-      margin-bottom: 1.5rem; /* Reduced margin */
+      margin-bottom: 1rem;
     }
     .neon-divider {
-      height: 3px; /* Reduced height */
-      width: 80px; /* Reduced width */
+      height: 2px;
+      width: 60px;
       background: linear-gradient(90deg, #0ff, #f0f, #0ff);
       background-size: 200% 200%;
-      margin: 1.5rem auto; /* Reduced margin */
+      margin: 1rem auto;
       animation: divider-glow 2s linear infinite;
     }
     @keyframes divider-glow {
@@ -667,13 +667,13 @@ body {
     .video-showcase {
       position: relative;
       width: 100%;
-      max-width: 700px; /* Reduced max width */
+      max-width: 600px;
       aspect-ratio: 16 / 9;
-      border: 3px solid rgba(0, 255, 255, 0.8); /* Reduced border size */
-      border-radius: 12px; /* Reduced border radius */
+      border: 3px solid rgba(0, 255, 255, 0.8);
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4); /* Reduced shadow */
-      margin: 0 auto 1.5rem auto; /* Reduced margin */
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.4);
+      margin: 0 auto 1.2rem auto;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .video-showcase iframe {
@@ -685,24 +685,24 @@ body {
       border: none;
     }
     .video-showcase:hover {
-      transform: scale(1.02); /* Slightly smaller scale on hover */
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 50px rgba(255, 0, 255, 0.6);
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(255, 0, 255, 0.6);
     }
     /* GAME INFO */
     .game-info {
-      margin: 1.5rem auto; /* Reduced margin */
+      margin: 1.2rem auto;
       max-width: 800px;
       text-align: left;
-      line-height: 1.5; /* Reduced line height */
-      font-size: 0.95rem; /* Reduced font size */
+      line-height: 1.4;
+      font-size: 0.9rem;
       background: rgba(0, 0, 0, 0.6);
-      padding: 1.2rem; /* Reduced padding */
+      padding: 1rem;
       border: 1px solid rgba(0, 255, 255, 0.3);
-      border-radius: 10px; /* Reduced border radius */
+      border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
     .game-description {
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.6rem;
     }
     .playlist-link {
       color: #0ff;
@@ -714,36 +714,36 @@ body {
     /* FACT PANELS */
     .facts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Reduced min width */
-      gap: 1rem; /* Reduced gap */
-      margin-top: 1.5rem; /* Reduced margin */
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1rem;
     }
     .fact-panel {
       background: rgba(0, 0, 0, 0.65);
       border: 1px solid rgba(0, 255, 255, 0.4);
-      border-radius: 8px; /* Reduced border radius */
-      padding: 0.8rem; /* Reduced padding */
+      border-radius: 6px;
+      padding: 0.6rem;
       text-align: center;
       transition: all 0.3s ease;
       font-weight: bold;
     }
     .fact-panel:hover {
       background: rgba(0, 255, 255, 0.15);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
     }
     .fact-icon {
-      font-size: 1.5rem; /* Reduced font size */
+      font-size: 1.3rem;
       display: block;
-      margin-bottom: 0.4rem; /* Reduced margin */
+      margin-bottom: 0.3rem;
     }
     .fact-text {
-      font-size: 0.9rem; /* Reduced font size */
+      font-size: 0.8rem;
     }
     /* === Carousel CSS from the new code === */
     .carousel-container {
       position: relative;
       overflow: hidden;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
     .carousel {
       display: flex;
@@ -751,7 +751,7 @@ body {
     }
     .carousel-item {
       min-width: 100%;
-      padding: 1rem;
+      padding: 0.5rem;
       box-sizing: border-box;
     }
     .carousel-btn {
@@ -761,10 +761,10 @@ body {
       background: rgba(0,0,0,0.5);
       border: 2px solid #0ff;
       border-radius: 50%;
-      width: 40px; /* Reduced size */
-      height: 40px; /* Reduced size */
+      width: 35px;
+      height: 35px;
       color: #0ff;
-      font-size: 1.3rem; /* Reduced font size */
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.3s ease;
       z-index: 20;
@@ -773,8 +773,8 @@ body {
       background: #0ff;
       color: black;
     }
-    .carousel-btn.prev { left: 5px; } /* Adjusted position */
-    .carousel-btn.next { right: 5px; } /* Adjusted position */
+    .carousel-btn.prev { left: 2px; }
+    .carousel-btn.next { right: 2px; }
   </style>
 
   <script>
