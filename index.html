@@ -471,7 +471,7 @@ body {
 </div>
 </section>
 
-<section class="cinematic-playlist-section py-20 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
+<section class="cinematic-playlist-section py-10 px-4 relative overflow-hidden bg-black text-white font-sans" id="featured-playlists">
 
   <div class="absolute inset-0 z-0">
     <div class="stars-layer"></div>
@@ -493,14 +493,14 @@ body {
       <div class="carousel">
         
         <div class="carousel-item">
-          <h2 class="title"><b>Clair Obscur: Expedition 33</b></h2>
+          <h3 class="game-title"><b>Clair Obscur: Expedition 33</b></h3>
           <div class="video-showcase">
             <iframe src="https://www.youtube.com/embed/0RKbpYI5z7Y?list=PLWia9WmNWzl0kvUYkLMsel5c0nz4yEKoH"
               allowfullscreen></iframe>
           </div>
           <div class="game-info">
-            <h3><b>About Clair Obscur: Expedition 33</b></h3>
-            <p>
+            <h4><b>About Clair Obscur: Expedition 33</b></h4>
+            <p class="game-description">
               Players embark on an epic quest across a surreal, painterly world inspired by French impressionism. With its unique blend of fast-paced
               combat, evocative storytelling, and striking visuals, this adventure delivers an unforgettable journey through beauty and peril.
             </p>
@@ -523,14 +523,14 @@ body {
         </div>
 
         <div class="carousel-item">
-          <h2 class="title"><b>Dead Space Remake</b></h2>
+          <h3 class="game-title"><b>Dead Space Remake</b></h3>
           <div class="video-showcase">
             <iframe src="https://www.youtube.com/embed/2-M98ozycFI?list=PLWia9WmNWzl2eBo8lBp8Hoxv9mUiGaZ8j"
               allowfullscreen></iframe>
           </div>
           <div class="game-info">
-            <h3><b>About Dead Space Remake</b></h3>
-            <p>
+            <h4><b>About Dead Space Remake</b></h4>
+            <p class="game-description">
               The iconic survival horror classic returns, rebuilt from the ground up for a deeper, more immersive experience.
               Step into the boots of Isaac Clarke as you face the nightmare aboard the USG Ishimura — where every shadow hides a terror.
             </p>
@@ -566,12 +566,8 @@ body {
       animation: stars-move 120s linear infinite;
     }
     @keyframes stars-move {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: 10000px 5000px;
-      }
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
     }
     /* NEBULA */
     .nebula-layer {
@@ -582,13 +578,8 @@ body {
       animation: nebula-fade 15s ease-in-out infinite alternate;
     }
     @keyframes nebula-fade {
-      0%,
-      100% {
-        opacity: 0.6;
-      }
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
     }
     /* AURORA */
     .aurora-layer {
@@ -599,15 +590,9 @@ body {
       animation: aurora-shift 20s ease-in-out infinite;
     }
     @keyframes aurora-shift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     /* FOG */
     .fog-layer {
@@ -618,12 +603,8 @@ body {
       animation: fog-move 60s linear infinite;
     }
     @keyframes fog-move {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: -2000px 1000px;
-      }
+      from { background-position: 0 0; }
+      to { background-position: -2000px 1000px; }
     }
     /* SPOTLIGHT SWEEP */
     .spotlight-sweep {
@@ -633,74 +614,66 @@ body {
       animation: spotlight 8s linear infinite;
     }
     @keyframes spotlight {
-      0% {
-        background-position: -200% 0;
-      }
-      100% {
-        background-position: 200% 0;
-      }
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
     }
     /* CONTENT STYLING */
     .holo-badge {
       display: inline-block;
-      padding: 0.4rem 1rem;
-      margin-bottom: 1rem;
+      padding: 0.4rem 0.8rem; /* Reduced padding */
+      margin-bottom: 0.8rem;  /* Reduced margin */
       background: linear-gradient(90deg, #0ff, #f0f);
       background-size: 200% 200%;
       animation: holo-shift 3s ease-in-out infinite;
       color: black;
       font-weight: bold;
       border-radius: 9999px;
-      font-size: 0.9rem;
+      font-size: 0.8rem; /* Reduced font size */
       text-transform: uppercase;
     }
     @keyframes holo-shift {
-      0%,
-      100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
     .title {
-      font-size: 3.2rem;
+      font-size: 2.8rem; /* Reduced font size */
       font-weight: bold;
       text-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
       margin-bottom: 0.5rem;
     }
+    .game-title {
+        font-size: 2rem; /* New, smaller title for carousel items */
+        text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
+        margin-bottom: 1rem;
+    }
     .subtitle {
-      font-size: 1.25rem;
+      font-size: 1.1rem; /* Reduced font size */
       opacity: 0.9;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem; /* Reduced margin */
     }
     .neon-divider {
-      height: 4px;
-      width: 100px;
+      height: 3px; /* Reduced height */
+      width: 80px; /* Reduced width */
       background: linear-gradient(90deg, #0ff, #f0f, #0ff);
       background-size: 200% 200%;
-      margin: 2rem auto;
+      margin: 1.5rem auto; /* Reduced margin */
       animation: divider-glow 2s linear infinite;
     }
     @keyframes divider-glow {
-      0% {
-        background-position: 0% 50%;
-      }
-      100% {
-        background-position: 200% 50%;
-      }
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
     /* VIDEO SHOWCASE */
     .video-showcase {
       position: relative;
       width: 100%;
-      max-width: 960px;
+      max-width: 700px; /* Reduced max width */
       aspect-ratio: 16 / 9;
-      border: 4px solid rgba(0, 255, 255, 0.8);
-      border-radius: 16px;
+      border: 3px solid rgba(0, 255, 255, 0.8); /* Reduced border size */
+      border-radius: 12px; /* Reduced border radius */
       overflow: hidden;
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6), 0 0 50px rgba(255, 0, 255, 0.4);
-      margin: 0 auto 3rem auto;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4); /* Reduced shadow */
+      margin: 0 auto 1.5rem auto; /* Reduced margin */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .video-showcase iframe {
@@ -712,21 +685,24 @@ body {
       border: none;
     }
     .video-showcase:hover {
-      transform: scale(1.03) rotate(0.5deg);
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6);
+      transform: scale(1.02); /* Slightly smaller scale on hover */
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 50px rgba(255, 0, 255, 0.6);
     }
     /* GAME INFO */
     .game-info {
-      margin: 2rem auto;
+      margin: 1.5rem auto; /* Reduced margin */
       max-width: 800px;
       text-align: left;
-      line-height: 1.6;
-      font-size: 1.05rem;
+      line-height: 1.5; /* Reduced line height */
+      font-size: 0.95rem; /* Reduced font size */
       background: rgba(0, 0, 0, 0.6);
-      padding: 1.5rem;
+      padding: 1.2rem; /* Reduced padding */
       border: 1px solid rgba(0, 255, 255, 0.3);
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      border-radius: 10px; /* Reduced border radius */
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+    .game-description {
+        margin-bottom: 0.8rem;
     }
     .playlist-link {
       color: #0ff;
@@ -738,36 +714,36 @@ body {
     /* FACT PANELS */
     .facts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Reduced min width */
+      gap: 1rem; /* Reduced gap */
+      margin-top: 1.5rem; /* Reduced margin */
     }
     .fact-panel {
       background: rgba(0, 0, 0, 0.65);
       border: 1px solid rgba(0, 255, 255, 0.4);
-      border-radius: 10px;
-      padding: 1rem;
+      border-radius: 8px; /* Reduced border radius */
+      padding: 0.8rem; /* Reduced padding */
       text-align: center;
       transition: all 0.3s ease;
       font-weight: bold;
     }
     .fact-panel:hover {
       background: rgba(0, 255, 255, 0.15);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
     }
     .fact-icon {
-      font-size: 1.8rem;
+      font-size: 1.5rem; /* Reduced font size */
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem; /* Reduced margin */
     }
     .fact-text {
-      font-size: 1rem;
+      font-size: 0.9rem; /* Reduced font size */
     }
     /* === Carousel CSS from the new code === */
     .carousel-container {
       position: relative;
       overflow: hidden;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     .carousel {
       display: flex;
@@ -785,10 +761,10 @@ body {
       background: rgba(0,0,0,0.5);
       border: 2px solid #0ff;
       border-radius: 50%;
-      width: 45px;
-      height: 45px;
+      width: 40px; /* Reduced size */
+      height: 40px; /* Reduced size */
       color: #0ff;
-      font-size: 1.5rem;
+      font-size: 1.3rem; /* Reduced font size */
       cursor: pointer;
       transition: all 0.3s ease;
       z-index: 20;
@@ -797,8 +773,8 @@ body {
       background: #0ff;
       color: black;
     }
-    .carousel-btn.prev { left: 10px; }
-    .carousel-btn.next { right: 10px; }
+    .carousel-btn.prev { left: 5px; } /* Adjusted position */
+    .carousel-btn.next { right: 5px; } /* Adjusted position */
   </style>
 
   <script>
