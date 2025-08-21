@@ -828,7 +828,42 @@ window.addEventListener('load', function() {
   }, 2000); // <-- 5000 milliseconds = 5 seconds
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const liveBadge = document.getElementById('live-badge');
+    const logoLink = document.getElementById('logo-livestream-link');
 
+    // Function to check the live status
+    async function checkLiveStatus() {
+        try {
+            const response = await fetch('/.netlify/functions/check-live');
+            const data = await response.json();
+
+            if (data.isLive) {
+                // Show the 'LIVE' badge
+                liveBadge.style.display = 'block';
+                // Add the animation class
+                logoLink.classList.add('animate-pulse');
+            } else {
+                // Hide the 'LIVE' badge
+                liveBadge.style.display = 'none';
+                // Remove the animation class
+                logoLink.classList.remove('animate-pulse');
+            }
+        } catch (error) {
+            console.error('Error fetching live status:', error);
+            // Hide the badge in case of an error to avoid false positives
+            liveBadge.style.display = 'none';
+        }
+    }
+
+    // Check the status on page load
+    checkLiveStatus();
+
+    // Set an interval to re-check the status every 5 minutes (300000 ms)
+    setInterval(checkLiveStatus, 300000); 
+});
+</script>
 <script>
  const apiKey = 'b162f72fadcc5c39885332a7dcfa90ce'; // Replace with your GNews API key
   const marquee = document.getElementById('dynamic-marquee');
