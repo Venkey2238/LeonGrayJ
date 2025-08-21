@@ -422,14 +422,28 @@ body {
 <div class="min-h-screen flex flex-col">
 <header class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" id="site-header" role="banner">
 <nav aria-label="Primary" class="container mx-auto flex justify-between items-center">
-<div class="flex items-center gap-4" id="logo-container" class="relative w-14 h-14 rounded-full border-2 border-purple-600 flex items-center justify-center overflow-hidden">
-<a aria-label="Go to current livestream" class="relative block w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105" href="https://www.youtube.com/@LeonGrayJ/live" id="logo-livestream-link" rel="noopener noreferrer" target="_blank">
-<img id="leongrayj-logo" src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj" alt="LeongrayJ Logo" href="https://www.youtube.com/@LeonGrayJ/live"/>
-  <span id="live-badge" class="hidden absolute bottom-0 right-0 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">LIVE</span>
-</a>
-<h1 class="text-2xl font-bold text-white tracking-wide">
-<span class="text-purple-400"><a href="index.html">LeonGrayJ</a></span>
-</h1>
+<div class="flex items-center gap-4" id="logo-container">
+  <a aria-label="Go to current livestream"
+     class="relative block w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105"
+     href="https://www.youtube.com/@LeonGrayJ/live"
+     id="logo-livestream-link"
+     rel="noopener noreferrer"
+     target="_blank">
+     
+    <img id="leongrayj-logo"
+         src="https://yt3.googleusercontent.com/59TvMDmDxRIdLvHMcOq9Tz-1xIdnpTmNPvJPIGL1kboNHQ8zycO5bT29KlqvhggJ3hpSG5kx2Q=s160-c-k-c0x00ffffff-no-rj"
+         alt="LeongrayJ Logo" />
+
+    <!-- Live badge -->
+    <span id="live-badge"
+          class="hidden absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
+      LIVE
+    </span>
+  </a>
+
+  <h1 class="text-2xl font-bold text-white tracking-wide">
+    <span class="text-purple-400"><a href="index.html">LeonGrayJ</a></span>
+  </h1>
 </div>
 <ul class="hidden md:flex gap-6 text-sm font-semibold">
       <li><a class="text-custom-purple" href="index.html#featured-playlists">Featured</a></li>
@@ -832,37 +846,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const liveBadge = document.getElementById('live-badge');
     const logoLink = document.getElementById('logo-livestream-link');
 
-    // Function to check the live status
     async function checkLiveStatus() {
         try {
             const response = await fetch('/.netlify/functions/check-live');
             const data = await response.json();
 
             if (data.isLive) {
-                // Show the 'LIVE' badge
                 liveBadge.style.display = 'block';
-                // Add the animation class
-                logoLink.classList.add('animate-pulse');
+                logoLink.classList.add('live-glow');  // 🔥 Add red glowing ring
             } else {
-                // Hide the 'LIVE' badge
                 liveBadge.style.display = 'none';
-                // Remove the animation class
-                logoLink.classList.remove('animate-pulse');
+                logoLink.classList.remove('live-glow');
             }
         } catch (error) {
             console.error('Error fetching live status:', error);
-            // Hide the badge in case of an error to avoid false positives
             liveBadge.style.display = 'none';
+            logoLink.classList.remove('live-glow');
         }
     }
 
-    // Check the status on page load
     checkLiveStatus();
-
-    // Set an interval to re-check the status every 5 minutes (300000 ms)
     setInterval(checkLiveStatus, 300000); 
 });
 </script>
+
 <script>
  const apiKey = 'b162f72fadcc5c39885332a7dcfa90ce'; // Replace with your GNews API key
   const marquee = document.getElementById('dynamic-marquee');
