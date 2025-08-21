@@ -337,36 +337,30 @@ footer a {
 }
 
 
-/* Style for the glowing red border around the logo */
+/* Glowing red ring when live */
 .live-glow {
-    /* Initial state of the glow */
-    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7), /* Inner glow */
-                0 0 0 8px rgba(255, 0, 0, 0.4), /* Outer glow */
-                0 0 0 12px rgba(255, 0, 0, 0.1); /* Fainter outer glow */
-    /* Animation for the pulsing glow */
-    animation: pulse-glow 1.5s infinite cubic-bezier(0.4, 0, 0.6, 1);
-    /* Ensure border-radius is maintained for the glow */
+    position: relative;
+    border-color: transparent !important; /* Hide purple border */
+    box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8),
+                0 0 20px 6px rgba(255, 0, 0, 0.6),
+                0 0 30px 9px rgba(255, 0, 0, 0.4);
+    animation: live-ring-pulse 1.5s infinite ease-in-out;
     border-radius: 50%;
 }
 
-/* Keyframe animation for the pulsing glow effect */
-@keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7),
-                    0 0 0 8px rgba(255, 0, 0, 0.4),
-                    0 0 0 12px rgba(255, 0, 0, 0.1);
+@keyframes live-ring-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.8),
+                    0 0 20px 6px rgba(255, 0, 0, 0.6),
+                    0 0 30px 9px rgba(255, 0, 0, 0.4);
     }
     50% {
-        box-shadow: 0 0 0 6px rgba(255, 0, 0, 0.9), /* Brighter and slightly larger */
-                    0 0 0 10px rgba(255, 0, 0, 0.6),
-                    0 0 0 14px rgba(255, 0, 0, 0.2);
-    }
-    100% {
-        box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.7),
-                    0 0 0 8px rgba(255, 0, 0, 0.4),
-                    0 0 0 0 12px rgba(255, 0, 0, 0.1);
+        box-shadow: 0 0 15px 5px rgba(255, 0, 0, 1),
+                    0 0 25px 8px rgba(255, 0, 0, 0.8),
+                    0 0 40px 12px rgba(255, 0, 0, 0.6);
     }
 }
+
 
 /* Styles for the LIVE badge */
 #live-badge {
