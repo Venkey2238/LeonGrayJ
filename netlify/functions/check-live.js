@@ -1,27 +1,30 @@
-import fetch from 'node-fetch';
+// netlify/functions/check-live.js
+import fetch from "node-fetch"; // Netlify supports this
 
-exports.handler = async function(event, context) {
-  const channelId = 'UCNxPNmokJwOsJANF4BlGbKA';
-  const url = `https://www.youtube.com/channel/${channelId}`;
-
+export async function handler() {
   try {
-    const response = await fetch(url);
-    const html = await response.text();
+    // Fetch the YouTube /live page for the channel
+    const res = await fetch("https://www.youtube.com/@LeonGrayJ/live", {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0 Safari/537.36",
+      },
+    });
 
-    const isLive = html.includes('"isLive":true');
+    const text = await res.text();
+
+    // Check if YouTube marks the video as live
+    const isLive = text.includes('"isLive":true');
 
     return {
       statusCode: 200,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ isLive }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*' // Allow all origins for simplicity
-      }
     };
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch YouTube page' })
+      body: JSON.stringify({ error: error.message }),
     };
   }
-};
+}
