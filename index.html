@@ -866,6 +866,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 liveBadge.style.display = 'none';
                 logoLink.classList.remove('live-glow');
             }
+            if (data.isLive) {
+                liveBadge.classList.remove('hidden'); // show badge
+                logoLink.classList.add('live-glow');
+            } else {
+            liveBadge.classList.add('hidden');    // hide badge
+            logoLink.classList.remove('live-glow');
+            }
+
         } catch (error) {
             console.error('Error fetching live status:', error);
             liveBadge.style.display = 'none';
