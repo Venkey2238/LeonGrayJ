@@ -1,5 +1,4 @@
 // netlify/functions/check-live.js
-import fetch from "node-fetch"; // Netlify supports this
 
 export async function handler() {
   try {
