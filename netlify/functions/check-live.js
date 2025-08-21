@@ -2,7 +2,7 @@
 
 export async function handler() {
   try {
-    // Fetch the YouTube /live page for the channel
+    // Use the built-in fetch in Node 18+ (no need for node-fetch)
     const res = await fetch("https://www.youtube.com/@LeonGrayJ/live", {
       headers: {
         "User-Agent":
@@ -12,7 +12,7 @@ export async function handler() {
 
     const text = await res.text();
 
-    // Check if YouTube marks the video as live
+    // YouTube includes `"isLive":true` in the page if the channel is live
     const isLive = text.includes('"isLive":true');
 
     return {
