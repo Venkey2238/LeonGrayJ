@@ -423,7 +423,7 @@ body {
 <header class="bg-gray-900/80 backdrop-blur shadow-lg py-3 px-6 md:px-12 fixed w-full z-40 border-b border-purple-500/20" id="site-header" role="banner">
 <nav aria-label="Primary" class="container mx-auto flex justify-between items-center">
 <div class="flex items-center gap-4" id="logo-container">
-  <div class="relative flex flex-col items-center">
+  <div class="relative">
     <a aria-label="Go to current livestream"
        class="relative block w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-purple-400 flex items-center justify-center overflow-hidden transition duration-300 transform hover:scale-105"
        href="https://www.youtube.com/@LeonGrayJ/live"
@@ -436,9 +436,9 @@ body {
            alt="LeongrayJ Logo" />
     </a>
 
-    <!-- ✅ LIVE badge outside, clearly below the circle -->
+    <!-- ✅ Badge overlaps slightly outside bottom -->
     <span id="live-badge"
-          class="hidden mt-1 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
+          class="hidden absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-md">
       LIVE
     </span>
   </div>
