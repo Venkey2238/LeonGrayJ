@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const logoContainer = document.getElementById('logo-container');
 
         try {
-            const res = await fetch('/.netlify/functions/live-status');
+            const res = await fetch('/.netlify/functions/check-live');
             const data = await res.json();
             const { isLive, liveUrl, latestVideo } = data;
 
