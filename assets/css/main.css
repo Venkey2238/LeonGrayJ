@@ -364,9 +364,13 @@ footer a {
 
 /* Styles for the LIVE badge */
 #live-badge {
-    /* Tailwind classes: absolute bottom-0 right-0 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full transform translate-x-1/4 translate-y-1/4 hidden z-20 */
-    white-space: nowrap; /* Prevent "LIVE" from wrapping */
+  display: inline-block;   /* Prevent full block sizing */
+  text-decoration: none;   /* Remove underline */
+  font-size: 0.7rem;       /* Keep text small */
+  padding: 0.2rem 0.5rem;  /* Pill shape */
+  line-height: 1;          /* Fix vertical centering */
 }
+
 
 /* --- NEW OR MODIFIED STYLES FOR LOGO AND BORDER ALIGNMENT --- */
 
