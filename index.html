@@ -909,6 +909,21 @@ setInterval(() => {
     });
 }, 5 * 60 * 1000); // every 5 minutes
 </script>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+</script>
+
 
 <script defer="" src="./assets/js/main.js" type="module"></script>
 <script defer="" src="./assets/js/lazy-youtube.js"></script>
