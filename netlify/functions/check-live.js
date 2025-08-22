@@ -2,7 +2,7 @@
 
 export async function handler() {
   try {
-    // Use the built-in fetch in Node 18+ (no need for node-fetch)
+    // Use the built-in fetch in Node 18+
     const res = await fetch("https://www.youtube.com/@LeonGrayJ/live", {
       headers: {
         "User-Agent":
@@ -10,10 +10,19 @@ export async function handler() {
       },
     });
 
+    if (!res.ok) {
+      // Handle HTTP errors
+      return {
+        statusCode: res.status,
+        body: JSON.stringify({ error: "Failed to fetch YouTube page" }),
+      };
+    }
+
     const text = await res.text();
 
-    // YouTube includes `"isLive":true` in the page if the channel is live
-    const isLive = text.includes('"isLive":true');
+    // Check for an indicator that the stream is live.
+    // The presence of '"isLiveBroadcast"' in the page source is a reliable indicator.
+    const isLive = text.includes('"isLiveBroadcast":true') || text.includes('{"isLive":true}');
 
     return {
       statusCode: 200,
@@ -21,6 +30,7 @@ export async function handler() {
       body: JSON.stringify({ isLive }),
     };
   } catch (error) {
+    console.error("Error checking live status:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
