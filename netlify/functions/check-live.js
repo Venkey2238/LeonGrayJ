@@ -3,7 +3,7 @@ export async function handler() {
   try {
     const res = await fetch("https://www.youtube.com/@LeonGrayJ/live", {
       headers: {
-        "User-Agent": "Mozilla/5.0",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
       },
     });
 
@@ -15,14 +15,17 @@ export async function handler() {
     }
 
     const text = await res.text();
-    const isLive = text.includes('"isLiveBroadcast":true') || text.includes('{"isLive":true}');
+
+    // Use a regular expression to find the JSON object containing player data
+    const liveDataMatch = text.match(/\"isLiveBroadcast\":(true|false)/);
+    const isLive = liveDataMatch && liveDataMatch[1] === 'true';
 
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         isLive,
-        liveUrl: "https://www.youtube.com/@LeonGrayJ/live" // ✅ always return a valid link
+        liveUrl: "https://www.youtube.com/@LeonGrayJ/live"
       }),
     };
   } catch (error) {
