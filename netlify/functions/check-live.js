@@ -15,10 +15,10 @@ export async function handler() {
     }
 
     const text = await res.text();
+    const isLive = text.includes('\"isLive\":true');
 
-    // Use a regular expression to find the JSON object containing player data
-    const liveDataMatch = text.match(/\"isLiveBroadcast\":(true|false)/);
-    const isLive = liveDataMatch && liveDataMatch[1] === 'true';
+    // This code checks for the existence of the `"isLive":true` string in the page's HTML.
+    // It's the most reliable string-based check without using the YouTube Data API.
 
     return {
       statusCode: 200,
