@@ -41,25 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             const { isLive, liveUrl, latestVideo } = data;
 
-            if (isLive) {
-                    logo.classList.add('live-glow', 'border-red-500');
-                    logo.classList.remove('border-purple-600');
+if (isLive) {
+    logo.classList.add('live-glow', 'border-red-500');
+    logo.classList.remove('border-purple-600');
 
-                    liveBadge.classList.remove('hidden');
-                    liveBadge.href = liveUrl;   // set the badge link dynamically
+    liveBadge.classList.remove('hidden');
+    liveBadge.href = liveUrl;   // ✅ safe now
 
-                    logoContainer.style.cursor = 'pointer';
-                    logoContainer.onclick = () => window.open(liveUrl, '_blank');
-            } else {
-                    logo.classList.remove('live-glow', 'border-red-500');
-                    logo.classList.add('border-purple-600');
+    logoContainer.style.cursor = 'pointer';
+    logoContainer.onclick = () => window.open(liveUrl, '_blank');
+} else {
+    logo.classList.remove('live-glow', 'border-red-500');
+    logo.classList.add('border-purple-600');
 
-                    liveBadge.classList.add('hidden');
-                    liveBadge.href = "#";  // clear link when not live
+    liveBadge.classList.add('hidden');
+    liveBadge.removeAttribute("href"); // ✅ clear the link
 
-                    logoContainer.style.cursor = 'default';
-                    logoContainer.onclick = null;
-            }
+    logoContainer.style.cursor = 'default';
+    logoContainer.onclick = null;
+}
+
 
 
             // --- AI Dialogue Box Logic ---
